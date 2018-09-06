@@ -10,7 +10,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace>
     </RootNamespace>
-    <ProjectGuid>{F9084E53-E5E3-2B7E-552F-2BFBA84D3AC4}</ProjectGuid>
+    <ProjectGuid>{EAC33793-4316-D82E-7DAD-42D072C0396F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -63,16 +63,16 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\S_Player.cs" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>Z:/IGMProfile/Desktop/Alphabet Soup/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>Z:/IGMProfile/Documents/GitHub/Alphabet-Hell/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>Z:/IGMProfile/Desktop/Alphabet Soup/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>Z:/IGMProfile/Documents/GitHub/Alphabet-Hell/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>Z:/IGMProfile/Desktop/Alphabet Soup/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>Z:/IGMProfile/Documents/GitHub/Alphabet-Hell/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>Z:/IGMProfile/Desktop/Alphabet Soup/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>Z:/IGMProfile/Documents/GitHub/Alphabet-Hell/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

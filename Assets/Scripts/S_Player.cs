@@ -20,6 +20,8 @@ public class S_Player : MonoBehaviour
     Vector2 mPosition;
     Vector2 pPosition;// keep track of where the player is
 
+    Rigidbody2D rb;
+
     [SerializeField]
     GameObject bullet;
 	// Use this for initialization
@@ -27,20 +29,23 @@ public class S_Player : MonoBehaviour
     {
         mPosition = Input.mousePosition;
         pPosition = transform.position;
+        rb = GetComponent<Rigidbody2D>();
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
-		// check input here then call the shoot and move methods depending on whether it's true or not
-        if(Input.GetMouseButton(0))
+        // check input here then call the shoot and move methods depending on whether it's true or not
+        if (Input.GetMouseButton(0))
         {
             Move();
             Shoot();
         }
+        else
+            rb.velocity = Vector2.zero;
         // lock the y position, just have the player moving side to side for now
 
-        transform.position = pPosition;
+        //transform.position = pPosition;
 	}
 
     // periodically have the player shoot a projectile using a timer and a cooldown 
@@ -60,7 +65,7 @@ public class S_Player : MonoBehaviour
         Vector2 moveVec = mPosition - prevMPos;
         moveVec.Normalize();
 
-        pPosition += moveVec * Time.deltaTime * speed;
-
+        //pPosition += moveVec * Time.deltaTime * speed;
+        rb.velocity = moveVec /* Time.deltaTime */* speed;
     }
 }
