@@ -39,6 +39,10 @@ public class S_Player : MonoBehaviour
     {
         mPosition = Input.mousePosition;
         pPosition = gameObject.transform.position;
+=======
+        pPosition = transform.position;
+       //yPos = pPosition.y;
+>>>>>>> e89fee8f56eca41ac7a0f013dfc41bbe0e8e627d
         managerScript = sceneManager.GetComponent<SceneManagerScript>();
 	}
 	
@@ -106,6 +110,10 @@ public class S_Player : MonoBehaviour
 
         pPosition += moveVec * Time.deltaTime * seekScalar;
         */
+=======
+        // check if the player is heading off screen by comparing the x value of moveVec 
+        pPosition += moveVec * Time.deltaTime * speed;
+>>>>>>> e89fee8f56eca41ac7a0f013dfc41bbe0e8e627d
 
     }
 }
