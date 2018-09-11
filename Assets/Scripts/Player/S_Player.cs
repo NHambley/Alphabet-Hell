@@ -31,6 +31,9 @@ public class S_Player : MonoBehaviour
     Vector2 force = Vector2.zero;
 
 
+    //Variables for touch controls 
+    Vector2 fingerPos;
+    // end variables for touch controls
     [SerializeField]
     GameObject bullet;
 
@@ -90,6 +93,7 @@ public class S_Player : MonoBehaviour
             //else if (distanceRatio < 0.3f) distanceRatio = 0.3f;
             Vector2 desiredVelocity = (mPosition - pPosition).normalized * seekScalar;
             force = (desiredVelocity - pVelocity) * Time.deltaTime;
+            force = new Vector2(force.x, 0);
             if (distanceRatio < 1) pVelocity *= 0.96f;
             pVelocity += force;
             pVelocity = Vector2.ClampMagnitude(pVelocity, maxSpeed);
@@ -110,5 +114,29 @@ public class S_Player : MonoBehaviour
         pPosition += moveVec * Time.deltaTime * speed;
         */
 
+    }
+
+    // currently testing this 
+    // uses the players touch positions to move the player instead of mouse position
+    void TouchMove()
+    {
+        fingerPos = Input.GetTouch(0).position;
+
+        float distanceRatio = (fingerPos - pPosition).magnitude;
+        if (distanceRatio >= 0.01f)
+        {
+            if (distanceRatio > 1f) distanceRatio = 1f;
+            //else if (distanceRatio < 0.3f) distanceRatio = 0.3f;
+            Vector2 desiredVelocity = (fingerPos - pPosition).normalized * seekScalar;
+            force = (desiredVelocity - pVelocity) * Time.deltaTime;
+            force = new Vector2(force.x, 0);
+            if (distanceRatio < 1) pVelocity *= 0.96f;
+            pVelocity += force;
+            pVelocity = Vector2.ClampMagnitude(pVelocity, maxSpeed);
+        }
+        else if (pVelocity.magnitude <= 0.05f)
+        {
+            pVelocity = Vector2.zero;
+        }
     }
 }
