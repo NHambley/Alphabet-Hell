@@ -21,6 +21,8 @@ public class S_Player : MonoBehaviour
     [SerializeField, Range(0, 20)]
     float maxSpeed;
 
+    //float yPos; // keep the y position at the same value all game
+
     // used to determine the movements of the player's mouse/finger this will be used to determine the direction the player is moved
     Vector2 prevMPos; 
     Vector2 mPosition;
@@ -38,6 +40,7 @@ public class S_Player : MonoBehaviour
 	void Start ()
     {
         mPosition = Input.mousePosition;
+<<<<<<< HEAD
         pPosition = gameObject.transform.position;
 =======
         pPosition = transform.position;
@@ -106,8 +109,10 @@ public class S_Player : MonoBehaviour
         mPosition = Input.mousePosition;
 
         Vector2 moveVec = mPosition - prevMPos;
+        moveVec = new Vector2(moveVec.x, 0);
         moveVec.Normalize();
 
+<<<<<<< HEAD
         pPosition += moveVec * Time.deltaTime * seekScalar;
         */
 =======
