@@ -17,12 +17,17 @@ public class S_Player : MonoBehaviour
     float timer;
 
     [SerializeField, Range(0,20)]
-    float speed = 1f;
+    float seekScalar;
+    [SerializeField, Range(0, 20)]
+    float maxSpeed;
 
     // used to determine the movements of the player's mouse/finger this will be used to determine the direction the player is moved
     Vector2 prevMPos; 
     Vector2 mPosition;
     Vector2 pPosition;// keep track of where the player is
+    Vector2 pVelocity = Vector2.zero;
+    Vector2 force = Vector2.zero;
+
 
     [SerializeField]
     GameObject bullet;
@@ -33,7 +38,7 @@ public class S_Player : MonoBehaviour
 	void Start ()
     {
         mPosition = Input.mousePosition;
-        pPosition = transform.position;
+        pPosition = gameObject.transform.position;
         managerScript = sceneManager.GetComponent<SceneManagerScript>();
 	}
 	
@@ -46,11 +51,16 @@ public class S_Player : MonoBehaviour
             Move();
             Shoot();
         }
+        else
+        {
+            pVelocity *= 0.95f;
+        }
         // lock the y position, just have the player moving side to side for now
-
+        pPosition += pVelocity;
+        force = Vector2.zero;
         gameObject.transform.position = pPosition;
 
-        Debug.Log(gameObject.transform.position);
+        //Debug.Log(mPosition);
     }
 
     // periodically have the player shoot a projectile using a timer and a cooldown 
@@ -70,13 +80,32 @@ public class S_Player : MonoBehaviour
     // compare the finger (mouse) position to its position last frame, normalize that vector, multiply by Time.deltaTime, then add it to the player position
     void Move()
     {
+        mPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        float distanceRatio = (mPosition - pPosition).magnitude;
+        if(distanceRatio >= 0.01f)
+        {
+            if (distanceRatio > 1f) distanceRatio = 1f;
+            //else if (distanceRatio < 0.3f) distanceRatio = 0.3f;
+            Vector2 desiredVelocity = (mPosition - pPosition).normalized * seekScalar;
+            force = (desiredVelocity - pVelocity) * Time.deltaTime;
+            if (distanceRatio < 1) pVelocity *= 0.96f;
+            pVelocity += force;
+            pVelocity = Vector2.ClampMagnitude(pVelocity, maxSpeed);
+        }
+        else if(pVelocity.magnitude <= 0.05f)
+        {
+            pVelocity = Vector2.zero;
+        }
+
+        /*
         prevMPos = mPosition;
         mPosition = Input.mousePosition;
 
         Vector2 moveVec = mPosition - prevMPos;
         moveVec.Normalize();
 
-        pPosition += moveVec * Time.deltaTime * speed;
+        pPosition += moveVec * Time.deltaTime * seekScalar;
+        */
 
     }
 }

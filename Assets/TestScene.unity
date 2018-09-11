@@ -178,6 +178,48 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 6
+--- !u!1001 &1320033088
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4069801532842866, guid: eabeaf9522b727644aa1b90ff93f6260, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4069801532842866, guid: eabeaf9522b727644aa1b90ff93f6260, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 3.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 4069801532842866, guid: eabeaf9522b727644aa1b90ff93f6260, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4069801532842866, guid: eabeaf9522b727644aa1b90ff93f6260, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4069801532842866, guid: eabeaf9522b727644aa1b90ff93f6260, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4069801532842866, guid: eabeaf9522b727644aa1b90ff93f6260, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4069801532842866, guid: eabeaf9522b727644aa1b90ff93f6260, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4069801532842866, guid: eabeaf9522b727644aa1b90ff93f6260, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eabeaf9522b727644aa1b90ff93f6260, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1001 &1434950383
 Prefab:
   m_ObjectHideFlags: 0
@@ -228,6 +270,16 @@ Prefab:
       propertyPath: sceneManager
       value: 
       objectReference: {fileID: 1304579933}
+    - target: {fileID: 114797251974185906, guid: baf531abf4728d044bb036ce065f5e05,
+        type: 2}
+      propertyPath: seekScalar
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114797251974185906, guid: baf531abf4728d044bb036ce065f5e05,
+        type: 2}
+      propertyPath: maxSpeed
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: baf531abf4728d044bb036ce065f5e05, type: 2}
   m_IsPrefabAsset: 0
