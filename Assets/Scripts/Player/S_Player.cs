@@ -50,10 +50,12 @@ public class S_Player : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-		// check input here then call the shoot and move methods depending on whether it's true or not
+        // check input here then call the shoot and move methods depending on whether it's true or not
         if(Input.GetMouseButton(0))
         {
-            Move();
+            //mPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+            Move(mPosition);
             Shoot();
         }
         else
@@ -83,9 +85,8 @@ public class S_Player : MonoBehaviour
     // move the player in relation to how the player is moving their finger across the screen. Don't match the player and finger positions instead
     // see the direction the finger/mouse is moving in and then apply that movement to the player
     // compare the finger (mouse) position to its position last frame, normalize that vector, multiply by Time.deltaTime, then add it to the player position
-    void Move()
+    void Move(Vector2 mPos)
     {
-        mPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         float distanceRatio = (mPosition - pPosition).magnitude;
         if(distanceRatio >= 0.01f)
         {
@@ -116,12 +117,13 @@ public class S_Player : MonoBehaviour
 
     }
 
+    /*
     // currently testing this 
     // uses the players touch positions to move the player instead of mouse position
     void TouchMove()
     {
         fingerPos = Input.GetTouch(0).position;
-
+        Debug.Log("Touch: " + Input.GetTouch(0).deltaPosition);
         float distanceRatio = (fingerPos - pPosition).magnitude;
         if (distanceRatio >= 0.01f)
         {
@@ -139,4 +141,5 @@ public class S_Player : MonoBehaviour
             pVelocity = Vector2.zero;
         }
     }
+    */
 }
