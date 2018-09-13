@@ -62,7 +62,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\DestroyDelay.cs" />
+    <Compile Include="Assets\Scripts\Enemy\A\E_A.cs" />
+    <Compile Include="Assets\Scripts\Enemy\A\SM_A.cs" />
     <Compile Include="Assets\Scripts\Enemy\GenericEnemyScript.cs" />
+    <Compile Include="Assets\Scripts\Enemy\ParentEnemy.cs" />
     <Compile Include="Assets\Scripts\GenericBulletScript.cs" />
     <Compile Include="Assets\Scripts\Player\S_Player.cs" />
     <Compile Include="Assets\Scripts\SceneManagerScript.cs" />
