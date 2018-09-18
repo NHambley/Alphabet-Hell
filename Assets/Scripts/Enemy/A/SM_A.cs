@@ -10,10 +10,12 @@ public class SM_A : MonoBehaviour
     ///    - attacking: this state has the enemey charging down the screen at the player shooting bullets at rapid fire
     ///    - reset: this state triggers when the enemy has gone off screen and needs to reset back to the top of the screen, once it get back to the top it begins attacking again
     /// </summary>
-    
+
     // since there are only two states a simple boolean variable will represent which state it is in
     // true: attacking 
     // false: resetting
+    // all enemies start out attacking the player 
+    public bool state = true;
 
 	// Use this for initialization
 	void Start ()
