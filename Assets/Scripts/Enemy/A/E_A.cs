@@ -15,21 +15,24 @@ public class E_A : MonoBehaviour
     Vector2 topScreen; // an y position slightly above the top of the camera so the enemy can know where to head back to
 
     float bTimer = 0.5f; // to keep track of when to fire another bullet
-    float timerTrack = 0.0f;
+    float timerTrack = 0.5f;
+
     [Range(5,10), SerializeField]
     float speed;
 
     // get a reference to the state manager
-    SM_A stateManager;
+    //SM_A stateManager;
     bool state;
 
+    [SerializeField]
     GameObject bullet;
 
     float hp;
 	// Use this for initialization
 	void Start ()
     {
-        stateManager = GetComponent<SM_A>();
+        //stateManager = GetComponent<SM_A>();
+        state = true;
         target = GameObject.FindGameObjectWithTag("Player");
 
         // set to the player's current position for now but each will change throughout the code
@@ -40,7 +43,6 @@ public class E_A : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        state = stateManager.state;
         // check what state the enemy is in and call the subsequent method
         // if the bool is true call attacking methods
         // if the bool is false call reset positioning methods
@@ -59,14 +61,15 @@ public class E_A : MonoBehaviour
     void Attacking()
     {
         // using the position that is set in the resetting method (or if it is the first attacking run of this enemy the one set in Start)have the enemy move down in some form towards that position 
-        // On an attack run an enemy will fire 3(?) bullets near the player position
 
-        // subtract time from the timer
-        bTimer -= Time.deltaTime;
-        if(bTimer <= 0)
+        // subtract time from the timer to fire bullets
+        timerTrack -= Time.deltaTime;
+        if(timerTrack <= 0)
         {
             // instantiate a new bullet
-            //Instantiate(bullet, transform.position, Quaternion.identity);
+            Instantiate(bullet, transform.position, Quaternion.identity);
+
+            timerTrack = bTimer;
         }
 
         // move the enemy towards its desired point on the screen
@@ -74,6 +77,10 @@ public class E_A : MonoBehaviour
         distance.Normalize();
         ePosition += distance * Time.deltaTime * speed;
 
+        // check if the enemy has reached near the same y value as the player
+        // if they are at or around that value set them into reset 
+        if (ePosition.y - tPosition.y < 0.5)
+            state = false;
     }
 
     // whenever the enemy reaches a certain point on the screen it will stop attacking and return to the top of the screen
