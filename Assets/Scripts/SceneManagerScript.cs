@@ -5,15 +5,31 @@ using UnityEngine;
 public class SceneManagerScript : MonoBehaviour {
     List<GameObject> playerBullets = new List<GameObject>();
     List<GameObject> enemies = new List<GameObject>();
+    public GameObject enemyPrefab;
+    bool levelInProgress = false;
+    float timeBetweenEnemies = 0.0f;
+    int numOfEnemiesLeft = 0;
+    float lastEnemySpawnTime = 0.0f;
+    //GameObject background;
 
     // Use this for initialization
     void Start () {
-        enemies.Add(GameObject.Find("EnemyTest"));
+        GenerateLevel(3.0f, 10);
+        lastEnemySpawnTime = Time.time;
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
+        if (levelInProgress && numOfEnemiesLeft > 0 && lastEnemySpawnTime + timeBetweenEnemies < Time.time)
+        {
+            lastEnemySpawnTime = Time.time;
+            numOfEnemiesLeft--;
+            GameObject newEnemy = Instantiate(enemyPrefab);
+            newEnemy.GetComponent<GenericEnemyScript>().velocity = new Vector3(0.0f, -0.05f, 0.0f);
+            newEnemy.transform.position = new Vector3(Random.Range(-6.0f, 6.0f), 9.0f, 0f);
+            enemies.Add(newEnemy);
+        }
         for (int i = playerBullets.Count-1; i >= 0; i--)
         {
             if (!playerBullets[i].GetComponent<GenericBulletScript>().IsDead)
@@ -64,5 +80,12 @@ public class SceneManagerScript : MonoBehaviour {
     public void AddPlayerBullet(GameObject b)
     {
         playerBullets.Add(b);
+    }
+
+    public void GenerateLevel(float enemySpawnTime, int enemyCount)
+    {
+        levelInProgress = true;
+        timeBetweenEnemies = enemySpawnTime;
+        numOfEnemiesLeft = enemyCount;
     }
 }

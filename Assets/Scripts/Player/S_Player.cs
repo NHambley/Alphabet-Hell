@@ -5,6 +5,7 @@ using UnityEngine;
 public class S_Player : MonoBehaviour
 {
     public GameObject sceneManager;
+    public GameObject particlePrefab;
 
     SceneManagerScript managerScript;
 
@@ -53,8 +54,8 @@ public class S_Player : MonoBehaviour
         // check input here then call the shoot and move methods depending on whether it's true or not
         if(Input.GetMouseButton(0))
         {
-            //mPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+            mPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            //mPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
             Move(mPosition);
             Shoot();
         }
@@ -79,6 +80,7 @@ public class S_Player : MonoBehaviour
             //newBullet.transform.position.Set(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
             managerScript.AddPlayerBullet(newBullet);
             lastBulletTime = Time.time;
+            gameObject.GetComponent<ParticleGenerator>().GenerateParticles(5, gameObject.transform.position, new Vector3(0.0f, 0.2f, 0.0f), 20.0f, 0.3f);
         }
     }
 
