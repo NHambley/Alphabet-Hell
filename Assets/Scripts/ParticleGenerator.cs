@@ -14,6 +14,8 @@ public enum SPRITE
 public class ParticleGenerator : MonoBehaviour {
 
     public GameObject particlePrefab;
+    
+    public Sprite[] particleSprites;
 
     List<GameObject> particles = new List<GameObject>();
 
@@ -34,11 +36,12 @@ public class ParticleGenerator : MonoBehaviour {
         }
 	}
 
-    public void GenerateParticles(int number, Vector3 pos, Vector3 approxVel, float radiusInDegrees, float timeout)
+    public void GenerateParticles(SPRITE type, int number, Vector3 pos, Vector3 approxVel, float radiusInDegrees, float timeout)
     {
         for (int i = 0; i < number; i++)
         {
             GameObject newParticle = Instantiate(particlePrefab);
+            newParticle.GetComponent<ParticleScript>().SetSprite(particleSprites[(int)type]); 
             newParticle.GetComponent<ParticleScript>().timeout = timeout;
             newParticle.transform.position = pos;
             float angle = Mathf.Rad2Deg * (Mathf.Atan2(approxVel.normalized.y, approxVel.normalized.x)) + (radiusInDegrees * Random.Range(0f, 1f) - radiusInDegrees / 2);

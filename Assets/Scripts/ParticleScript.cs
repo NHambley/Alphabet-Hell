@@ -8,7 +8,6 @@ public class ParticleScript : MonoBehaviour {
     public float timeout = 0.0f;
     public Vector3 velocity;
     public Vector3 acceleration;
-    public Sprite[] particleSprites;
 
 	// Use this for initialization
 	void Start () {
@@ -31,8 +30,8 @@ public class ParticleScript : MonoBehaviour {
         }
 	}
 
-    public void SetSprite(SPRITE s)
+    public void SetSprite(Sprite s)
     {
-        gameObject.GetComponent<SpriteRenderer>().sprite = particleSprites[(int)s];
+        gameObject.GetComponent<SpriteRenderer>().sprite = s;
     }
 }

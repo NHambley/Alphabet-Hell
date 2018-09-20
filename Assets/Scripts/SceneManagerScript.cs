@@ -6,6 +6,9 @@ public class SceneManagerScript : MonoBehaviour {
     List<GameObject> playerBullets = new List<GameObject>();
     List<GameObject> enemies = new List<GameObject>();
     public GameObject enemyPrefab;
+    GameObject currentEnemy;
+    GameObject[] backgrounds;
+    Vector3[] parallaxSpeeds;
     bool levelInProgress = false;
     float timeBetweenEnemies = 0.0f;
     int numOfEnemiesLeft = 0;
@@ -82,10 +85,28 @@ public class SceneManagerScript : MonoBehaviour {
         playerBullets.Add(b);
     }
 
-    public void GenerateLevel(float enemySpawnTime, int enemyCount)
+    public void GenerateLevel(GameObject enemy, float enemySpawnTime, int enemyCount, Sprite[] bgs, Vector3[] bgSpeeds)
     {
+        currentEnemy = enemy;
         levelInProgress = true;
         timeBetweenEnemies = enemySpawnTime;
         numOfEnemiesLeft = enemyCount;
+        backgrounds = new GameObject[bgs.Length * 2];
+        for (int i = 0; i < bgs.Length; i++)
+        {
+            backgrounds[i] = new GameObject("Parallax " + i);
+            backgrounds[i].AddComponent<SpriteRenderer>();
+            backgrounds[i].GetComponent<SpriteRenderer>().sprite = bgs[i];
+        }
+        parallaxSpeeds = bgSpeeds;
+    }
+
+    public void UpdateParallax()
+    {
+        for (int i = 0; i < backgrounds.Length; i++)
+        {
+            backgrounds[i].transform.position += parallaxSpeeds[i];
+            if(backgrounds[i].transform.position)
+        }
     }
 }
