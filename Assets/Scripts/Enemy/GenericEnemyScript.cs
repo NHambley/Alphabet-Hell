@@ -6,6 +6,8 @@ public class GenericEnemyScript : MonoBehaviour {
 
     private bool isDead = false;
 
+    public Vector3 velocity;
+
     public bool IsDead
     {
         get { return isDead; }
@@ -35,7 +37,7 @@ public class GenericEnemyScript : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
+	void FixedUpdate () {
+        gameObject.transform.position += velocity;
 	}
 }
