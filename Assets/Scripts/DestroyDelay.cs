@@ -8,7 +8,7 @@ public class DestroyDelay : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        Object.Destroy(gameObject, 2f);
+        Object.Destroy(gameObject, 3f);
 	}
 	
 

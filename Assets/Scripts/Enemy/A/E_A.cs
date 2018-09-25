@@ -21,23 +21,28 @@ public class E_A : MonoBehaviour
     float speed;
 
     // get a reference to the state manager
-    //SM_A stateManager;
+    [SerializeField]
     bool state;
 
     [SerializeField]
     GameObject bullet;
 
     float hp;
+
+    Camera cam;
 	// Use this for initialization
 	void Start ()
     {
         //stateManager = GetComponent<SM_A>();
         state = true;
         target = GameObject.FindGameObjectWithTag("Player");
+        cam = Camera.main;
 
         // set to the player's current position for now but each will change throughout the code
-        tPosition = new Vector2(target.transform.position.x + 5, target.transform.position.y);
+        tPosition = new Vector2(Random.Range(-(2f * cam.orthographicSize) * cam.aspect, (2f * cam.orthographicSize) * cam.aspect), target.transform.position.y);
         ePosition = new Vector2(transform.position.x, transform.position.y);
+
+        topScreen = new Vector2(0, 10);
 	}
 	
 	// Update is called once per frame
@@ -80,13 +85,26 @@ public class E_A : MonoBehaviour
         // check if the enemy has reached near the same y value as the player
         // if they are at or around that value set them into reset 
         if (ePosition.y - tPosition.y < 0.5)
+        {
             state = false;
+        }
+
     }
 
     // whenever the enemy reaches a certain point on the screen it will stop attacking and return to the top of the screen
     // before it sets back to attacking it will take the current position the player is in and map out a 
     void Resetting()
     {
+        // if the enemy has reached the top of the screen give it a new attack vector
+        if(Vector2.Distance(transform.position, topScreen) < .5)
+        {
+            tPosition = new Vector2(Random.Range(-(2f * cam.orthographicSize) * cam.aspect, (2f * cam.orthographicSize) * cam.aspect), target.transform.position.y);
+            state = true;
+        }
 
+        
+        Vector2 distance = topScreen - ePosition;
+        distance.Normalize();
+        ePosition += distance * Time.deltaTime * speed;
     }
 }
