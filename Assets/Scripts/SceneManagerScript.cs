@@ -5,10 +5,12 @@ using UnityEngine;
 public class SceneManagerScript : MonoBehaviour {
     List<GameObject> playerBullets = new List<GameObject>();
     List<GameObject> enemies = new List<GameObject>();
-    public GameObject enemyPrefab;
     GameObject currentEnemy;
     GameObject[] backgrounds;
     Vector3[] parallaxSpeeds;
+    public GameObject[] enemyPrefabs;
+    public Sprite[][] backgroundSprites;
+    public Vector3[][] backgroundSpeeds;
     bool levelInProgress = false;
     float timeBetweenEnemies = 0.0f;
     int numOfEnemiesLeft = 0;
@@ -17,7 +19,7 @@ public class SceneManagerScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        GenerateLevel(3.0f, 10);
+        GenerateLevel(0, 3.0f, 10);
         lastEnemySpawnTime = Time.time;
 	}
 	
@@ -28,7 +30,7 @@ public class SceneManagerScript : MonoBehaviour {
         {
             lastEnemySpawnTime = Time.time;
             numOfEnemiesLeft--;
-            GameObject newEnemy = Instantiate(enemyPrefab);
+            GameObject newEnemy = Instantiate(currentEnemy);
             newEnemy.GetComponent<GenericEnemyScript>().velocity = new Vector3(0.0f, -0.05f, 0.0f);
             newEnemy.transform.position = new Vector3(Random.Range(-6.0f, 6.0f), 9.0f, 0f);
             enemies.Add(newEnemy);
@@ -85,28 +87,41 @@ public class SceneManagerScript : MonoBehaviour {
         playerBullets.Add(b);
     }
 
-    public void GenerateLevel(GameObject enemy, float enemySpawnTime, int enemyCount, Sprite[] bgs, Vector3[] bgSpeeds)
+    public void GenerateLevel(int level, float enemySpawnTime, int enemyCount)
     {
-        currentEnemy = enemy;
+        currentEnemy = enemyPrefabs[level];
         levelInProgress = true;
         timeBetweenEnemies = enemySpawnTime;
         numOfEnemiesLeft = enemyCount;
-        backgrounds = new GameObject[bgs.Length * 2];
-        for (int i = 0; i < bgs.Length; i++)
+        backgrounds = new GameObject[backgroundSprites[level].Length * 2];
+        for (int i = 0; i < backgroundSprites[level].Length * 2; i+=2)
         {
             backgrounds[i] = new GameObject("Parallax " + i);
             backgrounds[i].AddComponent<SpriteRenderer>();
-            backgrounds[i].GetComponent<SpriteRenderer>().sprite = bgs[i];
+            backgrounds[i].GetComponent<SpriteRenderer>().sprite = backgroundSprites[level][i / 2];
+
+            backgrounds[i + 1] = new GameObject("Parallax " + (i + 1));
+            backgrounds[i + 1].AddComponent<SpriteRenderer>();
+            backgrounds[i + 1].GetComponent<SpriteRenderer>().sprite = backgroundSprites[level][i / 2];
         }
-        parallaxSpeeds = bgSpeeds;
+        parallaxSpeeds = backgroundSpeeds[level];
     }
 
     public void UpdateParallax()
     {
-        for (int i = 0; i < backgrounds.Length; i++)
+        for (int i = 0; i < backgrounds.Length; i+=2)
         {
-            backgrounds[i].transform.position += parallaxSpeeds[i];
-            if(backgrounds[i].transform.position)
+            backgrounds[i].transform.position += parallaxSpeeds[i / 2];
+            backgrounds[i + 1].transform.position += parallaxSpeeds[i / 2];
+            
+            if (Camera.main.WorldToScreenPoint(backgrounds[i].transform.position).y < -(Camera.main.pixelHeight / 2))
+            {
+                backgrounds[i].transform.position += new Vector3(0, backgrounds[i].GetComponent<SpriteRenderer>().bounds.size.y, 0);
+            }
+            else if(Camera.main.WorldToScreenPoint(backgrounds[i + 1].transform.position).y < -(Camera.main.pixelHeight / 2))
+            {
+                backgrounds[i + 1].transform.position += new Vector3(0, backgrounds[i + 1].GetComponent<SpriteRenderer>().bounds.size.y, 0);
+            }
         }
     }
 }
