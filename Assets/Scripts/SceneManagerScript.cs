@@ -8,9 +8,7 @@ public class SceneManagerScript : MonoBehaviour {
     GameObject currentEnemy;
     GameObject[] backgrounds;
     Vector3[] parallaxSpeeds;
-    public GameObject[] enemyPrefabs;
-    public Sprite[][] backgroundSprites;
-    public Vector3[][] backgroundSpeeds;
+    public GameObject[] levels;
     bool levelInProgress = false;
     float timeBetweenEnemies = 0.0f;
     int numOfEnemiesLeft = 0;
@@ -19,13 +17,14 @@ public class SceneManagerScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        GenerateLevel(0, 3.0f, 10);
+        GenerateLevel(0);
         lastEnemySpawnTime = Time.time;
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
+        UpdateParallax();
         if (levelInProgress && numOfEnemiesLeft > 0 && lastEnemySpawnTime + timeBetweenEnemies < Time.time)
         {
             lastEnemySpawnTime = Time.time;
@@ -87,24 +86,27 @@ public class SceneManagerScript : MonoBehaviour {
         playerBullets.Add(b);
     }
 
-    public void GenerateLevel(int level, float enemySpawnTime, int enemyCount)
+    public void GenerateLevel(int level)
     {
-        currentEnemy = enemyPrefabs[level];
+        LevelScript levelScript = levels[level].GetComponent<LevelScript>();
+        currentEnemy = levelScript.enemy;
         levelInProgress = true;
-        timeBetweenEnemies = enemySpawnTime;
-        numOfEnemiesLeft = enemyCount;
-        backgrounds = new GameObject[backgroundSprites[level].Length * 2];
-        for (int i = 0; i < backgroundSprites[level].Length * 2; i+=2)
+        timeBetweenEnemies = levelScript.enemySpawnTime;
+        numOfEnemiesLeft = levelScript.numOfEnemies;
+        backgrounds = new GameObject[levelScript.backgrounds.Length * 2];
+        for (int i = 0; i < levelScript.backgrounds.Length * 2; i+=2)
         {
             backgrounds[i] = new GameObject("Parallax " + i);
             backgrounds[i].AddComponent<SpriteRenderer>();
-            backgrounds[i].GetComponent<SpriteRenderer>().sprite = backgroundSprites[level][i / 2];
+            backgrounds[i].GetComponent<SpriteRenderer>().sprite = levelScript.backgrounds[i / 2];
+            backgrounds[i].transform.position = new Vector3(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth / 2, 0, 0)).x, Camera.main.ScreenToWorldPoint(Vector3.zero).y + backgrounds[i].GetComponent<SpriteRenderer>().bounds.extents.y, 1);
 
             backgrounds[i + 1] = new GameObject("Parallax " + (i + 1));
             backgrounds[i + 1].AddComponent<SpriteRenderer>();
-            backgrounds[i + 1].GetComponent<SpriteRenderer>().sprite = backgroundSprites[level][i / 2];
+            backgrounds[i + 1].GetComponent<SpriteRenderer>().sprite = levelScript.backgrounds[i / 2];
+            backgrounds[i + 1].transform.position = new Vector3(backgrounds[i].transform.position.x, backgrounds[i].transform.position.y + backgrounds[i].GetComponent<SpriteRenderer>().bounds.extents.y * 2, backgrounds[i].transform.position.z);
         }
-        parallaxSpeeds = backgroundSpeeds[level];
+        parallaxSpeeds = levelScript.backgroundSpeeds;
     }
 
     public void UpdateParallax()
@@ -114,13 +116,13 @@ public class SceneManagerScript : MonoBehaviour {
             backgrounds[i].transform.position += parallaxSpeeds[i / 2];
             backgrounds[i + 1].transform.position += parallaxSpeeds[i / 2];
             
-            if (Camera.main.WorldToScreenPoint(backgrounds[i].transform.position).y < -(Camera.main.pixelHeight / 2))
+            if (backgrounds[i].transform.position.y + backgrounds[i].GetComponent<SpriteRenderer>().bounds.extents.y < Camera.main.ScreenToWorldPoint(Vector3.zero).y)
             {
-                backgrounds[i].transform.position += new Vector3(0, backgrounds[i].GetComponent<SpriteRenderer>().bounds.size.y, 0);
+                backgrounds[i].transform.position += new Vector3(0, backgrounds[i].GetComponent<SpriteRenderer>().bounds.size.y*2, 0);
             }
-            else if(Camera.main.WorldToScreenPoint(backgrounds[i + 1].transform.position).y < -(Camera.main.pixelHeight / 2))
+            else if(backgrounds[i+1].transform.position.y + backgrounds[i+1].GetComponent<SpriteRenderer>().bounds.extents.y < Camera.main.ScreenToWorldPoint(Vector3.zero).y)
             {
-                backgrounds[i + 1].transform.position += new Vector3(0, backgrounds[i + 1].GetComponent<SpriteRenderer>().bounds.size.y, 0);
+                backgrounds[i + 1].transform.position += new Vector3(0, backgrounds[i + 1].GetComponent<SpriteRenderer>().bounds.size.y*2, 0);
             }
         }
     }

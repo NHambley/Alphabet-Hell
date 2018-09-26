@@ -150,7 +150,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4026647935469836, guid: 001776077acedcd48a076753e3aff1ce, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 114622295070962090, guid: 001776077acedcd48a076753e3aff1ce,
         type: 2}
@@ -210,7 +210,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4026647935469836, guid: 001776077acedcd48a076753e3aff1ce, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 114622295070962090, guid: 001776077acedcd48a076753e3aff1ce,
         type: 2}
@@ -316,8 +316,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93855ae8ca49dbc46993cc1e23075599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 1044725413997532, guid: eabeaf9522b727644aa1b90ff93f6260,
-    type: 2}
+  levels:
+  - {fileID: 1261215751517288, guid: 0e77ce130e714984a86074b8d4c86aa3, type: 2}
 --- !u!4 &1304579935
 Transform:
   m_ObjectHideFlags: 0
@@ -479,7 +479,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4026647935469836, guid: 001776077acedcd48a076753e3aff1ce, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 114622295070962090, guid: 001776077acedcd48a076753e3aff1ce,
         type: 2}
@@ -539,7 +539,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4026647935469836, guid: 001776077acedcd48a076753e3aff1ce, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114622295070962090, guid: 001776077acedcd48a076753e3aff1ce,
         type: 2}
