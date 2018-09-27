@@ -10,7 +10,7 @@ public class A_Bullet : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        speed = 5;
+        speed = 7;
         position = transform.position;
         movement = Vector2.down;
 	}
