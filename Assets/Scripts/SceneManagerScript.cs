@@ -44,19 +44,12 @@ public class SceneManagerScript : MonoBehaviour {
                     {
                         if ((playerBullets[i].transform.position - enemies[j].transform.position).magnitude < 3)
                         {
-                            SpriteRenderer bulletSR = playerBullets[i].GetComponent<SpriteRenderer>();
-                            Vector2 bulletMin = playerBullets[i].transform.position - bulletSR.bounds.extents;
-                            Vector2 bulletMax = playerBullets[i].transform.position + bulletSR.bounds.extents;
-                            SpriteRenderer enemySR = enemies[j].GetComponent<SpriteRenderer>();
-                            Vector2 enemyMin = enemies[j].transform.position - enemySR.bounds.extents;
-                            Vector2 enemyMax = enemies[j].transform.position + enemySR.bounds.extents;
-                            if (bulletMin.x < enemyMax.x && bulletMin.y < enemyMax.y && bulletMax.x > enemyMin.x && bulletMax.y > enemyMin.y)
+                            if(CheckCollisions(playerBullets[i], enemies[j]))
                             {
                                 playerBullets[i].GetComponent<GenericBulletScript>().IsDead = true;
                                 enemies[j].GetComponent<GenericEnemyScript>().Health = enemies[j].GetComponent<GenericEnemyScript>().Health - 20;
                                 if (enemies[j].GetComponent<GenericEnemyScript>().IsDead)
                                 {
-                                    Debug.Log("Dead");
                                     GameObject e = enemies[j];
                                     enemies.RemoveAt(j);
                                     Destroy(e);
@@ -98,15 +91,19 @@ public class SceneManagerScript : MonoBehaviour {
         {
             backgrounds[i] = new GameObject("Parallax " + i);
             backgrounds[i].AddComponent<SpriteRenderer>();
-            backgrounds[i].GetComponent<SpriteRenderer>().sprite = levelScript.backgrounds[i / 2];
-            backgrounds[i].transform.position = new Vector3(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth / 2, 0, 0)).x, Camera.main.ScreenToWorldPoint(Vector3.zero).y + backgrounds[i].GetComponent<SpriteRenderer>().bounds.extents.y, 1);
+            backgrounds[i].GetComponent<SpriteRenderer>().sprite = levelScript.backgrounds[i / 2].sprite;
+            backgrounds[i].transform.position = new Vector3(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth / 2, 0, 0)).x, Camera.main.ScreenToWorldPoint(Vector3.zero).y + backgrounds[i].GetComponent<SpriteRenderer>().bounds.extents.y, levelScript.backgrounds[i/2].zIndex);
 
             backgrounds[i + 1] = new GameObject("Parallax " + (i + 1));
             backgrounds[i + 1].AddComponent<SpriteRenderer>();
-            backgrounds[i + 1].GetComponent<SpriteRenderer>().sprite = levelScript.backgrounds[i / 2];
+            backgrounds[i + 1].GetComponent<SpriteRenderer>().sprite = levelScript.backgrounds[i / 2].sprite;
             backgrounds[i + 1].transform.position = new Vector3(backgrounds[i].transform.position.x, backgrounds[i].transform.position.y + backgrounds[i].GetComponent<SpriteRenderer>().bounds.extents.y * 2, backgrounds[i].transform.position.z);
         }
-        parallaxSpeeds = levelScript.backgroundSpeeds;
+        parallaxSpeeds = new Vector3[levelScript.backgrounds.Length];
+        for (int i = 0; i < parallaxSpeeds.Length; i++)
+        {
+            parallaxSpeeds[i] = levelScript.backgrounds[i].speed;
+        }
     }
 
     public void UpdateParallax()
@@ -118,12 +115,27 @@ public class SceneManagerScript : MonoBehaviour {
             
             if (backgrounds[i].transform.position.y + backgrounds[i].GetComponent<SpriteRenderer>().bounds.extents.y < Camera.main.ScreenToWorldPoint(Vector3.zero).y)
             {
-                backgrounds[i].transform.position += new Vector3(0, backgrounds[i].GetComponent<SpriteRenderer>().bounds.size.y*2, 0);
+                backgrounds[i].transform.position += new Vector3(0, backgrounds[i].GetComponent<SpriteRenderer>().bounds.size.y*2, backgrounds[i].transform.position.z);
             }
             else if(backgrounds[i+1].transform.position.y + backgrounds[i+1].GetComponent<SpriteRenderer>().bounds.extents.y < Camera.main.ScreenToWorldPoint(Vector3.zero).y)
             {
-                backgrounds[i + 1].transform.position += new Vector3(0, backgrounds[i + 1].GetComponent<SpriteRenderer>().bounds.size.y*2, 0);
+                backgrounds[i + 1].transform.position += new Vector3(0, backgrounds[i + 1].GetComponent<SpriteRenderer>().bounds.size.y*2, backgrounds[i].transform.position.z);
             }
         }
+    }
+
+    public bool CheckCollisions(GameObject a, GameObject b)
+    {
+        SpriteRenderer aSpriteRenderer = a.GetComponent<SpriteRenderer>();
+        Vector2 aMin = a.transform.position - aSpriteRenderer.bounds.extents;
+        Vector2 aMax = a.transform.position + aSpriteRenderer.bounds.extents;
+        SpriteRenderer bSpriteRenderer = b.GetComponent<SpriteRenderer>();
+        Vector2 bMin = b.transform.position - bSpriteRenderer.bounds.extents;
+        Vector2 bMax = b.transform.position + bSpriteRenderer.bounds.extents;
+        if (aMin.x < bMax.x && aMin.y < bMax.y && aMax.x > bMin.x && aMax.y > bMin.y)
+        {
+            return true;
+        }
+        return false;
     }
 }
