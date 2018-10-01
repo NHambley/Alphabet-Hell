@@ -6,6 +6,12 @@ public class GenericBulletScript : MonoBehaviour {
 
     Vector3 velocity = new Vector3(0.0f,0.3f, 0.0f);
     Vector3 acceleration = Vector3.zero;
+    GameObject ownedBy;
+
+    public GameObject OwnedBy
+    {
+        get { return ownedBy; }
+    }
 
     private bool isDead = false;
     public bool IsDead
@@ -31,6 +37,18 @@ public class GenericBulletScript : MonoBehaviour {
     }
 
     private void FixedUpdate()
+    {
+        UpdatePosition();
+    }
+
+    public void InitializeBullet(Vector3 vel, Vector3 accel, GameObject owner)
+    {
+        velocity = vel;
+        acceleration = accel;
+        ownedBy = owner;
+    }
+
+    public virtual void UpdatePosition()
     {
         velocity += acceleration;
         gameObject.transform.position += velocity;

@@ -12,12 +12,14 @@ public class E_A : MonoBehaviour
     GameObject target;
     Vector2 tPosition; // use this for calculating the path of each attack run ***this one is set after each reset
     Vector2 ePosition; // positino of this gameobject
-    Vector2 topScreen; // an y position slightly above the top of the camera so the enemy can know where to head back to
+    Vector2 topCenterScreen; // an y position slightly above the top of the camera so the enemy can know where to head back to
+    Vector2 topSideScreen;// used to get the enemy resetting off screen
+    bool reset = true; // true is heading to the side point, false is heading to the center, top of the screen
 
     float bTimer = 0.5f; // to keep track of when to fire another bullet
     float timerTrack = 0.5f;
 
-    [Range(5,10), SerializeField]
+    [Range(2,10), SerializeField]
     float speed;
 
     // get a reference to the state manager
@@ -33,6 +35,8 @@ public class E_A : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+        hp = 100;
+
         //stateManager = GetComponent<SM_A>();
         state = true;
         target = GameObject.FindGameObjectWithTag("Player");
@@ -42,12 +46,16 @@ public class E_A : MonoBehaviour
         tPosition = new Vector2(Random.Range(-(2f * cam.orthographicSize) * cam.aspect, (2f * cam.orthographicSize) * cam.aspect), target.transform.position.y);
         ePosition = new Vector2(transform.position.x, transform.position.y);
 
-        topScreen = new Vector2(0, 10);
+        topCenterScreen = new Vector2(0, 10);
+        topSideScreen = new Vector2(5, 10);
 	}
 	
 	// Update is called once per frame
 	void Update ()
     {
+        if (hp <= 0)
+            Destroy(gameObject);
+        Debug.Log(hp);
         // check what state the enemy is in and call the subsequent method
         // if the bool is true call attacking methods
         // if the bool is false call reset positioning methods
@@ -87,6 +95,16 @@ public class E_A : MonoBehaviour
         if (ePosition.y - tPosition.y < 0.5)
         {
             state = false;
+            reset = true;
+            // check the enemy's x value to determine which side of the screen it should head off
+            if(ePosition.x <= 0)
+            {
+                topSideScreen = new Vector2(-5, 10);
+            }
+            else
+            {
+                topSideScreen = new Vector2(5, 10);
+            }
         }
 
     }
@@ -95,16 +113,28 @@ public class E_A : MonoBehaviour
     // before it sets back to attacking it will take the current position the player is in and map out a 
     void Resetting()
     {
+        Vector2 distance = Vector2.zero; 
         // if the enemy has reached the top of the screen give it a new attack vector
-        if(Vector2.Distance(transform.position, topScreen) < .5)
+        if(Vector2.Distance(transform.position, topCenterScreen) < .5)
         {
             tPosition = new Vector2(Random.Range(-(2f * cam.orthographicSize) * cam.aspect, (2f * cam.orthographicSize) * cam.aspect), target.transform.position.y);
             state = true;
         }
-
         
-        Vector2 distance = topScreen - ePosition;
-        distance.Normalize();
-        ePosition += distance * Time.deltaTime * speed;
+        if(reset) // if the enemy is heading towards the side scrren still
+        {
+            distance = topSideScreen - ePosition;
+            distance.Normalize();
+            ePosition += distance * Time.deltaTime * speed;
+            if (Vector2.Distance(ePosition, topSideScreen) < .5)
+                reset = false;
+        }
+        else
+        {
+            distance = topCenterScreen - ePosition;
+            distance.Normalize();
+            ePosition += distance * Time.deltaTime * speed;
+        }
     }
+
 }
