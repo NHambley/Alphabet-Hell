@@ -5,14 +5,14 @@ using UnityEngine;
 public class E_C : GenericEnemyScript {
 
     // attributes
-    Vector2 position, tPosition, bulletVelocity;
+    Vector3 position, tPosition, bulletVelocity;
     float shotTimer;
     List<GameObject> bullets;
     GameObject firingPosition;
 
-    public float shotTimerMax, health;
+    public float shotTimerMax;
     public GameObject bulletPrefab;
-    public Vector2 speed, bulletSpeed;
+    public Vector3 speed, bulletSpeed;
 
 	// Use this for initialization
 	void Start ()
@@ -70,7 +70,7 @@ public class E_C : GenericEnemyScript {
     {
         foreach(GameObject bullet in bullets)
         {
-            Vector2 newPosition = bullet.transform.position;
+            Vector3 newPosition = bullet.transform.position;
             newPosition += -bulletVelocity;
             bullet.transform.position = newPosition;
         }
