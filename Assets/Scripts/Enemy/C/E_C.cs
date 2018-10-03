@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class E_C : GenericEnemyScript {
+public class E_C : GenericEnemyScript
+{
 
     // attributes
     Vector3 position, tPosition, bulletVelocity;
@@ -14,20 +15,33 @@ public class E_C : GenericEnemyScript {
     public GameObject bulletPrefab;
     public Vector3 speed, bulletSpeed;
 
-	// Use this for initialization
-	void Start ()
+    private SceneManagerScript sceneManager;
+
+    // Use this for initialization
+    void Start()
     {
         position = gameObject.transform.position;
         velocity = speed;
         bulletVelocity = bulletSpeed;
         firingPosition = transform.GetChild(0).gameObject;
         bullets = new List<GameObject>();
-	}
-	
-	// Update is called once per frame
-	void FixedUpdate ()
+        sceneManager = GameObject.Find("SceneManager").GetComponent<SceneManagerScript>();
+        sceneManager.AddEnemy(gameObject);
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
     {
         Move();
+
+        // Collisions
+        foreach (GameObject playerBullet in GameObject.FindGameObjectsWithTag("BulletP"))
+        {
+            if (sceneManager.CheckCollisions(gameObject, playerBullet))
+            {
+                Health -= 5;
+            }
+        }
 
         // Firing
         if (shotTimer == 0 || shotTimer >= shotTimerMax)
@@ -40,7 +54,7 @@ public class E_C : GenericEnemyScript {
 
         // Bullet checking
         BulletUpdate();
-	}
+    }
 
     // movement method
     void Move()
@@ -68,7 +82,7 @@ public class E_C : GenericEnemyScript {
     // Updating bullet positions
     void BulletUpdate()
     {
-        foreach(GameObject bullet in bullets)
+        foreach (GameObject bullet in bullets)
         {
             Vector3 newPosition = bullet.transform.position;
             newPosition += -bulletVelocity;

@@ -138,4 +138,10 @@ public class SceneManagerScript : MonoBehaviour {
         }
         return false;
     }
+
+    public void AddEnemy(GameObject newEnemy)
+    {
+        enemies.Add(newEnemy);
+        numOfEnemiesLeft--;
+    }
 }
