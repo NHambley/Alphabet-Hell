@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SceneManagerScript : MonoBehaviour {
     List<GameObject> playerBullets = new List<GameObject>();
+    List<GameObject> enemyBullets = new List<GameObject>();
     List<GameObject> enemies = new List<GameObject>();
     GameObject currentEnemy;
     GameObject[] backgrounds;
@@ -17,7 +18,7 @@ public class SceneManagerScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        GenerateLevel(0);
+        GenerateLevel(1);
         lastEnemySpawnTime = Time.time;
 	}
 	
@@ -79,6 +80,11 @@ public class SceneManagerScript : MonoBehaviour {
         playerBullets.Add(b);
     }
 
+    public void AddEnemyBullet(GameObject b)
+    {
+        enemyBullets.Add(b);
+    }
+
     public void GenerateLevel(int level)
     {
         LevelScript levelScript = levels[level].GetComponent<LevelScript>();
@@ -115,11 +121,11 @@ public class SceneManagerScript : MonoBehaviour {
             
             if (backgrounds[i].transform.position.y + backgrounds[i].GetComponent<SpriteRenderer>().bounds.extents.y < Camera.main.ScreenToWorldPoint(Vector3.zero).y)
             {
-                backgrounds[i].transform.position += new Vector3(0, backgrounds[i].GetComponent<SpriteRenderer>().bounds.size.y*2, backgrounds[i].transform.position.z);
+                backgrounds[i].transform.position += new Vector3(0, backgrounds[i].GetComponent<SpriteRenderer>().bounds.size.y*2, 0);
             }
             else if(backgrounds[i+1].transform.position.y + backgrounds[i+1].GetComponent<SpriteRenderer>().bounds.extents.y < Camera.main.ScreenToWorldPoint(Vector3.zero).y)
             {
-                backgrounds[i + 1].transform.position += new Vector3(0, backgrounds[i + 1].GetComponent<SpriteRenderer>().bounds.size.y*2, backgrounds[i].transform.position.z);
+                backgrounds[i + 1].transform.position += new Vector3(0, backgrounds[i + 1].GetComponent<SpriteRenderer>().bounds.size.y*2, 0);
             }
         }
     }

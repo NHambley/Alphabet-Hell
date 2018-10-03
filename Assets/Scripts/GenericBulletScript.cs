@@ -53,4 +53,9 @@ public class GenericBulletScript : MonoBehaviour {
         velocity += acceleration;
         gameObject.transform.position += velocity;
     }
+
+    public void SetAcceleration(Vector3 a)
+    {
+        acceleration = a;
+    }
 }
