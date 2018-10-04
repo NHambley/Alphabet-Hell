@@ -6,9 +6,12 @@ public class E_E : GenericEnemyScript {
 
     // attributes
     Vector3 position, tPosition;
-    float shieldHealth;
+    float shieldHealth, damageTaken;
     public Vector3 speed;
     SceneManagerScript sceneManager;
+    bool shieldOn;
+    public Sprite E;
+    public Sprite E_Shield;
 
     // Use this for initialization
     void Start()
@@ -18,7 +21,9 @@ public class E_E : GenericEnemyScript {
         sceneManager = GameObject.Find("SceneManager").GetComponent<SceneManagerScript>();
         //sceneManager.AddEnemy(gameObject);
 
-        shieldHealth = Health * 2;
+        shieldHealth = Health;
+        damageTaken = 10;
+        shieldOn = true;
     }
 
     // Update is called once per frame
@@ -36,6 +41,8 @@ public class E_E : GenericEnemyScript {
                     Health -= 5;
             }
         }
+
+        CheckSprite();
     }
 
     // movement method
@@ -48,6 +55,23 @@ public class E_E : GenericEnemyScript {
     // On Hit function
     public override void OnHit()
     {
-        
+        if (shieldHealth > 0 && shieldOn)
+            shieldHealth -= damageTaken;
+        else
+        {
+            shieldOn = false;
+            Health -= (int)damageTaken;
+        }
+    }
+
+    // Checking which sprite to be using
+    void CheckSprite()
+    {
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (!shieldOn && sr.sprite.name == "E_Shield")
+        {
+            sr.sprite = E;
+        }
+
     }
 }

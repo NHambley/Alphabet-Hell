@@ -7,7 +7,7 @@ public class E_C : GenericEnemyScript
 
     // attributes
     Vector3 position, tPosition, bulletVelocity;
-    float shotTimer;
+    float shotTimer, damageTaken;
     List<GameObject> bullets;
     GameObject firingPosition;
 
@@ -27,6 +27,7 @@ public class E_C : GenericEnemyScript
         bullets = new List<GameObject>();
         sceneManager = GameObject.Find("SceneManager").GetComponent<SceneManagerScript>();
         sceneManager.AddEnemy(gameObject);
+        damageTaken = 10;
     }
 
     // Update is called once per frame
@@ -79,7 +80,7 @@ public class E_C : GenericEnemyScript
             newPosition += -bulletVelocity;
             bullet.transform.position = newPosition;
         }
-
+        /*
         for (int i = 0; i < bullets.Count; i++)
         {
             if (bullets[i].transform.position.y < -15 || bullets[i].transform.position.y > 15)
@@ -89,8 +90,9 @@ public class E_C : GenericEnemyScript
                 Destroy(toDelete);
             }
         }
+        */
     }
-
+    /*
     void OnDestroy()
     {
         for (int i = 0; i < bullets.Count; i++)
@@ -100,9 +102,9 @@ public class E_C : GenericEnemyScript
             Destroy(toDelete);
         }
     }
-
+    */
     public override void OnHit()
     {
-        Health -= 5;
+        Health -= (int)damageTaken;
     }
 }
