@@ -192,6 +192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93855ae8ca49dbc46993cc1e23075599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1305907429}
   levels:
   - {fileID: 1261215751517288, guid: 0e77ce130e714984a86074b8d4c86aa3, type: 2}
   - {fileID: 1919495866368618, guid: 57a33c463f385974daecc76a579f6b83, type: 2}

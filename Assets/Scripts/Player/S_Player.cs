@@ -12,7 +12,7 @@ public class S_Player : MonoBehaviour
     // look at https://docs.unity3d.com/Manual/MobileInput.html for touch controls
     // and https://docs.unity3d.com/Manual/HOWTO-UIMultiResolution.html for resizing the screen depending on mobile device
     int score;
-    int health;
+    public float health;
     int lives;
 
     float timer;
@@ -57,7 +57,7 @@ public class S_Player : MonoBehaviour
             mPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             //mPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
             Move(mPosition);
-            Shoot();
+            if(gameObject.GetComponent<Renderer>().isVisible) Shoot();
         }
         else
         {

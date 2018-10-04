@@ -11,7 +11,8 @@ public class E_XBullet : GenericBulletScript {
 	// Use this for initialization
 	void Start () {
         startingPos = gameObject.transform.position;
-	}
+        damage = 10.0f;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -20,29 +21,18 @@ public class E_XBullet : GenericBulletScript {
 
     private void FixedUpdate()
     {
-        if (!opposite)
+        angleVel += Mathf.PI / 50;
+        if (angleVel > Mathf.PI * 2)
         {
-            angleVel += Mathf.PI / 50;
-            if (angleVel > Mathf.PI * 2)
-            {
-                angleVel = angleVel - Mathf.PI * 2;
-            }
-        }
-        else
-        {
-            angleVel -= Mathf.PI / 50;
-            if (angleVel < -Mathf.PI * 2)
-            {
-                angleVel = angleVel + Mathf.PI * 2;
-            }
+            angleVel = angleVel - Mathf.PI * 2;
         }
         
-        Debug.Log(Mathf.Cos(angleVel));
         UpdatePosition();
     }
 
     public override void UpdatePosition()
     {
-        gameObject.transform.position += new Vector3(Mathf.Cos(angleVel) * 0.1f, -0.15f, 0);
+        if (opposite) gameObject.transform.position += new Vector3(-Mathf.Cos(angleVel) * 0.1f, -0.15f, 0);
+        else gameObject.transform.position += new Vector3(Mathf.Cos(angleVel) * 0.1f, -0.15f, 0);
     }
 }
