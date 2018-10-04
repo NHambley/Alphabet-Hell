@@ -63,7 +63,7 @@ public class S_Player : MonoBehaviour
         {
             pVelocity *= 0.95f;
         }
-        // lock the y position, just have the player moving side to side for now
+
         pPosition += pVelocity;
         force = Vector2.zero;
         gameObject.transform.position = pPosition;
@@ -96,7 +96,7 @@ public class S_Player : MonoBehaviour
             //else if (distanceRatio < 0.3f) distanceRatio = 0.3f;
             Vector2 desiredVelocity = (mPosition - pPosition).normalized * seekScalar;
             force = (desiredVelocity - pVelocity) * Time.deltaTime;
-            force = new Vector2(force.x, 0);
+            //force = new Vector2(force.x, 0); The actual locking of the position
             if (distanceRatio < 1) pVelocity *= 0.96f;
             pVelocity += force;
             pVelocity = Vector2.ClampMagnitude(pVelocity, maxSpeed);
