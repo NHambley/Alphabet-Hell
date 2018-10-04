@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GenericEnemyScript : MonoBehaviour {
+public abstract class GenericEnemyScript : MonoBehaviour {
 
     private bool isDead = false;
 
     public Vector3 velocity;
+    public Vector3 acceleration;
 
     public bool IsDead
     {
@@ -38,6 +39,9 @@ public class GenericEnemyScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
+        velocity += acceleration;
         gameObject.transform.position += velocity;
 	}
+
+    public abstract void OnHit();
 }

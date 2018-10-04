@@ -113,58 +113,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &403536070
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4747888476679820, guid: 69bb36bcb1c239a449bfbf91db956ab7, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 4747888476679820, guid: 69bb36bcb1c239a449bfbf91db956ab7, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 8.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 4747888476679820, guid: 69bb36bcb1c239a449bfbf91db956ab7, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4747888476679820, guid: 69bb36bcb1c239a449bfbf91db956ab7, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4747888476679820, guid: 69bb36bcb1c239a449bfbf91db956ab7, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4747888476679820, guid: 69bb36bcb1c239a449bfbf91db956ab7, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4747888476679820, guid: 69bb36bcb1c239a449bfbf91db956ab7, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4747888476679820, guid: 69bb36bcb1c239a449bfbf91db956ab7, type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114952979880297988, guid: 69bb36bcb1c239a449bfbf91db956ab7,
-        type: 2}
-      propertyPath: shotTimerMax
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 114952979880297988, guid: 69bb36bcb1c239a449bfbf91db956ab7,
-        type: 2}
-      propertyPath: bulletSpeed.y
-      value: 0.25
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 69bb36bcb1c239a449bfbf91db956ab7, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &1304579933
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,8 +140,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93855ae8ca49dbc46993cc1e23075599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1305907429}
   levels:
   - {fileID: 1261215751517288, guid: 0e77ce130e714984a86074b8d4c86aa3, type: 2}
+  - {fileID: 1919495866368618, guid: 57a33c463f385974daecc76a579f6b83, type: 2}
+  - {fileID: 1919495866368618, guid: 22c795f92a1b4b245bc03ccb950b7cd2, type: 2}
+  - {fileID: 1919495866368618, guid: 8d157945a56da024b9e61ab40c0daf60, type: 2}
+  level: 3
 --- !u!4 &1304579935
 Transform:
   m_ObjectHideFlags: 0
