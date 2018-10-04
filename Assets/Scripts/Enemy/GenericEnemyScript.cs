@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GenericEnemyScript : MonoBehaviour {
+public abstract class GenericEnemyScript : MonoBehaviour {
 
     private bool isDead = false;
 
@@ -42,4 +42,6 @@ public class GenericEnemyScript : MonoBehaviour {
         velocity += acceleration;
         gameObject.transform.position += velocity;
 	}
+
+    public abstract int OnHit();
 }

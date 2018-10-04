@@ -15,10 +15,11 @@ public class SceneManagerScript : MonoBehaviour {
     int numOfEnemiesLeft = 0;
     float lastEnemySpawnTime = 0.0f;
     //GameObject background;
+    public int level;
 
     // Use this for initialization
     void Start () {
-        GenerateLevel(1);
+        GenerateLevel(level);
         lastEnemySpawnTime = Time.time;
 	}
 	
@@ -48,7 +49,7 @@ public class SceneManagerScript : MonoBehaviour {
                             if(CheckCollisions(playerBullets[i], enemies[j]))
                             {
                                 playerBullets[i].GetComponent<GenericBulletScript>().IsDead = true;
-                                enemies[j].GetComponent<GenericEnemyScript>().Health = enemies[j].GetComponent<GenericEnemyScript>().Health - 20;
+                                enemies[j].GetComponent<GenericEnemyScript>().OnHit();
                                 if (enemies[j].GetComponent<GenericEnemyScript>().IsDead)
                                 {
                                     GameObject e = enemies[j];

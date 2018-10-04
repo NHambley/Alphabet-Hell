@@ -99,4 +99,14 @@ public class E_C : GenericEnemyScript
             }
         }
     }
+
+    void OnDestroy()
+    {
+        for (int i = 0; i < bullets.Count; i++)
+        {
+            GameObject toDelete = bullets[i];
+            bullets.Remove(bullets[i]);
+            Destroy(toDelete);
+        }
+    }
 }
