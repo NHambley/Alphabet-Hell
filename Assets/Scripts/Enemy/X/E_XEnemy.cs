@@ -36,4 +36,9 @@ public class E_XEnemy:GenericEnemyScript
         newBullet2.GetComponent<E_XBullet>().InitializeBullet(new Vector3(0f, -0.3f, 0f), new Vector3(0, 0, 0), gameObject);
         manager.AddEnemyBullet(newBullet2);
     }
+
+    public override void OnHit()
+    {
+        throw new System.NotImplementedException();
+    }
 }

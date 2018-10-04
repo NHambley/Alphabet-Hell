@@ -46,8 +46,8 @@ public class E_E : GenericEnemyScript {
     }
 
     // On Hit function
-    public override int OnHit()
+    public override void OnHit()
     {
-        return 0;
+        
     }
 }

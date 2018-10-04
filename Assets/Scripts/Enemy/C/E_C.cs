@@ -34,15 +34,6 @@ public class E_C : GenericEnemyScript
     {
         Move();
 
-        // Collisions
-        foreach (GameObject playerBullet in GameObject.FindGameObjectsWithTag("BulletP"))
-        {
-            if (sceneManager.CheckCollisions(gameObject, playerBullet))
-            {
-                Health -= 5;
-            }
-        }
-
         // Firing
         if (shotTimer == 0 || shotTimer >= shotTimerMax)
         {
@@ -108,5 +99,10 @@ public class E_C : GenericEnemyScript
             bullets.Remove(bullets[i]);
             Destroy(toDelete);
         }
+    }
+
+    public override void OnHit()
+    {
+        Health -= 5;
     }
 }
