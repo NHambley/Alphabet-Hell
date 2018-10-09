@@ -6,6 +6,7 @@ public class GenericBulletScript : MonoBehaviour {
 
     Vector3 velocity = new Vector3(0.0f,0.3f, 0.0f);
     Vector3 acceleration = Vector3.zero;
+    public float damage;
     GameObject ownedBy;
 
     public GameObject OwnedBy
@@ -52,5 +53,10 @@ public class GenericBulletScript : MonoBehaviour {
     {
         velocity += acceleration;
         gameObject.transform.position += velocity;
+    }
+
+    public void SetAcceleration(Vector3 a)
+    {
+        acceleration = a;
     }
 }
