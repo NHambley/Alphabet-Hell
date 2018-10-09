@@ -12,7 +12,7 @@ public class S_Player : MonoBehaviour
     // look at https://docs.unity3d.com/Manual/MobileInput.html for touch controls
     // and https://docs.unity3d.com/Manual/HOWTO-UIMultiResolution.html for resizing the screen depending on mobile device
     int score;
-    int health;
+    int health = 50;
     int lives;
 
     float timer;
@@ -40,8 +40,22 @@ public class S_Player : MonoBehaviour
 
     float lastBulletTime = -1.0f;
 
-	// Use this for initialization
-	void Start ()
+    public int Health
+    {
+        get { return health; }
+        set
+        {
+            health = value;
+            if (health <= 0)
+            {
+                health = 0;
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    // Use this for initialization
+    void Start ()
     {
         mPosition = Input.mousePosition;
         pPosition = gameObject.transform.position;
