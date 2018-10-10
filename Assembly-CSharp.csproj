@@ -68,13 +68,10 @@
     <Compile Include="Assets\Scripts\Enemy\C\E_C.cs" />
     <Compile Include="Assets\Scripts\Enemy\E\E_E.cs" />
     <Compile Include="Assets\Scripts\Enemy\GenericEnemyScript.cs" />
-<<<<<<< HEAD
     <Compile Include="Assets\Scripts\Enemy\T\E_T.cs" />
     <Compile Include="Assets\Scripts\Enemy\T\T_Bullet.cs" />
-=======
     <Compile Include="Assets\Scripts\Enemy\X\E_XBullet.cs" />
     <Compile Include="Assets\Scripts\Enemy\X\E_XEnemy.cs" />
->>>>>>> d5617431d197bb842f22479191ad48f801c9a5fe
     <Compile Include="Assets\Scripts\GenericBulletScript.cs" />
     <Compile Include="Assets\Scripts\LevelScript.cs" />
     <Compile Include="Assets\Scripts\ParticleGenerator.cs" />
@@ -91,23 +88,7 @@
       <HintPath>C:/Users/Nathan/Documents/GitHub/Alphabet-Hell/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-<<<<<<< HEAD
       <HintPath>C:/Users/Nathan/Documents/GitHub/Alphabet-Hell/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-=======
-      <HintPath>Z:/IGMProfile/Desktop/RIT/Production Studio/Alphabet-Hell/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-=======
-      <HintPath>Z:/IGMProfile/Alphabet-Hell/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>Z:/IGMProfile/Alphabet-Hell/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>Z:/IGMProfile/Alphabet-Hell/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>Z:/IGMProfile/Alphabet-Hell/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
->>>>>>> 7454cec9db2b27df4ef2c929a29398f523b6f7fb
->>>>>>> d5617431d197bb842f22479191ad48f801c9a5fe
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.2.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -305,24 +286,10 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.2.5f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.Analytics">
-<<<<<<< HEAD
       <HintPath>C:/Users/Nathan/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/Users/Nathan/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
-=======
-<<<<<<< HEAD
-      <HintPath>D:/Profiles/jab1089/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.StandardEvents">
-      <HintPath>D:/Profiles/jab1089/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
-=======
-      <HintPath>D:/Profiles/crg5646/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.StandardEvents">
-      <HintPath>D:/Profiles/crg5646/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
->>>>>>> 7454cec9db2b27df4ef2c929a29398f523b6f7fb
->>>>>>> d5617431d197bb842f22479191ad48f801c9a5fe
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.2.5f1/Editor/Data/MonoBleedingEdge/lib/mono/unity/mscorlib.dll</HintPath>

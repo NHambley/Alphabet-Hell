@@ -12,11 +12,8 @@ public class S_Player : MonoBehaviour
     // look at https://docs.unity3d.com/Manual/MobileInput.html for touch controls
     // and https://docs.unity3d.com/Manual/HOWTO-UIMultiResolution.html for resizing the screen depending on mobile device
     int score;
-<<<<<<< HEAD
-    int health = 50;
-=======
-    public float health;
->>>>>>> d5617431d197bb842f22479191ad48f801c9a5fe
+    public int health = 50;
+    //public float health;
     int lives;
 
     float timer;
