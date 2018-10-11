@@ -12,7 +12,8 @@ public class S_Player : MonoBehaviour
     // look at https://docs.unity3d.com/Manual/MobileInput.html for touch controls
     // and https://docs.unity3d.com/Manual/HOWTO-UIMultiResolution.html for resizing the screen depending on mobile device
     int score;
-    int health;
+    public int health = 50;
+    //public float health;
     int lives;
 
     float timer;
@@ -40,8 +41,22 @@ public class S_Player : MonoBehaviour
 
     float lastBulletTime = -1.0f;
 
-	// Use this for initialization
-	void Start ()
+    public int Health
+    {
+        get { return health; }
+        set
+        {
+            health = value;
+            if (health <= 0)
+            {
+                health = 0;
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    // Use this for initialization
+    void Start ()
     {
         mPosition = Input.mousePosition;
         pPosition = gameObject.transform.position;
@@ -57,13 +72,13 @@ public class S_Player : MonoBehaviour
             mPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             //mPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
             Move(mPosition);
-            Shoot();
+            if(gameObject.GetComponent<Renderer>().isVisible) Shoot();
         }
         else
         {
             pVelocity *= 0.95f;
         }
-        // lock the y position, just have the player moving side to side for now
+
         pPosition += pVelocity;
         force = Vector2.zero;
         gameObject.transform.position = pPosition;
@@ -96,7 +111,7 @@ public class S_Player : MonoBehaviour
             //else if (distanceRatio < 0.3f) distanceRatio = 0.3f;
             Vector2 desiredVelocity = (mPosition - pPosition).normalized * seekScalar;
             force = (desiredVelocity - pVelocity) * Time.deltaTime;
-            force = new Vector2(force.x, 0);
+            //force = new Vector2(force.x, 0); The actual locking of the position
             if (distanceRatio < 1) pVelocity *= 0.96f;
             pVelocity += force;
             pVelocity = Vector2.ClampMagnitude(pVelocity, maxSpeed);

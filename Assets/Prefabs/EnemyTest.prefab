@@ -52,6 +52,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1fe8bb13c6db904aafe509f0fd86a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0, z: 0}
+  acceleration: {x: 0, y: 0, z: 0}
 --- !u!212 &212829655709176912
 SpriteRenderer:
   m_ObjectHideFlags: 1

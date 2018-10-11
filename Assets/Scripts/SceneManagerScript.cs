@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class SceneManagerScript : MonoBehaviour {
     List<GameObject> playerBullets = new List<GameObject>();
+    List<GameObject> enemyBullets = new List<GameObject>();
     List<GameObject> enemies = new List<GameObject>();
+    public GameObject player;
     GameObject currentEnemy;
     GameObject[] backgrounds;
     Vector3[] parallaxSpeeds;
@@ -14,10 +16,11 @@ public class SceneManagerScript : MonoBehaviour {
     int numOfEnemiesLeft = 0;
     float lastEnemySpawnTime = 0.0f;
     //GameObject background;
+    public int level;
 
     // Use this for initialization
     void Start () {
-        GenerateLevel(0);
+        GenerateLevel(level);
         lastEnemySpawnTime = Time.time;
 	}
 	
@@ -25,6 +28,13 @@ public class SceneManagerScript : MonoBehaviour {
 	void Update ()
     {
         UpdateParallax();
+        UpdateLevel();
+        UpdatePlayerBullets();
+        UpdateEnemyBullets();
+	}
+
+    public void UpdateLevel()
+    {
         if (levelInProgress && numOfEnemiesLeft > 0 && lastEnemySpawnTime + timeBetweenEnemies < Time.time)
         {
             lastEnemySpawnTime = Time.time;
@@ -34,7 +44,11 @@ public class SceneManagerScript : MonoBehaviour {
             newEnemy.transform.position = new Vector3(Random.Range(-6.0f, 6.0f), 9.0f, 0f);
             enemies.Add(newEnemy);
         }
-        for (int i = playerBullets.Count-1; i >= 0; i--)
+    }
+
+    public void UpdatePlayerBullets()
+    {
+        for (int i = playerBullets.Count - 1; i >= 0; i--)
         {
             if (!playerBullets[i].GetComponent<GenericBulletScript>().IsDead)
             {
@@ -44,10 +58,10 @@ public class SceneManagerScript : MonoBehaviour {
                     {
                         if ((playerBullets[i].transform.position - enemies[j].transform.position).magnitude < 3)
                         {
-                            if(CheckCollisions(playerBullets[i], enemies[j]))
+                            if (CheckCollisions(playerBullets[i], enemies[j]))
                             {
                                 playerBullets[i].GetComponent<GenericBulletScript>().IsDead = true;
-                                enemies[j].GetComponent<GenericEnemyScript>().Health = enemies[j].GetComponent<GenericEnemyScript>().Health - 20;
+                                enemies[j].GetComponent<GenericEnemyScript>().OnHit();
                                 if (enemies[j].GetComponent<GenericEnemyScript>().IsDead)
                                 {
                                     GameObject e = enemies[j];
@@ -72,11 +86,43 @@ public class SceneManagerScript : MonoBehaviour {
                 Destroy(b);
             }
         }
-	}
+    }
+
+    public void UpdateEnemyBullets()
+    {
+        for (int i = enemyBullets.Count - 1; i >= 0; i--)
+        {
+            if (!enemyBullets[i].GetComponent<GenericBulletScript>().IsDead)
+            {
+                if (CheckCollisions(player, enemyBullets[i]))
+                {
+                    enemyBullets[i].GetComponent<GenericBulletScript>().IsDead = true;
+                    //player.GetComponent<S_Player>().health -= enemyBullets[i].GetComponent<GenericBulletScript>().damage;
+                    if (enemyBullets[i].GetComponent<GenericBulletScript>().IsDead)
+                    {
+                        GameObject b = enemyBullets[i];
+                        enemyBullets.RemoveAt(i);
+                        Destroy(b);
+                    }
+                }
+            }
+            else
+            {
+                GameObject b = enemyBullets[i];
+                enemyBullets.RemoveAt(i);
+                Destroy(b);
+            }
+        }
+    }
 
     public void AddPlayerBullet(GameObject b)
     {
         playerBullets.Add(b);
+    }
+
+    public void AddEnemyBullet(GameObject b)
+    {
+        enemyBullets.Add(b);
     }
 
     public void GenerateLevel(int level)
@@ -115,11 +161,11 @@ public class SceneManagerScript : MonoBehaviour {
             
             if (backgrounds[i].transform.position.y + backgrounds[i].GetComponent<SpriteRenderer>().bounds.extents.y < Camera.main.ScreenToWorldPoint(Vector3.zero).y)
             {
-                backgrounds[i].transform.position += new Vector3(0, backgrounds[i].GetComponent<SpriteRenderer>().bounds.size.y*2, backgrounds[i].transform.position.z);
+                backgrounds[i].transform.position += new Vector3(0, backgrounds[i].GetComponent<SpriteRenderer>().bounds.size.y*2, 0);
             }
             else if(backgrounds[i+1].transform.position.y + backgrounds[i+1].GetComponent<SpriteRenderer>().bounds.extents.y < Camera.main.ScreenToWorldPoint(Vector3.zero).y)
             {
-                backgrounds[i + 1].transform.position += new Vector3(0, backgrounds[i + 1].GetComponent<SpriteRenderer>().bounds.size.y*2, backgrounds[i].transform.position.z);
+                backgrounds[i + 1].transform.position += new Vector3(0, backgrounds[i + 1].GetComponent<SpriteRenderer>().bounds.size.y*2, 0);
             }
         }
     }
@@ -137,5 +183,11 @@ public class SceneManagerScript : MonoBehaviour {
             return true;
         }
         return false;
+    }
+
+    public void AddEnemy(GameObject newEnemy)
+    {
+        enemies.Add(newEnemy);
+        numOfEnemiesLeft--;
     }
 }

@@ -64,6 +64,7 @@ public class E_A : MonoBehaviour
         else
             Resetting();
 
+        
         transform.position = ePosition;
     }
 
