@@ -313,6 +313,8 @@
     <Compile Include="Assets\Scripts\Enemy\C\E_C.cs" />
     <Compile Include="Assets\Scripts\Enemy\E\E_E.cs" />
     <Compile Include="Assets\Scripts\Enemy\GenericEnemyScript.cs" />
+    <Compile Include="Assets\Scripts\Enemy\T\E_T.cs" />
+    <Compile Include="Assets\Scripts\Enemy\T\T_Bullet.cs" />
     <Compile Include="Assets\Scripts\Enemy\X\E_XBullet.cs" />
     <Compile Include="Assets\Scripts\Enemy\X\E_XEnemy.cs" />
     <Compile Include="Assets\Scripts\GenericBulletScript.cs" />
