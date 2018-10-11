@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class E_T : MonoBehaviour
+public class E_T : GenericEnemyScript
 {
     /// <summary>
     /// the T enemy moves slowly around the screen and after it reaches its desired position, takes aim, and fires a fast bullet towards the player
@@ -11,6 +11,7 @@ public class E_T : MonoBehaviour
     
     GameObject target; // where the enemy is at the point of charging up the shot
     float chargeTimer = 2.0f;
+    [SerializeField]
     float timer = 2.0f;
 
     Vector2 ePosition;// position of this enemy
@@ -25,12 +26,12 @@ public class E_T : MonoBehaviour
 
     Camera cam;
     float hp;
-
+    [SerializeField]
     bool firing = false;// is the enemy firing a bullet or not?
 	// Use this for initialization
 	void Start ()
     {
-        hp = 20;
+        Health = 500;
         target = GameObject.FindGameObjectWithTag("Player");
         cam = Camera.main;
 
@@ -65,12 +66,15 @@ public class E_T : MonoBehaviour
         if(timer <= 0)
         {
             // fire a bullet and find a new position\
-            Instantiate(bullet, gameObject.transform.GetChild(0).transform);
+            Instantiate(bullet, gameObject.transform.position, Quaternion.identity);
+            firing = false;
+            FindPosition();
+            timer = chargeTimer;
         }
         else
         {
             timer -= Time.deltaTime;
-            transform.rotation = new Quaternion(0, 0, Vector2.Angle(ePosition, target.transform.position) * Time.deltaTime, 0);
+            //transform.rotation = new Quaternion(0, 0, Vector2.Angle(ePosition, target.transform.position) * Time.deltaTime, 0);
         }
     }
 
@@ -82,7 +86,7 @@ public class E_T : MonoBehaviour
         moveFrame = moveFrame.normalized * speed * Time.deltaTime;
         ePosition += moveFrame;
 
-        if(Vector2.Distance(ePosition, target.transform.position) < .5f)
+        if(Vector2.Distance(ePosition, target.transform.position) < 4f)
         {
             firing = true;
         }
@@ -91,6 +95,11 @@ public class E_T : MonoBehaviour
     // find a new position for the tank to move to
     void FindPosition()
     {
-        nextPos = new Vector2(Random.Range(-(2f * cam.orthographicSize) * cam.aspect, (2f * cam.orthographicSize) * cam.aspect), target.transform.position.y + 2);
+        nextPos = new Vector2(Random.Range(-(cam.orthographicSize) * cam.aspect, (cam.orthographicSize) * cam.aspect), Random.Range(-(cam.orthographicSize) + 2, (cam.orthographicSize)));
+    }
+
+    public override void OnHit()
+    {
+        Health -= 20;
     }
 }
