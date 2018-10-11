@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GenericBulletScript : MonoBehaviour {
 
-    Vector3 velocity = new Vector3(0.0f,0.3f, 0.0f);
-    Vector3 acceleration = Vector3.zero;
+    protected Vector3 velocity = new Vector3(0.0f,0.3f, 0.0f);
+    protected Vector3 acceleration = Vector3.zero;
     public float damage;
     GameObject ownedBy;
 

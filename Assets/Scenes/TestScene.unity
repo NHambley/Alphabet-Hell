@@ -146,7 +146,9 @@ MonoBehaviour:
   - {fileID: 1919495866368618, guid: 57a33c463f385974daecc76a579f6b83, type: 2}
   - {fileID: 1919495866368618, guid: 22c795f92a1b4b245bc03ccb950b7cd2, type: 2}
   - {fileID: 1919495866368618, guid: 8d157945a56da024b9e61ab40c0daf60, type: 2}
-  level: 2
+  - {fileID: 1296070761738044, guid: d1a33e03de9bb5b408b264fbd1b5da1d, type: 2}
+  - {fileID: 1739749577170736, guid: 920eef0682cb2c248b0712e5a8e1c1ec, type: 2}
+  level: 4
 --- !u!4 &1304579935
 Transform:
   m_ObjectHideFlags: 0
