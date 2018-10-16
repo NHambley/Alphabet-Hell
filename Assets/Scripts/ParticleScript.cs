@@ -24,6 +24,7 @@ public class ParticleScript : MonoBehaviour {
         {
             velocity += acceleration;
             gameObject.transform.position += velocity;
+            gameObject.transform.up = -velocity.normalized;
             Color current = gameObject.GetComponent<SpriteRenderer>().color;
             current.a = 1 - ((Time.time - startTime) / timeout);
             gameObject.GetComponent<SpriteRenderer>().color = current;

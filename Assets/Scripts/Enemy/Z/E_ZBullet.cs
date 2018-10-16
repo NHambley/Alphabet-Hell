@@ -5,6 +5,7 @@ using UnityEngine;
 public class E_ZBullet : GenericBulletScript {
     
     public float angleVel = Mathf.PI / 50;
+    public const float MAX_SIZE = 1.5f;
 
 	// Use this for initialization
 	void Start () {
@@ -30,6 +31,6 @@ public class E_ZBullet : GenericBulletScript {
     public override void UpdatePosition()
     {
         gameObject.transform.position += velocity;
-        gameObject.transform.localScale = new Vector3(Mathf.Sin(angleVel), Mathf.Sin(angleVel), 1);
+        gameObject.transform.localScale = new Vector3(Mathf.Sin(angleVel) * MAX_SIZE, Mathf.Sin(angleVel) * MAX_SIZE, 1);
     }
 }
