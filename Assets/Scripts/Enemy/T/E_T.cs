@@ -18,6 +18,7 @@ public class E_T : GenericEnemyScript
     //Rigidbody2D rb;
     Vector3 eulerAngleVelocity;
     Vector2 nextPos;
+
     [Range(1,5), SerializeField]
     float speed;// speed for the enemy
     
@@ -86,7 +87,7 @@ public class E_T : GenericEnemyScript
         moveFrame = moveFrame.normalized * speed * Time.deltaTime;
         ePosition += moveFrame;
 
-        if(Vector2.Distance(ePosition, target.transform.position) < 4f)
+        if(Vector2.Distance(ePosition, nextPos) < 1f)
         {
             firing = true;
         }
