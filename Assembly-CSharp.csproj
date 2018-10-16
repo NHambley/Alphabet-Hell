@@ -64,6 +64,8 @@
     <Compile Include="Assets\Scripts\DestroyDelay.cs" />
     <Compile Include="Assets\Scripts\Enemy\A\A_Bullet.cs" />
     <Compile Include="Assets\Scripts\Enemy\A\E_A.cs" />
+    <Compile Include="Assets\Scripts\Enemy\B\E_B.cs" />
+    <Compile Include="Assets\Scripts\Enemy\B\E_Bullet.cs" />
     <Compile Include="Assets\Scripts\Enemy\C\CorkBullet.cs" />
     <Compile Include="Assets\Scripts\Enemy\C\E_C.cs" />
     <Compile Include="Assets\Scripts\Enemy\E\E_E.cs" />
