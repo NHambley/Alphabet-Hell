@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class E_B : GenericEnemyScript {
     Vector3 position, tPosition;
-    float shieldHealth, damageTaken;
+    float damageTaken;
     public Vector3 speed;
     SceneManagerScript sceneManager;
     public override void OnHit()
