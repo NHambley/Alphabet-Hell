@@ -8,7 +8,8 @@ public enum SPRITE
     SPARK,
     WATER,
     DIRT,
-    METAL
+    METAL,
+    ROCK
 };
 
 public class ParticleGenerator : MonoBehaviour {

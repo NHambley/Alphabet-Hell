@@ -14,12 +14,12 @@ public class E_JBullet : GenericBulletScript {
 	
 	// Update is called once per frame
 	void Update () {
-        if(Time.time - prevTime > 0.5f && !jack)
+        if(Time.time - prevTime > 0.1f && !jack)
         {
             jack = true;
             prevTime = Time.time;
         }
-        else if (Time.time - prevTime > 0.05f && jack)
+        else if (Time.time - prevTime > 0.01f && jack)
         {
             jack = false;
             prevTime = Time.time;
