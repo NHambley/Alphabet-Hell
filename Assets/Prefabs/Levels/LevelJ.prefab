@@ -51,7 +51,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7902c0a3b2315d546a9f07fabc18e23c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgrounds: []
+  backgrounds:
+  - speed: {x: 0, y: -0.1, z: 0}
+    sprite: {fileID: 21300000, guid: 76b7cc15a6c2bed4a93034056dd34365, type: 3}
+    zIndex: 1
   enemy: {fileID: 1265434448638280, guid: 942ed04af7a378d4ab33dbdfaa68bc98, type: 2}
   enemySpawnTime: 2
   numOfEnemies: 5

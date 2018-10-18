@@ -82,11 +82,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0, z: 0}
+  acceleration: {x: 0, y: 0, z: 0}
   shotTimerMax: 80
   bulletPrefab: {fileID: 1906018983921274, guid: acd3a87a6bb50724e8bbd09d11288bbb,
     type: 2}
   speed: {x: 0, y: 0.01, z: 0}
-  bulletSpeed: {x: 0, y: 0.25, z: 0}
+  bulletSpeed: {x: 0, y: -0.25, z: 0}
 --- !u!212 &212781559639966238
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgrounds:
   - speed: {x: 0, y: -0.1, z: 0}
-    sprite: {fileID: 21300000, guid: 718169b28c83fcf4da1fcc94dcb3f8e6, type: 3}
+    sprite: {fileID: 21300000, guid: 76b7cc15a6c2bed4a93034056dd34365, type: 3}
     zIndex: 1
   enemy: {fileID: 1876592076652602, guid: 69bb36bcb1c239a449bfbf91db956ab7, type: 2}
   enemySpawnTime: 1
