@@ -59,4 +59,9 @@ public class GenericBulletScript : MonoBehaviour {
     {
         acceleration = a;
     }
+
+    public Vector3 GetVelocity()
+    {
+        return velocity;
+    }
 }

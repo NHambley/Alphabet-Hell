@@ -39,6 +39,7 @@ public class E_XEnemy:GenericEnemyScript
 
     public override void OnHit()
     {
-        throw new System.NotImplementedException();
+        Health -= 20;
+        //gameObject.GetComponent<ParticleGenerator>().GenerateParticles(SPRITE.SPARK, 5, gameObject.transform.position, new Vector3(0.0f, 0.3f, 0.0f), new Vector3(1.0f, 1.0f, 1.0f), 90, 0.5f, -0.5f);
     }
 }

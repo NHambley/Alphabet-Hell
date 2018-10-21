@@ -26,13 +26,13 @@ public class E_JEnemy:GenericEnemyScript
     public void Shoot()
     {
         GameObject newBullet1 = Instantiate(bulletPrefab);
-        newBullet1.transform.position = new Vector3(gameObject.transform.position.x,gameObject.transform.position.y - gameObject.GetComponent<SpriteRenderer>().bounds.extents.y, gameObject.transform.position.z);
+        newBullet1.transform.position = new Vector3(gameObject.transform.position.x,gameObject.transform.position.y - gameObject.GetComponent<SpriteRenderer>().bounds.extents.y, gameObject.transform.position.z - 1);
         newBullet1.GetComponent<E_JBullet>().InitializeBullet(new Vector3(0f, -0.3f, 0f), new Vector3(0, 0, 0), gameObject);
         manager.AddEnemyBullet(newBullet1);
     }
 
     public override void OnHit()
     {
-        throw new System.NotImplementedException();
+        gameObject.GetComponent<ParticleGenerator>().GenerateParticles(SPRITE.ROCK, 5, gameObject.transform.position, new Vector3(0.0f, 0.3f, 0.0f), new Vector3(1.0f, 1.0f, 1.0f), 90, 0.5f, -0.5f);
     }
 }

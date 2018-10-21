@@ -97,6 +97,7 @@ public class SceneManagerScript : MonoBehaviour {
                 if (CheckCollisions(player, enemyBullets[i]))
                 {
                     enemyBullets[i].GetComponent<GenericBulletScript>().IsDead = true;
+                    player.GetComponent<ParticleGenerator>().GenerateParticles(SPRITE.SPARK, 5, enemyBullets[i].transform.position, enemyBullets[i].GetComponent<GenericBulletScript>().GetVelocity().normalized * 0.3f, new Vector3(1.0f, 1.0f, 1.0f), 90, 0.5f, -0.5f);
                     //player.GetComponent<S_Player>().health -= enemyBullets[i].GetComponent<GenericBulletScript>().damage;
                     if (enemyBullets[i].GetComponent<GenericBulletScript>().IsDead)
                     {

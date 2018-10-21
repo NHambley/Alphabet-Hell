@@ -95,7 +95,7 @@ public class S_Player : MonoBehaviour
             //newBullet.transform.position.Set(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
             managerScript.AddPlayerBullet(newBullet);
             lastBulletTime = Time.time;
-            gameObject.GetComponent<ParticleGenerator>().GenerateParticles(SPRITE.FIRE, 5, gameObject.transform.position, new Vector3(0.0f, 0.2f, 0.0f), 20.0f, 0.3f);
+            gameObject.GetComponent<ParticleGenerator>().GenerateParticles(SPRITE.FIRE, 5, gameObject.transform.position, new Vector3(0.0f, 0.2f, 0.0f), new Vector3(0.5f,0.5f,0.5f), 20.0f, 0.3f, -0.5f);
         }
     }
 
