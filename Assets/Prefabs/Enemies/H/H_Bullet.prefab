@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4748457965381350}
   - component: {fileID: 212452482092332062}
   - component: {fileID: 114527414277536616}
+  - component: {fileID: 114218467888691640}
   m_Layer: 0
   m_Name: H_Bullet
   m_TagString: Untagged
@@ -41,6 +42,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114218467888691640
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1672991704614008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 618d86ca9ab79c64bb9744ba4bc1d745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114527414277536616
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -52,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28d764cfcbca7404bbd9fbc42301fe16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  real: 0
+  damage: 0
 --- !u!212 &212452482092332062
 SpriteRenderer:
   m_ObjectHideFlags: 1
