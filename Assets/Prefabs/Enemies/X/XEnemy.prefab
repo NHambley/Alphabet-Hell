@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4647459087473392}
   - component: {fileID: 212840924661822078}
   - component: {fileID: 114596119968505076}
+  - component: {fileID: 114673846985486510}
   m_Layer: 0
   m_Name: XEnemy
   m_TagString: Untagged
@@ -56,6 +57,26 @@ MonoBehaviour:
   acceleration: {x: 0, y: 0, z: 0}
   bulletPrefab: {fileID: 1593570103524318, guid: 72822aa39ce4fbb4083b604c21e00d55,
     type: 2}
+--- !u!114 &114673846985486510
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1093468843803248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f6170c4fe0f4074d83ad55bfc454a79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particlePrefab: {fileID: 1443155864847170, guid: 85cac9076b3924b49b2e56a0025b165c,
+    type: 2}
+  particleSprites:
+  - {fileID: 0}
+  - {fileID: 21300000, guid: 0be74ab5397e8a44d84e441c97d4b87f, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!212 &212840924661822078
 SpriteRenderer:
   m_ObjectHideFlags: 1
