@@ -35,7 +35,7 @@ public class E_H : GenericEnemyScript
 	// Update is called once per frame
 	void Update ()
     {
-        velocity = Vector3.zero;
+        velocity = Vector3.down * Time.deltaTime;
         acceleration = Vector3.zero;
 
         if (Health <= 0)
@@ -48,11 +48,13 @@ public class E_H : GenericEnemyScript
             timerTrack = bTimer;
 
             GameObject bull = Instantiate(bullet, transform.position, Quaternion.identity);
-            sm.AddEnemyBullet(bull);
             int rnum = Random.Range(0, 10);
             Debug.Log(rnum);
             if (rnum % 2 == 0)
+            {
+                sm.AddEnemyBullet(bull);
                 bull.GetComponent<E_HBullet>().Real = true;
+            }
             else
                 bull.GetComponent<E_HBullet>().Real = false;
 
