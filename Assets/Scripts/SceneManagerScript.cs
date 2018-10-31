@@ -41,7 +41,7 @@ public class SceneManagerScript : MonoBehaviour {
             numOfEnemiesLeft--;
             GameObject newEnemy = Instantiate(currentEnemy);
             newEnemy.GetComponent<GenericEnemyScript>().velocity = new Vector3(0.0f, -0.05f, 0.0f);
-            newEnemy.transform.position = new Vector3(Random.Range(-6.0f, 6.0f), 9.0f, 0f);
+            newEnemy.transform.position = new Vector3(Random.Range(-3.0f, 3.0f), 9.0f, 0f);
             enemies.Add(newEnemy);
         }
     }
@@ -140,11 +140,13 @@ public class SceneManagerScript : MonoBehaviour {
             backgrounds[i].AddComponent<SpriteRenderer>();
             backgrounds[i].GetComponent<SpriteRenderer>().sprite = levelScript.backgrounds[i / 2].sprite;
             backgrounds[i].transform.position = new Vector3(Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth / 2, 0, 0)).x, Camera.main.ScreenToWorldPoint(Vector3.zero).y + backgrounds[i].GetComponent<SpriteRenderer>().bounds.extents.y, levelScript.backgrounds[i/2].zIndex);
+            backgrounds[i].transform.localScale = levelScript.backgrounds[i].scale;
 
             backgrounds[i + 1] = new GameObject("Parallax " + (i + 1));
             backgrounds[i + 1].AddComponent<SpriteRenderer>();
             backgrounds[i + 1].GetComponent<SpriteRenderer>().sprite = levelScript.backgrounds[i / 2].sprite;
             backgrounds[i + 1].transform.position = new Vector3(backgrounds[i].transform.position.x, backgrounds[i].transform.position.y + backgrounds[i].GetComponent<SpriteRenderer>().bounds.extents.y * 2, backgrounds[i].transform.position.z);
+            backgrounds[i + 1].transform.localScale = levelScript.backgrounds[i].scale;
         }
         parallaxSpeeds = new Vector3[levelScript.backgrounds.Length];
         for (int i = 0; i < parallaxSpeeds.Length; i++)
