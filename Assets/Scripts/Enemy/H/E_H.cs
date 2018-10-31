@@ -35,7 +35,8 @@ public class E_H : GenericEnemyScript
 	// Update is called once per frame
 	void Update ()
     {
-        velocity = Vector3.down * Time.deltaTime;
+        //velocity = Vector3.down * Time.deltaTime;
+        velocity = Vector3.zero;
         acceleration = Vector3.zero;
 
         if (Health <= 0)
