@@ -89,13 +89,14 @@ public class S_Player : MonoBehaviour
     // periodically have the player shoot a projectile using a timer and a cooldown 
     void Shoot()
     {
+        Vector3 positionOffset = new Vector3(0, 1);
         if(Time.time - lastBulletTime >= 0.1f || lastBulletTime == -1.0f)
         {
-            GameObject newBullet = Instantiate(bullet,gameObject.transform.position,Quaternion.identity);
+            GameObject newBullet = Instantiate(bullet,transform.position + positionOffset,Quaternion.identity);
             //newBullet.transform.position.Set(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
             managerScript.AddPlayerBullet(newBullet);
             lastBulletTime = Time.time;
-            gameObject.GetComponent<ParticleGenerator>().GenerateParticles(SPRITE.FIRE, 5, gameObject.transform.position, new Vector3(0.0f, 0.2f, 0.0f), new Vector3(0.5f,0.5f,0.5f), 20.0f, 0.3f, -0.5f);
+            gameObject.GetComponent<ParticleGenerator>().GenerateParticles(SPRITE.FIRE, 5, gameObject.transform.position + positionOffset, new Vector3(0.0f, 0.2f, 0.0f), new Vector3(0.5f,0.5f,0.5f), 20.0f, 0.3f, -0.5f);
         }
     }
 

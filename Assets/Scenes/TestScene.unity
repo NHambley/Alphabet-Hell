@@ -150,7 +150,7 @@ MonoBehaviour:
   - {fileID: 1739749577170736, guid: 920eef0682cb2c248b0712e5a8e1c1ec, type: 2}
   - {fileID: 1739749577170736, guid: ee76aa94799bb5143943342c31270f3c, type: 2}
   - {fileID: 1739749577170736, guid: 171c9c42284c98040959545c467db13b, type: 2}
-  level: 3
+  level: 7
 --- !u!4 &1304579935
 Transform:
   m_ObjectHideFlags: 0
@@ -169,60 +169,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1992255024660806, guid: baf531abf4728d044bb036ce065f5e05,
     type: 2}
   m_PrefabInternal: {fileID: 1434950383}
---- !u!50 &1305907430
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1305907429}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 6
---- !u!114 &1305907434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1305907429}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f6170c4fe0f4074d83ad55bfc454a79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particlePrefab: {fileID: 1443155864847170, guid: 85cac9076b3924b49b2e56a0025b165c,
-    type: 2}
-  particleSprites:
-  - {fileID: 21300000, guid: 6e078712122a2244481674eff092af06, type: 3}
-  - {fileID: 21300000, guid: 0be74ab5397e8a44d84e441c97d4b87f, type: 3}
-  - {fileID: 21300000, guid: 6e078712122a2244481674eff092af06, type: 3}
-  - {fileID: 21300000, guid: 6e078712122a2244481674eff092af06, type: 3}
-  - {fileID: 21300000, guid: 6e078712122a2244481674eff092af06, type: 3}
---- !u!58 &1305907435
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1305907429}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!1001 &1434950383
 Prefab:
   m_ObjectHideFlags: 0
@@ -264,29 +210,9 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114797251974185906, guid: baf531abf4728d044bb036ce065f5e05,
         type: 2}
-      propertyPath: bullet
-      value: 
-      objectReference: {fileID: 1436152677469696, guid: bd24a28762ae5354fbe44c5ea2a5e32d,
-        type: 2}
-    - target: {fileID: 114797251974185906, guid: baf531abf4728d044bb036ce065f5e05,
-        type: 2}
       propertyPath: sceneManager
       value: 
       objectReference: {fileID: 1304579933}
-    - target: {fileID: 114797251974185906, guid: baf531abf4728d044bb036ce065f5e05,
-        type: 2}
-      propertyPath: seekScalar
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114797251974185906, guid: baf531abf4728d044bb036ce065f5e05,
-        type: 2}
-      propertyPath: maxSpeed
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1992255024660806, guid: baf531abf4728d044bb036ce065f5e05, type: 2}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: baf531abf4728d044bb036ce065f5e05, type: 2}
   m_IsPrefabAsset: 0
