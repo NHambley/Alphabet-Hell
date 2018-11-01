@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class S_Player : MonoBehaviour
 {
     public GameObject sceneManager;
@@ -51,6 +51,7 @@ public class S_Player : MonoBehaviour
             {
                 health = 0;
                 Destroy(gameObject);
+                SceneManager.LoadScene("GameOver");
             }
         }
     }

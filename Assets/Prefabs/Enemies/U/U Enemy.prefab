@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4178213747702062}
   - component: {fileID: 212707756263801218}
+  - component: {fileID: 114715828710152692}
   m_Layer: 0
   m_Name: U Enemy
   m_TagString: Untagged
@@ -40,6 +41,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114715828710152692
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1487264540512588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 429894a1569f08c4c851222897e3bdcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0, z: 0}
+  acceleration: {x: 0, y: 0, z: 0}
+  speed: {x: 0, y: 0.02}
+  state: 0
+  bullet: {fileID: 1647778820064246, guid: 13992e646b4c56c47a6ce49a6ddbb1c0, type: 2}
 --- !u!212 &212707756263801218
 SpriteRenderer:
   m_ObjectHideFlags: 1

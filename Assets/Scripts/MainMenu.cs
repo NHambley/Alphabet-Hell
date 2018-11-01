@@ -16,9 +16,9 @@ public class MainMenu : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Debug.Log("gotinhere");
+            
             Application.Quit();
-            Debug.Log("quit");
+            
         }
             
 	}

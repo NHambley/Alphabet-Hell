@@ -16,7 +16,7 @@ public class SceneManagerScript : MonoBehaviour {
     int numOfEnemiesLeft = 0;
     float lastEnemySpawnTime = 0.0f;
     //GameObject background;
-    public int level;
+    static public int level;
 
     // Use this for initialization
     void Start () {
