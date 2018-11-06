@@ -22,7 +22,7 @@ public class E_U : GenericEnemyScript {
     [SerializeField]
     GameObject bullet;
 
-    float hp;
+    
 
     Camera cam;
     public override void OnHit()
@@ -36,7 +36,7 @@ public class E_U : GenericEnemyScript {
         position = gameObject.transform.position;
         velocity = speed;
         sceneManager = GameObject.Find("SceneManager").GetComponent<SceneManagerScript>();
-        hp = 100;
+        Health = 100;
     }
     void Move()
     {
@@ -46,8 +46,7 @@ public class E_U : GenericEnemyScript {
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (hp <= 0)
-            Destroy(gameObject);
+
 
         Move();
         Attacking();

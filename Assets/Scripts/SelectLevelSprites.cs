@@ -13,7 +13,10 @@ public class SelectLevelSprites : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (SceneManager.GetActiveScene().name == "TestScene")
+        {
+            Destroy(gameObject);
+        }
 	}
     private void OnMouseDown()
     {
@@ -38,6 +41,8 @@ public class SelectLevelSprites : MonoBehaviour {
             SceneManagerScript.level =9;
 
         Debug.Log(SceneManagerScript.level);
+        
         SceneManager.LoadScene("TestScene");
+        
     }
 }

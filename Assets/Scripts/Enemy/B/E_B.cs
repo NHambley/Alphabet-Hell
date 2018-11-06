@@ -21,12 +21,10 @@ public class E_B : GenericEnemyScript {
     [SerializeField]
     GameObject bullet;
 
-    float hp;
-
     Camera cam;
     public override void OnHit()
     {
-        throw new System.NotImplementedException();
+        Health -= 50;
     }
 
     // Use this for initialization
@@ -34,7 +32,7 @@ public class E_B : GenericEnemyScript {
         position = gameObject.transform.position;
         velocity = speed;
         sceneManager = GameObject.Find("SceneManager").GetComponent<SceneManagerScript>();
-        hp = 100;
+        Health = 100;
     }
     void Move()
     {
@@ -43,8 +41,7 @@ public class E_B : GenericEnemyScript {
     }
     // Update is called once per frame
     void FixedUpdate () {
-        if (hp <= 0)
-            Destroy(gameObject);
+
 
         Move();
         Attacking();

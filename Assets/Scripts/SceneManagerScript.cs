@@ -17,12 +17,18 @@ public class SceneManagerScript : MonoBehaviour {
     float lastEnemySpawnTime = 0.0f;
     //GameObject background;
     static public int level;
+    public int levelDebug = -1;
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
+        if (levelDebug > -1)
+        {
+            level = levelDebug;
+        }
         GenerateLevel(level);
         lastEnemySpawnTime = Time.time;
-	}
+    }
 	
 	// Update is called once per frame
 	void Update ()

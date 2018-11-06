@@ -31,6 +31,6 @@ public class MainMenu : MonoBehaviour {
 
     public void HandleClick()
     {
-        SceneManager.LoadScene("TestScene");
+        SceneManager.LoadScene("LevelSelect");
     }
 }
