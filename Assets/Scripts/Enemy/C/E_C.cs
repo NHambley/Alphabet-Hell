@@ -69,7 +69,7 @@ public class E_C : GenericEnemyScript
         sceneManager.AddEnemyBullet(newBullet);
     }
 
-    public override void OnHit()
+    public override void OnHit(Vector3 pos)
     {
         Health -= (int)damageTaken;
     }

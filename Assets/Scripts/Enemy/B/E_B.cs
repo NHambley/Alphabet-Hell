@@ -24,7 +24,7 @@ public class E_B : GenericEnemyScript {
     float hp;
 
     Camera cam;
-    public override void OnHit()
+    public override void OnHit(Vector3 pos)
     {
         throw new System.NotImplementedException();
     }

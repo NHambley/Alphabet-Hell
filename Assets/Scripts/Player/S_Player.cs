@@ -83,6 +83,9 @@ public class S_Player : MonoBehaviour
         force = Vector2.zero;
         gameObject.transform.position = pPosition;
 
+        gameObject.GetComponent<ParticleGenerator>().GenerateParticles((SPRITE)(Random.Range(6, 9)), 3, gameObject.transform.position + new Vector3(0.85f, 0.6f, 0.0f), new Vector3(0.0f, -0.1f, 0.0f), new Vector3(0.5f, 0.5f, 0.5f), 20.0f, 0.1f, 0.5f);
+        gameObject.GetComponent<ParticleGenerator>().GenerateParticles((SPRITE)(Random.Range(6, 9)), 3, gameObject.transform.position + new Vector3(-0.85f, 0.6f, 0.0f), new Vector3(0.0f, -0.1f, 0.0f), new Vector3(0.5f, 0.5f, 0.5f), 20.0f, 0.1f, 0.5f);
+
         //Debug.Log(mPosition);
     }
 
@@ -96,7 +99,7 @@ public class S_Player : MonoBehaviour
             //newBullet.transform.position.Set(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
             managerScript.AddPlayerBullet(newBullet);
             lastBulletTime = Time.time;
-            gameObject.GetComponent<ParticleGenerator>().GenerateParticles(SPRITE.FIRE, 5, gameObject.transform.position + positionOffset, new Vector3(0.0f, 0.2f, 0.0f), new Vector3(0.5f,0.5f,0.5f), 20.0f, 0.3f, -0.5f);
+            gameObject.GetComponent<ParticleGenerator>().GenerateParticles((SPRITE)(Random.Range(6, 9)), 5, gameObject.transform.position + positionOffset, new Vector3(0.0f, 0.2f, 0.0f), new Vector3(1.0f,1.0f,1.0f), 20.0f, 0.2f, 0.5f);
         }
     }
 

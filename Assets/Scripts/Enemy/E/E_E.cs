@@ -53,7 +53,7 @@ public class E_E : GenericEnemyScript {
     }
 
     // On Hit function
-    public override void OnHit()
+    public override void OnHit(Vector3 pos)
     {
         if (shieldHealth > 0 && shieldOn)
             shieldHealth -= damageTaken;

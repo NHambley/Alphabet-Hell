@@ -31,8 +31,8 @@ public class E_JEnemy:GenericEnemyScript
         manager.AddEnemyBullet(newBullet1);
     }
 
-    public override void OnHit()
+    public override void OnHit(Vector3 pos)
     {
-        gameObject.GetComponent<ParticleGenerator>().GenerateParticles(SPRITE.ROCK, 5, gameObject.transform.position, new Vector3(0.0f, 0.3f, 0.0f), new Vector3(1.0f, 1.0f, 1.0f), 90, 0.5f, -0.5f);
+        gameObject.GetComponent<ParticleGenerator>().GenerateParticles(SPRITE.ROCK, 3, pos, new Vector3(0.0f, 0.1f, 0.0f), new Vector3(0.2f, 0.2f, 0.2f), 90, 0.5f, -0.5f);
     }
 }

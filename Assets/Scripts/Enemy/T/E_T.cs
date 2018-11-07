@@ -99,7 +99,7 @@ public class E_T : GenericEnemyScript
         nextPos = new Vector2(Random.Range(-(cam.orthographicSize) * cam.aspect, (cam.orthographicSize) * cam.aspect), Random.Range(-(cam.orthographicSize) + 2, (cam.orthographicSize)));
     }
 
-    public override void OnHit()
+    public override void OnHit(Vector3 pos)
     {
         Health -= 20;
     }

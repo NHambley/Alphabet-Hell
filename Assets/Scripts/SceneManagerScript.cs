@@ -61,7 +61,7 @@ public class SceneManagerScript : MonoBehaviour {
                             if (CheckCollisions(playerBullets[i], enemies[j]))
                             {
                                 playerBullets[i].GetComponent<GenericBulletScript>().IsDead = true;
-                                enemies[j].GetComponent<GenericEnemyScript>().OnHit();
+                                enemies[j].GetComponent<GenericEnemyScript>().OnHit(playerBullets[i].transform.position);
                                 if (enemies[j].GetComponent<GenericEnemyScript>().IsDead)
                                 {
                                     GameObject e = enemies[j];

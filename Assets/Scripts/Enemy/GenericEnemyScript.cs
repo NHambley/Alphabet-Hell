@@ -42,6 +42,6 @@ public abstract class GenericEnemyScript : MonoBehaviour {
         velocity += acceleration;
         gameObject.transform.position += velocity;
 	}
-
-    public abstract void OnHit();
+    
+    public abstract void OnHit(Vector3 pos);
 }
