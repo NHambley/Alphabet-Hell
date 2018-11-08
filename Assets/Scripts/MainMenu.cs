@@ -16,9 +16,9 @@ public class MainMenu : MonoBehaviour {
 	void Update () {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Debug.Log("gotinhere");
+            
             Application.Quit();
-            Debug.Log("quit");
+            
         }
             
 	}
@@ -31,6 +31,6 @@ public class MainMenu : MonoBehaviour {
 
     public void HandleClick()
     {
-        SceneManager.LoadScene("TestScene");
+        SceneManager.LoadScene("LevelSelect");
     }
 }

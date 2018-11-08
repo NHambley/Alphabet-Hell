@@ -9,8 +9,8 @@ public class E_B : GenericEnemyScript {
     public Vector2 speed;
     SceneManagerScript sceneManager;
 
-    float bTimer = 0.5f; // to keep track of when to fire another bullet
-    float timerTrack = 0.5f;
+    float bTimer = 1.5f; // to keep track of when to fire another bullet
+    float timerTrack = 1.5f;
 
 
 
@@ -21,12 +21,10 @@ public class E_B : GenericEnemyScript {
     [SerializeField]
     GameObject bullet;
 
-    float hp;
-
     Camera cam;
-    public override void OnHit(Vector3 pos)
+    public override void OnHit(Vector3 hit)
     {
-        throw new System.NotImplementedException();
+        Health -= 50;
     }
 
     // Use this for initialization
@@ -34,7 +32,7 @@ public class E_B : GenericEnemyScript {
         position = gameObject.transform.position;
         velocity = speed;
         sceneManager = GameObject.Find("SceneManager").GetComponent<SceneManagerScript>();
-
+        Health = 100;
     }
     void Move()
     {
@@ -43,8 +41,13 @@ public class E_B : GenericEnemyScript {
     }
     // Update is called once per frame
     void FixedUpdate () {
+
+
         Move();
-	}
+        Attacking();
+        if (this.IsDead)
+            Destroy(this);
+    }
 
     void Attacking()
     {
@@ -54,9 +57,10 @@ public class E_B : GenericEnemyScript {
         timerTrack -= Time.deltaTime;
         if (timerTrack <= 0)
         {
+
             // instantiate a new bullet
             Instantiate(bullet, transform.position, Quaternion.identity);
-
+            //Debug.Log("got here");
             timerTrack = bTimer;
         }
 
