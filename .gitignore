@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # =============== #
 # Unity generated #
 # =============== #
@@ -44,7 +43,7 @@ ehthumbs.db
 [Dd]esktop.ini
 Corridor/Library/ShaderCache/
 Corridor/Library/metadata/
-=======
-
 .vs/Alphabet-Hell/v15/.suo
->>>>>>> 2cc59b4a0987807618f4cada6040e177aa624f4b
+v15/Server/sqlite3/storage.ide-wal
+Library/CurrentLayout.dwlt
+Library/assetDatabase3
