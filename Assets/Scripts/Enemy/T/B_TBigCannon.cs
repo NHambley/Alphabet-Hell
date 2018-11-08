@@ -25,13 +25,13 @@ public class B_TBigCannon : MonoBehaviour
     float sTimer = 0.5f;
     [SerializeField, Range(20, 50)]
     float rotSpeed;
-
+    int bulletCount;
     bool seePlayer = false;// determines if the timer is subtracted from 
     // Use this for initialization
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        rotSpeed = 10f;
+        rotSpeed = 1f;
     }
 
     // Update is called once per frame
@@ -74,7 +74,6 @@ public class B_TBigCannon : MonoBehaviour
     // fire a bullet at the player's current position
     void Fire()
     {
-        int bulletCount = 0;
         shootTimer -= Time.deltaTime;
 
         // if the lazer has been going on for the specific time end it
