@@ -50,7 +50,7 @@ public class E_H : GenericEnemyScript
 
             GameObject bull = Instantiate(bullet, transform.position, Quaternion.identity);
             int rnum = Random.Range(0, 10);
-            Debug.Log(rnum);
+            
             if (rnum % 2 == 0)
             {
                 sm.AddEnemyBullet(bull);

@@ -18,15 +18,6 @@ public class B_A : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        /*
-        children = GetComponentsInChildren<Transform>();
-        firePoints = new GameObject[children.Length - 1];// get the firepoints but not the actual boss
-
-        for (int i = 1; i < children.Length; i++)
-        {
-            firePoints[i - 1] = children[i].gameObject;
-        }
-        */
         rotSpeed = 40f;
 	}
 	
