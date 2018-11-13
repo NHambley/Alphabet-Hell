@@ -17,8 +17,17 @@ public class SelectLevelSprites : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-	}
-    private void OnMouseDown()
+        if (Input.GetMouseButton(0))
+        {
+            Vector3 mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mp.z = 0;
+            if (GetComponent<Collider2D>().bounds.Contains(mp))
+            {
+                handleTouch();
+            }
+        }
+    }
+    private void handleTouch()
     {
         Debug.Log("Got here");
         if (this.tag == "Level1")
@@ -45,4 +54,6 @@ public class SelectLevelSprites : MonoBehaviour {
         SceneManager.LoadScene("TestScene");
         
     }
+
+    
 }
