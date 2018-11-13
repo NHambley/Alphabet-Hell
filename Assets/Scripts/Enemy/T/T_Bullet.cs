@@ -20,8 +20,15 @@ public class T_Bullet : MonoBehaviour
         targetVec = player.transform.position;
         targetVec += (bPosition + targetVec);
         sm = GameObject.FindGameObjectWithTag("GameController").GetComponent<SceneManagerScript>();
-        speed = 5;
-	}
+        speed = 2;
+        
+        Vector3 dir = player.transform.position - transform.position;
+        dir = gameObject.transform.InverseTransformDirection(dir);
+        float angleBetween = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+
+        transform.Rotate(new Vector3(0, 0, 1) * angleBetween + new Vector3(0,0,90));
+        
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -37,6 +44,5 @@ public class T_Bullet : MonoBehaviour
             Destroy(gameObject);
         }
 
-        
-	}
+    }
 }

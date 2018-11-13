@@ -32,5 +32,7 @@ public class A_Bullet : MonoBehaviour
             player.GetComponent<S_Player>().Health -= 10;
         }
         transform.position = position;
+
+        transform.rotation = Quaternion.Euler(0, 0, 0);
 	}
 }

@@ -196,6 +196,6 @@ public class SceneManagerScript : MonoBehaviour {
     public void AddEnemy(GameObject newEnemy)
     {
         enemies.Add(newEnemy);
-        numOfEnemiesLeft--;
+        numOfEnemiesLeft++;
     }
 }
