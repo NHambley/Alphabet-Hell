@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4717545629609140}
   - component: {fileID: 212090142982676706}
+  - component: {fileID: 114283873685778504}
   m_Layer: 0
   m_Name: H_enemy
   m_TagString: Untagged
@@ -40,6 +41,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114283873685778504
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1947477486526918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 076b9d5c6d8826344819cfea7bace673, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0, z: 0}
+  acceleration: {x: 0, y: 0, z: 0}
+  bullet: {fileID: 1672991704614008, guid: 1181bf1457573cd43ba9686895a2e213, type: 2}
+  speed: 0
 --- !u!212 &212090142982676706
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class E_HBullet : MonoBehaviour
+public class E_HBullet : GenericBulletScript
 {
     // if a bullet is false it will slowly fade away and deal no damage to the player, this will be done by the enemy itself
-    public bool real = true;
+    bool real = true;
     float alpha = 1;
 
     float speed;
@@ -16,6 +16,12 @@ public class E_HBullet : MonoBehaviour
     GameObject player;
 
     Color bColor;
+
+    public bool Real
+    {
+        get { return real; }
+        set { real = value; }
+    }
 	// Use this for initialization
 	void Start ()
     {
@@ -32,13 +38,9 @@ public class E_HBullet : MonoBehaviour
     {
         // do something different depending on if the bullet is real or not
 		if(real)
-        {
             RealBullet();
-        }
         if(!real)
-        {
             FakeBullet();
-        }
         transform.position = position;
 	}
 
@@ -46,13 +48,6 @@ public class E_HBullet : MonoBehaviour
     void RealBullet()
     {
         position += movement * speed * Time.deltaTime;
-
-        // every frame check collision with the player
-        if (sM.CheckCollisions(player, gameObject))
-        {
-            // deal damage to the player and then destroy the bullet
-            player.GetComponent<S_Player>().Health -= 10;
-        }
     }
 
     // move the bullet down the screen and slowly fade it out of existence until you destroy it

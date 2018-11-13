@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class E_A : MonoBehaviour
+public class E_A : GenericEnemyScript
 {
     /// <summary>
     /// The A enemy will act similar to a Galaga enemy, moving down towards the player while shooting at them. 
@@ -35,7 +35,7 @@ public class E_A : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        hp = 100;
+        Health = 100;
 
         //stateManager = GetComponent<SM_A>();
         state = true;
@@ -53,9 +53,9 @@ public class E_A : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if (hp <= 0)
+        if (Health <= 0)
             Destroy(gameObject);
-        Debug.Log(hp);
+
         // check what state the enemy is in and call the subsequent method
         // if the bool is true call attacking methods
         // if the bool is false call reset positioning methods
@@ -138,4 +138,8 @@ public class E_A : MonoBehaviour
         }
     }
 
+    public override void OnHit(Vector3 hit)
+    {
+        Health -= 10;
+    }
 }
