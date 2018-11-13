@@ -151,7 +151,7 @@ MonoBehaviour:
   - {fileID: 1739749577170736, guid: ee76aa94799bb5143943342c31270f3c, type: 2}
   - {fileID: 1739749577170736, guid: 171c9c42284c98040959545c467db13b, type: 2}
   - {fileID: 1739749577170736, guid: 061b2cfbebdc2bf49854385de8239566, type: 2}
-  levelDebug: 8
+  levelDebug: 3
 --- !u!4 &1304579935
 Transform:
   m_ObjectHideFlags: 0

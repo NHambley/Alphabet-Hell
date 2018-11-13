@@ -83,7 +83,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0, z: 0}
   acceleration: {x: 0, y: 0, z: 0}
-  shotTimerMax: 80
+  shotTimerMax: 120
   bulletPrefab: {fileID: 1906018983921274, guid: acd3a87a6bb50724e8bbd09d11288bbb,
     type: 2}
   speed: {x: 0, y: 0.01, z: 0}
