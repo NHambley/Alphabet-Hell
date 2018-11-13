@@ -16,7 +16,7 @@ public class E_H : GenericEnemyScript
 
     SceneManagerScript sm;
 
-    public override void OnHit()
+    public override void OnHit(Vector3 onHit)
     {
         Health -= 15;
     }

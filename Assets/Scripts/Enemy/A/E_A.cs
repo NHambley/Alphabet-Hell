@@ -138,7 +138,7 @@ public class E_A : GenericEnemyScript
         }
     }
 
-    public override void OnHit()
+    public override void OnHit(Vector3 hit)
     {
         Health -= 10;
     }
