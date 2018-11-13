@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4871927333685880}
   - component: {fileID: 212706580254688726}
   - component: {fileID: 114558937701055864}
+  - component: {fileID: 114852385322439740}
   m_Layer: 0
   m_Name: ZBoss
   m_TagString: Untagged
@@ -60,6 +61,22 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 071a24bbf178403419079e61190b3300, type: 3}
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &114852385322439740
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1123663483871284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfeeca604c4e53748886bcbcd27663d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0, z: 0}
+  acceleration: {x: 0, y: 0, z: 0}
+  isActive: 0
+  bulletPrefab: {fileID: 1078027441623770, guid: 9422ca5c1208cc2498a7c78068e5161a,
+    type: 2}
 --- !u!212 &212706580254688726
 SpriteRenderer:
   m_ObjectHideFlags: 1
