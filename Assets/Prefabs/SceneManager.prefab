@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1131436892613164}
+  m_IsPrefabAsset: 1
+--- !u!1 &1131436892613164
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4488263894649880}
+  - component: {fileID: 114907158083207286}
+  m_Layer: 0
+  m_Name: SceneManager
+  m_TagString: GameController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4488263894649880
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1131436892613164}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.7447157, y: 0.72542495, z: -0.03125}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114907158083207286
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1131436892613164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93855ae8ca49dbc46993cc1e23075599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  levels:
+  - {fileID: 1261215751517288, guid: 0e77ce130e714984a86074b8d4c86aa3, type: 2}
+  - {fileID: 1919495866368618, guid: 57a33c463f385974daecc76a579f6b83, type: 2}
+  - {fileID: 1919495866368618, guid: 22c795f92a1b4b245bc03ccb950b7cd2, type: 2}
+  - {fileID: 1919495866368618, guid: 8d157945a56da024b9e61ab40c0daf60, type: 2}
+  - {fileID: 1296070761738044, guid: d1a33e03de9bb5b408b264fbd1b5da1d, type: 2}
+  - {fileID: 1739749577170736, guid: 920eef0682cb2c248b0712e5a8e1c1ec, type: 2}
+  - {fileID: 1739749577170736, guid: ee76aa94799bb5143943342c31270f3c, type: 2}
+  - {fileID: 1739749577170736, guid: 171c9c42284c98040959545c467db13b, type: 2}
+  - {fileID: 1739749577170736, guid: 061b2cfbebdc2bf49854385de8239566, type: 2}
+  - {fileID: 1739749577170736, guid: 41b5ebd119fc29547ab37b2211805692, type: 2}
+  - {fileID: 1739749577170736, guid: 5b962d053e5e17b4ea3e9593ff55361b, type: 2}
+  levelDebug: 8
