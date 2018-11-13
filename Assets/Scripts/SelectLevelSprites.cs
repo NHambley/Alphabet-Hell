@@ -17,6 +17,7 @@ public class SelectLevelSprites : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+
         if (Input.GetMouseButton(0))
         {
             Vector3 mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -31,23 +32,26 @@ public class SelectLevelSprites : MonoBehaviour {
     {
         Debug.Log("Got here");
         if (this.tag == "Level1")
-            
+            SceneManagerScript.level = 1;
         if (this.tag == "Level2")
-            SceneManagerScript.level =2;
+            SceneManagerScript.level = 2;
         if (this.tag == "Level3")
-            SceneManagerScript.level =3;
+            SceneManagerScript.level = 3;
         if (this.tag == "Level4")
-
+            SceneManagerScript.level = 4;
         if (this.tag == "Level5")
-
+            SceneManagerScript.level = 5;
         if (this.tag == "Level6")
-            SceneManagerScript.level =6;
+            SceneManagerScript.level = 6;
         if (this.tag == "Level7")
-            SceneManagerScript.level =7;
+            SceneManagerScript.level = 7;
         if (this.tag == "Level8")
-            SceneManagerScript.level =8;
+            SceneManagerScript.level = 8;
         if (this.tag == "Level9")
-            SceneManagerScript.level =9;
+            SceneManagerScript.level = 9;
+        if (this.tag == "Level10")
+            SceneManagerScript.level = 10;
+
 
         Debug.Log(SceneManagerScript.level);
         
