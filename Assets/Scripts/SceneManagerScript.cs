@@ -24,10 +24,10 @@ public class SceneManagerScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        if (levelDebug > -1)
-        {
-            level = levelDebug;
-        }
+        //if (levelDebug > -1)
+        //{
+        //    level = levelDebug;
+        //}
         GenerateLevel(level);
         lastEnemySpawnTime = Time.time;
 	}
@@ -200,6 +200,8 @@ public class SceneManagerScript : MonoBehaviour {
         {
             parallaxSpeeds[i] = levelScript.backgrounds[i].speed;
         }
+
+        ScaleBackground();// make sure the background fits the phone screen
     }
 
     public void UpdateParallax()
@@ -217,6 +219,26 @@ public class SceneManagerScript : MonoBehaviour {
             {
                 backgrounds[i + 1].transform.position += new Vector3(0, backgrounds[i + 1].GetComponent<SpriteRenderer>().bounds.size.y*2, 0);
             }
+        }
+    }
+
+    // adjust the background sprites to the background of the device that is being played 
+    void ScaleBackground()
+    {
+        foreach (GameObject bg in backgrounds)
+        {
+            // access the sprite renderer
+            SpriteRenderer sr = bg.GetComponent<SpriteRenderer>();
+            if (sr == null)
+                return;
+            // using the width and height of the sprite and the width and height of the camera calculate the scale the backgruond needs to be set to and scale it
+            float width = sr.sprite.bounds.size.x;
+            float height = sr.sprite.bounds.size.y;
+
+            double worldScreenHeight = Camera.main.orthographicSize * 2.0;
+            double worldScreenWidth = worldScreenHeight / Screen.height * Screen.width;
+
+            bg.transform.localScale = new Vector3((float)worldScreenWidth / width, (float)worldScreenHeight / height, 1);
         }
     }
 

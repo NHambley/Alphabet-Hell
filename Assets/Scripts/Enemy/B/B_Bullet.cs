@@ -12,6 +12,7 @@ public class B_Bullet : MonoBehaviour {
     int lengthOfArc;
     int lengthOfArc1;
     GameObject player;
+    
     // Use this for initialization
     void Start()
     {
@@ -46,6 +47,8 @@ public class B_Bullet : MonoBehaviour {
                 position.x -= .03f;
         }
         position.y -= .03f;
+
+        transform.Rotate(Vector3.forward * -15);
         // every frame check collision with the player
         if (sM.CheckCollisions(player, gameObject))
         {

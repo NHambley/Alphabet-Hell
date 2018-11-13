@@ -6,6 +6,13 @@ TagManager:
   tags:
   - BulletP
   - Enemy
+  - Level2
+  - Level8
+  - Level6
+  - Level9
+  - Level7
+  - Level3
+  - Level10
   layers:
   - Default
   - TransparentFX
