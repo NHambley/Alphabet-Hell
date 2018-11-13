@@ -6,8 +6,10 @@ public class SceneManagerScript : MonoBehaviour {
     List<GameObject> playerBullets = new List<GameObject>();
     List<GameObject> enemyBullets = new List<GameObject>();
     List<GameObject> enemies = new List<GameObject>();
+    GameObject boss;
     public GameObject player;
-    GameObject currentEnemy;
+    GameObject currentEnemyPrefab;
+    GameObject currentBossPrefab;
     GameObject[] backgrounds;
     Vector3[] parallaxSpeeds;
     public GameObject[] levels;
@@ -18,6 +20,7 @@ public class SceneManagerScript : MonoBehaviour {
     //GameObject background;
     static public int level;
     public int levelDebug = -1;
+    bool isBossFight = false;
 
     // Use this for initialization
     void Start () {
@@ -44,10 +47,30 @@ public class SceneManagerScript : MonoBehaviour {
         {
             lastEnemySpawnTime = Time.time;
             numOfEnemiesLeft--;
-            GameObject newEnemy = Instantiate(currentEnemy);
+            GameObject newEnemy = Instantiate(currentEnemyPrefab);
             newEnemy.GetComponent<GenericEnemyScript>().velocity = new Vector3(0.0f, -0.05f, 0.0f);
             newEnemy.transform.position = new Vector3(Random.Range(-3.0f, 3.0f), 9.0f, 0f);
             enemies.Add(newEnemy);
+            isBossFight = false;
+        }
+
+        if (numOfEnemiesLeft <= 0 && enemies.Count <= 0 && !isBossFight)
+        {
+            isBossFight = true;
+            boss = Instantiate(currentBossPrefab);
+            boss.transform.position = new Vector3(0.0f, 9.0f, 0.0f);
+            boss.GetComponent<GenericBossScript>().velocity = new Vector3(0.0f, -0.1f, 0.0f);
+        }
+
+        if (isBossFight)
+        {
+            GenericBossScript bossScript = boss.GetComponent<GenericBossScript>();
+            if (bossScript.isActive) return;
+            else if (boss.transform.position.y <= Camera.main.ScreenToWorldPoint(new Vector3(0.0f, Camera.main.pixelHeight, 0.0f)).y / 2)
+            {
+                bossScript.isActive = true;
+                bossScript.velocity = Vector3.zero;
+            }
         }
     }
 
@@ -57,30 +80,48 @@ public class SceneManagerScript : MonoBehaviour {
         {
             if (!playerBullets[i].GetComponent<GenericBulletScript>().IsDead)
             {
-                for (int j = enemies.Count - 1; j >= 0; j--)
+                if (!isBossFight)
                 {
-                    if (!enemies[j].GetComponent<GenericEnemyScript>().IsDead)
+                    for (int j = enemies.Count - 1; j >= 0; j--)
                     {
-                        if ((playerBullets[i].transform.position - enemies[j].transform.position).magnitude < 3)
+                        if (!enemies[j].GetComponent<GenericEnemyScript>().IsDead)
                         {
-                            if (CheckCollisions(playerBullets[i], enemies[j]))
+                            if ((playerBullets[i].transform.position - enemies[j].transform.position).magnitude < 3)
                             {
-                                playerBullets[i].GetComponent<GenericBulletScript>().IsDead = true;
-                                enemies[j].GetComponent<GenericEnemyScript>().OnHit(playerBullets[i].transform.position);
-                                if (enemies[j].GetComponent<GenericEnemyScript>().IsDead)
+                                if (CheckCollisions(playerBullets[i], enemies[j]))
                                 {
-                                    GameObject e = enemies[j];
-                                    enemies.RemoveAt(j);
-                                    Destroy(e);
+                                    playerBullets[i].GetComponent<GenericBulletScript>().IsDead = true;
+                                    enemies[j].GetComponent<GenericEnemyScript>().OnHit(playerBullets[i].transform.position);
+                                    if (enemies[j].GetComponent<GenericEnemyScript>().IsDead)
+                                    {
+                                        GameObject e = enemies[j];
+                                        enemies.RemoveAt(j);
+                                        Destroy(e);
+                                    }
                                 }
                             }
                         }
+                        else
+                        {
+                            GameObject e = enemies[j];
+                            enemies.RemoveAt(j);
+                            Destroy(e);
+                        }
                     }
-                    else
+                }
+                else
+                {
+                    if ((playerBullets[i].transform.position - boss.transform.position).magnitude < 3 && !boss.GetComponent<GenericBossScript>().IsDead)
                     {
-                        GameObject e = enemies[j];
-                        enemies.RemoveAt(j);
-                        Destroy(e);
+                        if (CheckCollisions(playerBullets[i], boss))
+                        {
+                            playerBullets[i].GetComponent<GenericBulletScript>().IsDead = true;
+                            boss.GetComponent<GenericBossScript>().OnHit(playerBullets[i].transform.position);
+                            if (boss.GetComponent<GenericBossScript>().IsDead)
+                            {
+                                Destroy(boss);
+                            }
+                        }
                     }
                 }
             }
@@ -134,7 +175,8 @@ public class SceneManagerScript : MonoBehaviour {
     public void GenerateLevel(int level)
     {
         LevelScript levelScript = levels[level].GetComponent<LevelScript>();
-        currentEnemy = levelScript.enemy;
+        currentEnemyPrefab = levelScript.enemy;
+        currentBossPrefab = levelScript.boss;
         levelInProgress = true;
         timeBetweenEnemies = levelScript.enemySpawnTime;
         numOfEnemiesLeft = levelScript.numOfEnemies;

@@ -8,6 +8,7 @@ public abstract class GenericBossScript : MonoBehaviour {
 
     public Vector3 velocity;
     public Vector3 acceleration;
+    public bool isActive = false;
 
     public bool IsDead
     {
@@ -43,5 +44,5 @@ public abstract class GenericBossScript : MonoBehaviour {
         gameObject.transform.position += velocity;
 	}
 
-    public abstract void OnHit();
+    public abstract void OnHit(Vector3 pos);
 }

@@ -6,6 +6,7 @@ public class GenericBulletScript : MonoBehaviour {
 
     protected Vector3 velocity = new Vector3(0.0f,0.3f, 0.0f);
     protected Vector3 acceleration = Vector3.zero;
+    protected Vector3 frameDisplacement = Vector3.zero;
     public float damage;
     GameObject ownedBy;
 

@@ -16,8 +16,8 @@ public class E_XBullet : GenericBulletScript {
 	
 	// Update is called once per frame
 	void Update () {
-        
-	}
+        gameObject.transform.up = velocity.normalized * -1;
+    }
 
     private void FixedUpdate()
     {

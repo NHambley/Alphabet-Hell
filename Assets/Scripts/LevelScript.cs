@@ -14,6 +14,7 @@ public struct Background
 public class LevelScript : MonoBehaviour {
     public Background[] backgrounds;
     public GameObject enemy;
+    public GameObject boss;
     public float enemySpawnTime;
     public int numOfEnemies;
 }
