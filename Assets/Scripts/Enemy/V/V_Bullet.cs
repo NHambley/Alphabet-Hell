@@ -22,7 +22,10 @@ public class V_Bullet : MonoBehaviour {
         movement = Vector2.down;
         player = GameObject.FindGameObjectWithTag("Player");
         sM = GameObject.FindGameObjectWithTag("GameController").GetComponent<SceneManagerScript>();
-
+        if (dirOfBullet == 1)
+            transform.Rotate(Vector3.forward * -65);
+        if (dirOfBullet == 2)
+            transform.Rotate(Vector3.forward * -25);
         //Debug.Log(leftOrRight);
        
     }
@@ -34,11 +37,11 @@ public class V_Bullet : MonoBehaviour {
         
         if (dirOfBullet == 1)
         { 
-            position.x -= .03f;
+            position.x -= .01f;
         }
         if (dirOfBullet == 2)
         {
-            position.x += .03f;
+            position.x += .01f;
         }
         position.y -= .03f;
         // every frame check collision with the player
