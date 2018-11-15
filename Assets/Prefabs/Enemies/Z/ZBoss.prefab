@@ -9,19 +9,19 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1123663483871284}
+  m_RootGameObject: {fileID: 1851803284196744}
   m_IsPrefabAsset: 1
---- !u!1 &1123663483871284
+--- !u!1 &1851803284196744
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4871927333685880}
-  - component: {fileID: 212706580254688726}
-  - component: {fileID: 114558937701055864}
-  - component: {fileID: 114852385322439740}
+  - component: {fileID: 4395341802852338}
+  - component: {fileID: 212177341099679862}
+  - component: {fileID: 114196184268451714}
+  - component: {fileID: 114434701678417578}
   m_Layer: 0
   m_Name: ZBoss
   m_TagString: Untagged
@@ -29,12 +29,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4871927333685880
+--- !u!4 &4395341802852338
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1123663483871284}
+  m_GameObject: {fileID: 1851803284196744}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.11, y: 4.42, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
@@ -42,12 +42,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114558937701055864
+--- !u!114 &114196184268451714
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1123663483871284}
+  m_GameObject: {fileID: 1851803284196744}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f6170c4fe0f4074d83ad55bfc454a79, type: 3}
@@ -61,12 +61,12 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 071a24bbf178403419079e61190b3300, type: 3}
   - {fileID: 0}
   - {fileID: 0}
---- !u!114 &114852385322439740
+--- !u!114 &114434701678417578
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1123663483871284}
+  m_GameObject: {fileID: 1851803284196744}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfeeca604c4e53748886bcbcd27663d2, type: 3}
@@ -77,12 +77,12 @@ MonoBehaviour:
   isActive: 0
   bulletPrefab: {fileID: 1078027441623770, guid: 9422ca5c1208cc2498a7c78068e5161a,
     type: 2}
---- !u!212 &212706580254688726
+--- !u!212 &212177341099679862
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1123663483871284}
+  m_GameObject: {fileID: 1851803284196744}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0

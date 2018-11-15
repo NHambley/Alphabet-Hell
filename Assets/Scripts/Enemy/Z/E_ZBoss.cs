@@ -11,7 +11,7 @@ public class E_ZBoss : GenericBossScript
 
     // Use this for initialization
     void Start()
-    {
+    { 
         manager = GameObject.Find("SceneManager").GetComponent<SceneManagerScript>();
     }
 

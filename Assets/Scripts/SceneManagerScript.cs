@@ -24,10 +24,10 @@ public class SceneManagerScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        //if (levelDebug > -1)
-        //{
-        //    level = levelDebug;
-        //}
+        if (levelDebug > -1)
+        {
+            level = levelDebug;
+        }
         GenerateLevel(level);
         lastEnemySpawnTime = Time.time;
 	}
