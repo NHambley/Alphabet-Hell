@@ -66,7 +66,6 @@ public class E_C : GenericEnemyScript
         GameObject newBullet = Instantiate(bulletPrefab);
         newBullet.transform.position = firingPosition.transform.position;
         newBullet.GetComponent<CorkBullet>().InitializeBullet(bulletSpeed, Vector3.zero, gameObject);
-        sceneManager.AddEnemyBullet(newBullet);
     }
 
     public override void OnHit(Vector3 pos)

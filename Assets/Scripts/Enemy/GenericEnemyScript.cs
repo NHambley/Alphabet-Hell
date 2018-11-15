@@ -6,8 +6,8 @@ public abstract class GenericEnemyScript : MonoBehaviour {
 
     private bool isDead = false;
 
-    public Vector3 velocity;
-    public Vector3 acceleration;
+    [HideInInspector]
+    public Vector3 velocity, acceleration;
 
     public bool IsDead
     {
