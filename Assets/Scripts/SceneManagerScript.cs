@@ -92,12 +92,6 @@ public class SceneManagerScript : MonoBehaviour {
                                 {
                                     playerBullets[i].GetComponent<GenericBulletScript>().IsDead = true;
                                     enemies[j].GetComponent<GenericEnemyScript>().OnHit(playerBullets[i].transform.position);
-                                    if (enemies[j].GetComponent<GenericEnemyScript>().IsDead)
-                                    {
-                                        GameObject e = enemies[j];
-                                        enemies.RemoveAt(j);
-                                        Destroy(e);
-                                    }
                                 }
                             }
                         }
