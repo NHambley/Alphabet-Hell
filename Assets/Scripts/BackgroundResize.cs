@@ -9,7 +9,7 @@ public class BackgroundResize : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        gameObject.GetComponent<SpriteRenderer>();
+        sr = GetComponent<SpriteRenderer>();
         if (sr == null)
             return;
 
