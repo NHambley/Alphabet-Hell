@@ -7,13 +7,9 @@ public class B_Boss : MonoBehaviour {
     Transform[] children;
 
     [SerializeField]
-    GameObject[] firePoints;
-
-    [SerializeField]
     GameObject bullet;
     public GameObject obstacle;
-    [SerializeField]
-    float rotSpeed;//for rotating the object locally
+
     float bTimer = 1.5f; // to keep track of when to fire another bullet
     float timerTrack = 1.5f;
     float obstacleTimerTrack = 4.0f;
