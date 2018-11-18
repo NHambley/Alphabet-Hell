@@ -157,6 +157,11 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 1305907429}
+    - target: {fileID: 114907158083207286, guid: e63631e4d893adf45aaddf71cb575639,
+        type: 2}
+      propertyPath: levelDebug
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e63631e4d893adf45aaddf71cb575639, type: 2}
   m_IsPrefabAsset: 0
@@ -212,7 +217,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4766332422092812, guid: baf531abf4728d044bb036ce065f5e05, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114797251974185906, guid: baf531abf4728d044bb036ce065f5e05,
         type: 2}
@@ -322,7 +327,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2079735441
 MonoBehaviour:
