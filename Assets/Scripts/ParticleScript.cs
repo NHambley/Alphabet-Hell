@@ -19,6 +19,7 @@ public class ParticleScript : MonoBehaviour {
         if(Time.time > startTime + timeout)
         {
             isDead = true;
+            //Destroy(gameObject);
         }
         else
         {

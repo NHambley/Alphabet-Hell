@@ -45,8 +45,8 @@ public class ParticleGenerator : MonoBehaviour {
         for (int i = 0; i < number; i++)
         {
             GameObject newParticle = Instantiate(particlePrefab);
-            if ((int)type < number)
-            {
+            //if ((int)type < number)
+            //{
                 newParticle.GetComponent<ParticleScript>().SetSprite(particleSprites[(int)type]);
                 newParticle.GetComponent<ParticleScript>().timeout = timeout;
                 pos.z = zIndex;
@@ -55,7 +55,7 @@ public class ParticleGenerator : MonoBehaviour {
                 float angle = Mathf.Rad2Deg * (Mathf.Atan2(approxVel.normalized.y, approxVel.normalized.x)) + (radiusInDegrees * Random.Range(0f, 1f) - radiusInDegrees / 2);
                 newParticle.GetComponent<ParticleScript>().velocity = new Vector3(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad)) * approxVel.magnitude * Random.Range(0.9f, 1.1f);
                 particles.Add(newParticle);
-            }
+            //}
         }
     }
 }
