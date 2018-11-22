@@ -17,7 +17,7 @@ public class E_T : GenericEnemyScript
     Vector2 ePosition;// position of this enemy
     //Rigidbody2D rb;
     Vector3 eulerAngleVelocity;
-    Vector2 nextPos;
+    Vector3 nextPos;
 
     [Range(1,5), SerializeField]
     float speed;// speed for the enemy
@@ -75,15 +75,23 @@ public class E_T : GenericEnemyScript
         else
         {
             timer -= Time.deltaTime;
-            //transform.rotation = new Quaternion(0, 0, Vector2.Angle(ePosition, target.transform.position) * Time.deltaTime, 0);
+
+            Vector3 dir = target.transform.position - transform.position;
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle + 90, Vector3.forward);
         }
     }
 
     // move the enemy to its next position then change the firing bool to true
     void Move()
     {
+        // rotate the tank to look at where it is going 
+        Vector3 dir = nextPos - transform.position;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle + 90, Vector3.forward);
+
         // first get the angle between the enemy and the target position to rotate it
-        Vector2 moveFrame = (nextPos - (Vector2)transform.position);
+        Vector2 moveFrame = (nextPos - transform.position);
         moveFrame = moveFrame.normalized * speed * Time.deltaTime;
         ePosition += moveFrame;
 

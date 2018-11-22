@@ -71,7 +71,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4945947273515082}
   - component: {fileID: 212924516030545468}
-  - component: {fileID: 114829116054233764}
+  - component: {fileID: 114995372961696326}
   m_Layer: 0
   m_Name: LargerCanon
   m_TagString: Untagged
@@ -147,7 +147,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1414278139793218}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.02, y: 2.65, z: 0}
+  m_LocalPosition: {x: -0.1, y: 3.23, z: 0}
   m_LocalScale: {x: 0.44, y: 0.44, z: 0.44}
   m_Children:
   - {fileID: 4945947273515082}
@@ -311,7 +311,7 @@ MonoBehaviour:
   chargeTimer: 2
   timer: 2
   rotSpeed: 0
---- !u!114 &114829116054233764
+--- !u!114 &114995372961696326
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -319,13 +319,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1368562099871082}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72f3e0578e3c7d54ebed2b7dc339c9c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 48376c03e61a4264dbe19fa680252652, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  bullet: {fileID: 1166192425634920, guid: f660f12d913d5d5429c1e1401516687c, type: 2}
-  chargeTimer: 2
-  timer: 2
+  bullet: {fileID: 1815625730889208, guid: 3d4da00383b680d4fb74faa25d56eac9, type: 2}
   rotSpeed: 0
 --- !u!212 &212177125854134358
 SpriteRenderer:
