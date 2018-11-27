@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class B_C : GenericBossScript
+public class B_C : GenericEnemyScript
 {
 
     // attributes
@@ -37,7 +37,7 @@ public class B_C : GenericBossScript
         //bullets = new List<GameObject>();
         sceneManager = GameObject.Find("SceneManager").GetComponent<SceneManagerScript>();
         sceneManager.AddEnemy(gameObject);
-        damageTaken = 1.5f;
+        damageTaken = 2;
     }
 
     // Update is called once per frame
@@ -69,6 +69,13 @@ public class B_C : GenericBossScript
         }
     }
 
+    // movement method
+    void Move()
+    {
+        position += -velocity;
+        transform.position = position;
+    }
+
     // firing method
     void Fire(int num)
     {
@@ -87,7 +94,6 @@ public class B_C : GenericBossScript
 
         newBullet.transform.position = firingPositions[num].transform.position;
         newBullet.GetComponent<CorkBullet>().InitializeBullet(bulletSpeed, Vector3.zero, gameObject);
-        sceneManager.GetComponent<SceneManagerScript>().AddEnemyBullet(newBullet);
     }
 
     public override void OnHit(Vector3 pos)
