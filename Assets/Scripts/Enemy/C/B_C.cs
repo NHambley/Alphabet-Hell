@@ -36,7 +36,6 @@ public class B_C : GenericBossScript
         shotTimers.Add(1);
         //bullets = new List<GameObject>();
         sceneManager = GameObject.Find("SceneManager").GetComponent<SceneManagerScript>();
-        sceneManager.AddEnemy(gameObject);
         damageTaken = 1.5f;
     }
 
