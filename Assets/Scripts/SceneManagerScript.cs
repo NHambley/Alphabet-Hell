@@ -54,7 +54,7 @@ public class SceneManagerScript : MonoBehaviour {
             isBossFight = false;
         }
 
-        if (numOfEnemiesLeft <= 0 && enemies.Count <= 0 && !isBossFight)
+        if (numOfEnemiesLeft <= 0 /*&& enemies.Count <= 0*/ && !isBossFight)
         {
             isBossFight = true;
             boss = Instantiate(currentBossPrefab);
@@ -62,7 +62,7 @@ public class SceneManagerScript : MonoBehaviour {
             boss.GetComponent<GenericBossScript>().velocity = new Vector3(0.0f, -0.1f, 0.0f);
         }
 
-        if (isBossFight)
+        if (isBossFight && boss != null)
         {
             GenericBossScript bossScript = boss.GetComponent<GenericBossScript>();
             if (bossScript.isActive) return;
@@ -71,6 +71,11 @@ public class SceneManagerScript : MonoBehaviour {
                 bossScript.isActive = true;
                 bossScript.velocity = Vector3.zero;
             }
+        }
+        else if (isBossFight)
+        {
+            // Boss is dead code goes here
+            Debug.Log("Boss is dead!");
         }
     }
 
@@ -84,36 +89,42 @@ public class SceneManagerScript : MonoBehaviour {
                 {
                     for (int j = enemies.Count - 1; j >= 0; j--)
                     {
-                        if (!enemies[j].GetComponent<GenericEnemyScript>().IsDead)
+                        if (enemies[j] != null)
                         {
-                            if ((playerBullets[i].transform.position - enemies[j].transform.position).magnitude < 3)
+                            if (enemies[j].GetComponent<GenericEnemyScript>().IsDead)
                             {
-                                if (CheckCollisions(playerBullets[i], enemies[j]))
+                                GameObject e = enemies[j];
+                                enemies.RemoveAt(j);
+                                Destroy(e);
+                            }
+                            else
+                            {
+                                if ((playerBullets[i].transform.position - enemies[j].transform.position).magnitude < 3)
                                 {
-                                    playerBullets[i].GetComponent<GenericBulletScript>().IsDead = true;
-                                    enemies[j].GetComponent<GenericEnemyScript>().OnHit(playerBullets[i].transform.position);
+                                    if (CheckCollisions(playerBullets[i], enemies[j]))
+                                    {
+                                        playerBullets[i].GetComponent<GenericBulletScript>().IsDead = true;
+                                        enemies[j].GetComponent<GenericEnemyScript>().OnHit(playerBullets[i].transform.position);
+                                    }
                                 }
                             }
-                        }
-                        else
-                        {
-                            GameObject e = enemies[j];
-                            enemies.RemoveAt(j);
-                            Destroy(e);
                         }
                     }
                 }
                 else
                 {
-                    if ((playerBullets[i].transform.position - boss.transform.position).magnitude < 3 && !boss.GetComponent<GenericBossScript>().IsDead)
+                    if (boss != null)
                     {
-                        if (CheckCollisions(playerBullets[i], boss))
+                        if ((playerBullets[i].transform.position - boss.transform.position).magnitude < 3 && !boss.GetComponent<GenericBossScript>().IsDead)
                         {
-                            playerBullets[i].GetComponent<GenericBulletScript>().IsDead = true;
-                            boss.GetComponent<GenericBossScript>().OnHit(playerBullets[i].transform.position);
-                            if (boss.GetComponent<GenericBossScript>().IsDead)
+                            if (CheckCollisions(playerBullets[i], boss))
                             {
-                                Destroy(boss);
+                                playerBullets[i].GetComponent<GenericBulletScript>().IsDead = true;
+                                boss.GetComponent<GenericBossScript>().OnHit(playerBullets[i].transform.position);
+                                if (boss.GetComponent<GenericBossScript>().IsDead)
+                                {
+                                    Destroy(boss);
+                                }
                             }
                         }
                     }
@@ -254,6 +265,6 @@ public class SceneManagerScript : MonoBehaviour {
     public void AddEnemy(GameObject newEnemy)
     {
         enemies.Add(newEnemy);
-        numOfEnemiesLeft++;
+        //numOfEnemiesLeft++;
     }
 }

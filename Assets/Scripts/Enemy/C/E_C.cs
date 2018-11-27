@@ -28,7 +28,7 @@ public class E_C : GenericEnemyScript
         //bullets = new List<GameObject>();
         sceneManager = GameObject.Find("SceneManager").GetComponent<SceneManagerScript>();
         sceneManager.AddEnemy(gameObject);
-        damageTaken = 10;
+        damageTaken = 8;
     }
 
     // Update is called once per frame
@@ -66,6 +66,7 @@ public class E_C : GenericEnemyScript
         GameObject newBullet = Instantiate(bulletPrefab);
         newBullet.transform.position = firingPosition.transform.position;
         newBullet.GetComponent<CorkBullet>().InitializeBullet(bulletSpeed, Vector3.zero, gameObject);
+        sceneManager.AddEnemyBullet(newBullet);
     }
 
     public override void OnHit(Vector3 pos)
