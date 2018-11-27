@@ -27,7 +27,6 @@ public class E_C : GenericEnemyScript
         firingPosition = transform.GetChild(0).gameObject;
         //bullets = new List<GameObject>();
         sceneManager = GameObject.Find("SceneManager").GetComponent<SceneManagerScript>();
-        sceneManager.AddEnemy(gameObject);
         damageTaken = 8;
     }
 
@@ -37,7 +36,7 @@ public class E_C : GenericEnemyScript
         Move();
 
         // Firing
-        if (shotTimer == 0 || shotTimer >= shotTimerMax)
+        if (shotTimer >= shotTimerMax)
         {
             shotTimer = 0;
             Fire();
