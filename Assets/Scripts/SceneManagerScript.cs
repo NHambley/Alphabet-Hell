@@ -21,6 +21,7 @@ public class SceneManagerScript : MonoBehaviour {
     static public int level = -1;
     public int levelDebug = -1;
     bool isBossFight = false;
+    PlayerLives playerLives;
 
     public List<GameObject> EnemyBullets
     {
@@ -38,6 +39,7 @@ public class SceneManagerScript : MonoBehaviour {
         }
         GenerateLevel(level);
         lastEnemySpawnTime = Time.time;
+        playerLives = GameObject.FindObjectOfType<PlayerLives>().GetComponent<PlayerLives>();
 	}
 	
 	// Update is called once per frame
@@ -164,8 +166,9 @@ public class SceneManagerScript : MonoBehaviour {
         {
             if (!enemyBullets[i].GetComponent<GenericBulletScript>().IsDead)
             {
-                if (CheckCollisions(player, enemyBullets[i]))
+                if (CheckCollisions(player, enemyBullets[i]) && playerLives.PlayerCanBeHit())
                 {
+                    playerLives.PlayerHit(enemyBullets[i]);
                     enemyBullets[i].GetComponent<GenericBulletScript>().IsDead = true;
                     player.GetComponent<ParticleGenerator>().GenerateParticles(SPRITE.SPARK, 5, enemyBullets[i].transform.position, enemyBullets[i].GetComponent<GenericBulletScript>().GetVelocity().normalized * 0.3f, new Vector3(1.0f, 1.0f, 1.0f), 90, 0.5f, -0.5f);
                     //player.GetComponent<S_Player>().health -= enemyBullets[i].GetComponent<GenericBulletScript>().damage;

@@ -4,58 +4,137 @@ using UnityEngine;
 
 public class PlayerLives : MonoBehaviour {
 
-    // attributes
+    #region Attributes
+    // general
     GameObject sceneManager;
     GameObject player;
-    List<GameObject> checkList;
+    List<GameObject> checkList; // collision checking list
 
-    public int livesMax;
-    int lives;
+    // lives
+    List<GameObject> livesList;
+    int livesMax;
+    public int lives;
 
-	// Use this for initialization
-	void Start () {
+    // hitTimer
+    public float hitTimerMax;
+    float hitTimer;
+    #endregion
+
+    // Use this for initialization
+    void Start () {
         sceneManager = GameObject.FindGameObjectWithTag("GameController");
         player = GameObject.FindGameObjectWithTag("Player");
         checkList = new List<GameObject>();
+        livesMax = 3;
+
+        if (lives > livesMax)
+            lives = livesMax;
+
+        GenerateLifeSprites();
     }
 
     // Update is called once per frame
     void Update () {
+        // makes sure the important things are set
         if (sceneManager == null)
             sceneManager = GameObject.FindGameObjectWithTag("GameController");
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player");
 
-        foreach(GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+        #region CollisionCheck
+        if (hitTimer == 0)
         {
-            checkList.Add(enemy);
-        }
-
-        foreach (GameObject enemyBullet in sceneManager.GetComponent<SceneManagerScript>().EnemyBullets)
-        {
-            checkList.Add(enemyBullet);
-        }
-
-        foreach(GameObject check in checkList)
-        {
-            if (CollisionCheck(check))
+            // adds everything with tag enemy
+            foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
             {
-                PlayerHit(check);
+                checkList.Add(enemy);
             }
+
+            /*
+            // adds the enemy bullets from the scene manager
+            foreach (GameObject enemyBullet in sceneManager.GetComponent<SceneManagerScript>().EnemyBullets)
+            {
+                checkList.Add(enemyBullet);
+            }
+            */
+
+            // checks everything in the list
+            foreach (GameObject check in checkList)
+            {
+                if (CollisionCheck(check))
+                {
+                    PlayerHit(check);
+                }
+            }
+
+            // resets the list
+            checkList = new List<GameObject>();
         }
 
-        checkList = new List<GameObject>();
+        #region HitTimer
+        else
+        {
+            hitTimer--;
+            if (hitTimer == 0)
+                player.GetComponent<SpriteRenderer>().enabled = true;
+            else if (hitTimer % 2 == 1)
+                player.GetComponent<SpriteRenderer>().enabled = false;
+            else if (hitTimer % 2 == 0)
+                player.GetComponent<SpriteRenderer>().enabled = true;
+        }
+        #endregion
+
+        #endregion
+
+        if (lives < livesList.Count)
+        {
+            GameObject popped = livesList[lives];
+            livesList.RemoveAt(lives);
+            Destroy(popped);
+        }
+
+        if (lives == 0)
+        {
+            Debug.Log("GG");
+            Destroy(player);
+        }
     }
 
     // Check Player Collisions
     bool CollisionCheck(GameObject toCheck) { return sceneManager.GetComponent<SceneManagerScript>().CheckCollisions(player, toCheck); }
 
     // When the player gets hit by enemy, enemybullet, etc.
-    void PlayerHit(GameObject hit)
+    public void PlayerHit(GameObject hit)
     {
+        // if hit by an enemy or enemybullet
         if (hit.tag == "Enemy" || hit.tag == "EnemyBullet")
         {
-            Debug.Log("HIT");
+            hitTimer = hitTimerMax;
+            player.GetComponent<S_Player>().SetToSpawn();
+            lives--;
         }
     }
+
+    // Creates the Life Sprites
+    void GenerateLifeSprites()
+    {
+        livesList = new List<GameObject>();
+        Sprite pSprite = player.GetComponent<SpriteRenderer>().sprite;
+        for (int i = 0; i < lives; i++)
+        {
+            GameObject life = new GameObject("Life" + (i+1));
+            life.AddComponent<SpriteRenderer>().sprite = pSprite;
+            life.GetComponent<SpriteRenderer>().sortingOrder = 1;
+            life.transform.localScale = new Vector3(.1f, .1f, 1f);
+            Vector3 pos = Camera.main.ScreenToWorldPoint(new Vector3(0, Camera.main.pixelHeight));
+            pos.x += .5f + (i * life.GetComponent<SpriteRenderer>().bounds.extents.x * 2.5f);
+            pos.y -= life.GetComponent<SpriteRenderer>().bounds.extents.y * 1.4f;
+            pos.z = 0;
+            life.transform.position = pos;
+            livesList.Add(life);
+        }
+    }
+
+    // returns true if the player can be hit
+    public bool PlayerCanBeHit() { return hitTimer == 0; }
 }
