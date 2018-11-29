@@ -25,9 +25,9 @@ public class E_U : GenericEnemyScript {
     
 
     Camera cam;
-    public override void OnHit(Vector3 hit)
+    public override void OnHit(Vector3 pos)
     {
-        throw new System.NotImplementedException();
+        Health -= (int)50;
     }
 
     // Use this for initialization

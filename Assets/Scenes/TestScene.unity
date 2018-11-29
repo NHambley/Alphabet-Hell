@@ -118,6 +118,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1992255024660806, guid: baf531abf4728d044bb036ce065f5e05,
     type: 2}
   m_PrefabInternal: {fileID: 1434950383}
+--- !u!1 &493089634 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1131436892613164, guid: e63631e4d893adf45aaddf71cb575639,
+    type: 2}
+  m_PrefabInternal: {fileID: 2135074892}
 --- !u!1001 &1434950383
 Prefab:
   m_ObjectHideFlags: 0
@@ -166,7 +171,7 @@ Prefab:
         type: 2}
       propertyPath: sceneManager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 493089634}
     - target: {fileID: 114223334390617498, guid: baf531abf4728d044bb036ce065f5e05,
         type: 2}
       propertyPath: particleSprites.Array.data[5]

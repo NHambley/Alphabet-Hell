@@ -49,8 +49,7 @@ public class V_Enemy : GenericEnemyScript {
 
         Move();
         Attacking();
-        if (this.IsDead)
-            Destroy(this);
+
     }
 
     void Attacking()

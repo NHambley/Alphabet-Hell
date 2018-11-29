@@ -45,8 +45,7 @@ public class E_B : GenericEnemyScript {
 
         Move();
         Attacking();
-        if (this.IsDead)
-            Destroy(this);
+
         EnemyOffScreen();
     }
 

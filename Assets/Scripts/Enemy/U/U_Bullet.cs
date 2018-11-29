@@ -14,6 +14,9 @@ public class U_Bullet : MonoBehaviour {
     int lengthOfArc;
     int lengthOfArc1;
     GameObject player;
+
+
+
     // Use this for initialization
     void Start()
     {
@@ -22,9 +25,10 @@ public class U_Bullet : MonoBehaviour {
         movement = Vector2.down;
         player = GameObject.FindGameObjectWithTag("Player");
         sM = GameObject.FindGameObjectWithTag("GameController").GetComponent<SceneManagerScript>();
-        xRot = 0;
+        xRot = 90;
         //Debug.Log(leftOrRight);
-        
+        //transform.Rotate(Vector3.forward * -90);
+        transform.eulerAngles = (Vector3.down);
 
     }
 
