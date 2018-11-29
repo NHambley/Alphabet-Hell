@@ -342,6 +342,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lives: 3
   hitTimerMax: 180
+  ggPref: {fileID: 1960003775231928, guid: e5c630698f8a046438f86b320827e66f, type: 2}
 --- !u!4 &1132608888
 Transform:
   m_ObjectHideFlags: 0
