@@ -334,15 +334,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114907158083207286, guid: e63631e4d893adf45aaddf71cb575639,
         type: 2}
-      propertyPath: levels.Array.data[6]
-      value: 
-      objectReference: {fileID: 1739749577170736, guid: 4f5f99c1be98e104d876d924cf0e52d8,
-        type: 2}
-    - target: {fileID: 114907158083207286, guid: e63631e4d893adf45aaddf71cb575639,
-        type: 2}
       propertyPath: player
       value: 
       objectReference: {fileID: 320645079}
+    - target: {fileID: 114907158083207286, guid: e63631e4d893adf45aaddf71cb575639,
+        type: 2}
+      propertyPath: levelDebug
+      value: -1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e63631e4d893adf45aaddf71cb575639, type: 2}
   m_IsPrefabAsset: 0
