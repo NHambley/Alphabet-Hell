@@ -10,7 +10,6 @@ public class SelectLevelSprites : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(this.gameObject);
-
     }
 
     // Update is called once per frame
@@ -25,7 +24,6 @@ public class SelectLevelSprites : MonoBehaviour
         {
             Vector3 mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mp.z = 0;
-            Debug.Log(mp);
             foreach (Collider2D level in FindObjectsOfType<Collider2D>())
             {
                 if (level.bounds.Contains(mp))
@@ -38,7 +36,6 @@ public class SelectLevelSprites : MonoBehaviour
     }
     private void handleTouch(GameObject level)
     {
-        Debug.Log(level.tag);
         if (level.tag == "Level1")
             SceneManagerScript.level = 1;
         if (level.tag == "Level2")
@@ -62,12 +59,6 @@ public class SelectLevelSprites : MonoBehaviour
         if (level.tag == "Level11")
             SceneManagerScript.level = 11;
 
-
-        Debug.Log(SceneManagerScript.level);
-
         SceneManager.LoadScene("TestScene");
-
     }
-
-
 }

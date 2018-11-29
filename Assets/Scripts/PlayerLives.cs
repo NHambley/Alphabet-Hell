@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerLives : MonoBehaviour {
 
@@ -18,6 +19,13 @@ public class PlayerLives : MonoBehaviour {
     // hitTimer
     public float hitTimerMax;
     float hitTimer;
+
+    // Game Over
+    public GameObject ggPref;
+    GameObject gg;
+    float ggTimer;
+    float ggTimerMax;
+
     #endregion
 
     // Use this for initialization
@@ -26,6 +34,7 @@ public class PlayerLives : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player");
         checkList = new List<GameObject>();
         livesMax = 3;
+        ggTimerMax = 120;
 
         if (lives > livesMax)
             lives = livesMax;
@@ -34,7 +43,8 @@ public class PlayerLives : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
         // makes sure the important things are set
         if (sceneManager == null)
             sceneManager = GameObject.FindGameObjectWithTag("GameController");
@@ -42,45 +52,48 @@ public class PlayerLives : MonoBehaviour {
             player = GameObject.FindGameObjectWithTag("Player");
 
         #region CollisionCheck
-        if (hitTimer == 0)
+        if (lives != 0)
         {
-            // adds everything with tag enemy
-            foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
-            {
-                checkList.Add(enemy);
-            }
-
-            /*
-            // adds the enemy bullets from the scene manager
-            foreach (GameObject enemyBullet in sceneManager.GetComponent<SceneManagerScript>().EnemyBullets)
-            {
-                checkList.Add(enemyBullet);
-            }
-            */
-
-            // checks everything in the list
-            foreach (GameObject check in checkList)
-            {
-                if (CollisionCheck(check))
-                {
-                    PlayerHit(check);
-                }
-            }
-
-            // resets the list
-            checkList = new List<GameObject>();
-        }
-
-        #region HitTimer
-        else
-        {
-            hitTimer--;
             if (hitTimer == 0)
-                player.GetComponent<SpriteRenderer>().enabled = true;
-            else if (hitTimer % 2 == 1)
-                player.GetComponent<SpriteRenderer>().enabled = false;
-            else if (hitTimer % 2 == 0)
-                player.GetComponent<SpriteRenderer>().enabled = true;
+            {
+                // adds everything with tag enemy
+                foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+                {
+                    checkList.Add(enemy);
+                }
+
+                /*
+                // adds the enemy bullets from the scene manager
+                foreach (GameObject enemyBullet in sceneManager.GetComponent<SceneManagerScript>().EnemyBullets)
+                {
+                    checkList.Add(enemyBullet);
+                }
+                */
+
+                // checks everything in the list
+                foreach (GameObject check in checkList)
+                {
+                    if (CollisionCheck(check))
+                    {
+                        PlayerHit(check);
+                    }
+                }
+
+                // resets the list
+                checkList = new List<GameObject>();
+            }
+
+            #region HitTimer
+            else
+            {
+                hitTimer--;
+                if (hitTimer == 0)
+                    player.GetComponent<SpriteRenderer>().enabled = true;
+                else if (hitTimer % 2 == 1)
+                    player.GetComponent<SpriteRenderer>().enabled = false;
+                else if (hitTimer % 2 == 0)
+                    player.GetComponent<SpriteRenderer>().enabled = true;
+            }
         }
         #endregion
 
@@ -93,13 +106,36 @@ public class PlayerLives : MonoBehaviour {
             Destroy(popped);
         }
 
-        if (lives == 0)
+        if (lives == 0 && player != null)
         {
-            Debug.Log("GG");
             Destroy(player);
+            gg = Instantiate(ggPref);
+            ggTimer = ggTimerMax;
+            gg.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
+        }
+
+        if (player == null)
+        {
+            if (ggTimer != 0)
+            {
+                ggTimer--;
+                Debug.Log((ggTimerMax - ggTimer) / ggTimerMax);
+                if (ggTimer == 0)
+                    gg.GetComponent<SpriteRenderer>().color = Color.white;
+                else
+                    gg.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, (ggTimerMax - ggTimer) / ggTimerMax);
+            }
+            else if (Input.GetMouseButtonDown(0))
+            {
+                Vector3 mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                mp.z = 0;
+                if (gg.GetComponent<Collider2D>().bounds.Contains(mp))
+                {
+                    SceneManager.LoadScene("MainMenu");
+                }
+            }
         }
     }
-
     // Check Player Collisions
     bool CollisionCheck(GameObject toCheck) { return sceneManager.GetComponent<SceneManagerScript>().CheckCollisions(player, toCheck); }
 

@@ -272,6 +272,9 @@ public class SceneManagerScript : MonoBehaviour {
 
     public bool CheckCollisions(GameObject a, GameObject b)
     {
+        if (a == null || b == null)
+            return false;
+
         Vector2 aMin;
         Vector2 aMax;
         Vector2 bMin;
