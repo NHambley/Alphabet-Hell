@@ -17,6 +17,7 @@ TagManager:
   - Level1
   - Level4
   - Level5
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
