@@ -53,9 +53,6 @@ public class E_A : GenericEnemyScript
 	// Update is called once per frame
 	void Update ()
     {
-        if (Health <= 0)
-            Destroy(gameObject);
-
         // check what state the enemy is in and call the subsequent method
         // if the bool is true call attacking methods
         // if the bool is false call reset positioning methods
