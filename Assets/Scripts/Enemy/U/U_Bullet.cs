@@ -44,14 +44,6 @@ public class U_Bullet : MonoBehaviour {
 
         xRot = transform.position.x - player.transform.position.x;
         transform.eulerAngles = new Vector3(xRot, 0, 0);
-        
-        
-        // every frame check collision with the player
-        if (sM.CheckCollisions(player, gameObject))
-        {
-            // deal damage to the player and then destroy the bullet
-            player.GetComponent<S_Player>().Health -= 10;
-        }
 
         transform.position = position;
     }

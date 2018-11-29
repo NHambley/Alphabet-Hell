@@ -17,8 +17,6 @@ public class B_C : GenericBossScript
 
     SceneManagerScript sceneManager;
 
-    // Destructor
-
     // Use this for initialization
     void Start()
     {
@@ -41,6 +39,12 @@ public class B_C : GenericBossScript
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
+        if (velocity == Vector3.zero)
+            velocity = new Vector3(.005f, 0, 0);
+
+        if (transform.position.x < -1.5f || transform.position.x > 1.5f)
+            velocity = -velocity;
+
         for (int i = 0; i < shotTimers.Count; i++)
         {
             // Firing

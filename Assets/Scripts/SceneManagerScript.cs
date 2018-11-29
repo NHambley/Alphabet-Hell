@@ -22,6 +22,11 @@ public class SceneManagerScript : MonoBehaviour {
     public int levelDebug = -1;
     bool isBossFight = false;
 
+    public List<GameObject> EnemyBullets
+    {
+        get { return enemyBullets; }
+    }
+
     // Use this for initialization
     void Start () {
         if (level == -1)
@@ -75,7 +80,6 @@ public class SceneManagerScript : MonoBehaviour {
             if (bossScript.isActive) return;
             else if (boss.transform.position.y <= Camera.main.ScreenToWorldPoint(new Vector3(0.0f, Camera.main.pixelHeight, 0.0f)).y / 1.5f)
             {
-                Debug.Log("HIT");
                 bossScript.isActive = true;
                 bossScript.acceleration = Vector3.zero;
                 bossScript.velocity = Vector3.zero;
@@ -189,6 +193,7 @@ public class SceneManagerScript : MonoBehaviour {
 
     public void AddEnemyBullet(GameObject b)
     {
+        b.tag = "EnemyBullet";
         enemyBullets.Add(b);
     }
 
@@ -264,12 +269,41 @@ public class SceneManagerScript : MonoBehaviour {
 
     public bool CheckCollisions(GameObject a, GameObject b)
     {
-        SpriteRenderer aSpriteRenderer = a.GetComponent<SpriteRenderer>();
-        Vector2 aMin = a.transform.position - aSpriteRenderer.bounds.extents;
-        Vector2 aMax = a.transform.position + aSpriteRenderer.bounds.extents;
-        SpriteRenderer bSpriteRenderer = b.GetComponent<SpriteRenderer>();
-        Vector2 bMin = b.transform.position - bSpriteRenderer.bounds.extents;
-        Vector2 bMax = b.transform.position + bSpriteRenderer.bounds.extents;
+        Vector2 aMin;
+        Vector2 aMax;
+        Vector2 bMin;
+        Vector2 bMax;
+
+        // A object checks
+        // if the gameobject doesn't have a collider
+        if (a.GetComponent<Collider2D>() == null)
+        {
+            SpriteRenderer aSpriteRenderer = a.GetComponent<SpriteRenderer>();
+            aMin = a.transform.position - aSpriteRenderer.bounds.extents;
+            aMax = a.transform.position + aSpriteRenderer.bounds.extents;
+        }
+        // if it does
+        else
+        {
+            aMin = a.transform.position - a.GetComponent<Collider2D>().bounds.extents;
+            aMax = a.transform.position + a.GetComponent<Collider2D>().bounds.extents;
+        }
+
+        // B object checks
+        // if the gameobject doesn't have a collider
+        if (b.GetComponent<Collider2D>() == null)
+        {
+            SpriteRenderer bSpriteRenderer = b.GetComponent<SpriteRenderer>();
+            bMin = b.transform.position - bSpriteRenderer.bounds.extents;
+            bMax = b.transform.position + bSpriteRenderer.bounds.extents;
+        }
+        // if it does
+        else
+        {
+            bMin = b.transform.position - b.GetComponent<Collider2D>().bounds.extents;
+            bMax = b.transform.position + b.GetComponent<Collider2D>().bounds.extents;
+        }
+        //AABB check
         if (aMin.x < bMax.x && aMin.y < bMax.y && aMax.x > bMin.x && aMax.y > bMin.y)
         {
             return true;

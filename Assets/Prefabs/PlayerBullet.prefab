@@ -23,8 +23,8 @@ GameObject:
   - component: {fileID: 58228775714749642}
   - component: {fileID: 114306021564638380}
   m_Layer: 0
-  m_Name: BulletTemp
-  m_TagString: Untagged
+  m_Name: PlayerBullet
+  m_TagString: BulletP
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68,6 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5865d0dcd441928439da5e0804017f10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
 --- !u!212 &212924910024302802
 SpriteRenderer:
   m_ObjectHideFlags: 1

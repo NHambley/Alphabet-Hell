@@ -30,7 +30,7 @@ public class GenericBulletScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        
+
 	}
 
     void OnBecameInvisible()
