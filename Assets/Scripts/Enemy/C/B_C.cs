@@ -6,7 +6,6 @@ public class B_C : GenericBossScript
 {
 
     // attributes
-    Vector3 position;
     float damageTaken;
     //List<GameObject> bullets;
     List<GameObject> firingPositions;
@@ -25,7 +24,6 @@ public class B_C : GenericBossScript
     {
         firingPositions = new List<GameObject>();
         shotTimers = new List<float>();
-        position = gameObject.transform.position;
         for (int i = 0; i < 3; i++)
         {
             firingPositions.Add(transform.GetChild(i).gameObject);
@@ -40,8 +38,9 @@ public class B_C : GenericBossScript
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    protected override void FixedUpdate()
     {
+        base.FixedUpdate();
         for (int i = 0; i < shotTimers.Count; i++)
         {
             // Firing

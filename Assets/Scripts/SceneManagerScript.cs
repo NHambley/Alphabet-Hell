@@ -55,21 +55,26 @@ public class SceneManagerScript : MonoBehaviour {
             isBossFight = false;
         }
 
+        // Boss has spawned, moving to correct position
         if (numOfEnemiesLeft <= 0 /*&& enemies.Count <= 0*/ && !isBossFight)
         {
             isBossFight = true;
             boss = Instantiate(currentBossPrefab);
+            boss.GetComponent<GenericBossScript>().isActive = false;
             boss.transform.position = new Vector3(0.0f, 9.0f, 0.0f);
-            boss.GetComponent<GenericBossScript>().velocity = new Vector3(0.0f, -0.1f, 0.0f);
+            boss.GetComponent<GenericBossScript>().velocity = new Vector3(0.0f, -0.04f, 0.0f);
         }
 
         if (isBossFight && boss != null)
         {
+            // should the boss start shooting / doing its thing?
             GenericBossScript bossScript = boss.GetComponent<GenericBossScript>();
             if (bossScript.isActive) return;
-            else if (boss.transform.position.y <= Camera.main.ScreenToWorldPoint(new Vector3(0.0f, Camera.main.pixelHeight, 0.0f)).y / 2)
+            else if (boss.transform.position.y <= Camera.main.ScreenToWorldPoint(new Vector3(0.0f, Camera.main.pixelHeight, 0.0f)).y / 1.5f)
             {
+                Debug.Log("HIT");
                 bossScript.isActive = true;
+                bossScript.acceleration = Vector3.zero;
                 bossScript.velocity = Vector3.zero;
             }
         }
@@ -83,7 +88,6 @@ public class SceneManagerScript : MonoBehaviour {
     public void UpdateEnemyCheck()
     {
         int max = enemies.Count;
-        Debug.Log(max);
         for (int i = max - 1; i >= 0; i--)
         {
             if (enemies[i] == null)
