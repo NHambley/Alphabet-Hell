@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class B_Boss : MonoBehaviour {
+public class B_Boss : GenericBossScript {
 
     Transform[] children;
 
@@ -56,5 +56,10 @@ public class B_Boss : MonoBehaviour {
             //Debug.Log("got here");
             obstacleTimerTrack = bObstacleTimer;
         }
+    }
+
+    public override void OnHit(Vector3 pos)
+    {
+        Health -= 2;
     }
 }

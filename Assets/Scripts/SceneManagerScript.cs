@@ -18,16 +18,17 @@ public class SceneManagerScript : MonoBehaviour {
     int numOfEnemiesLeft = 0;
     float lastEnemySpawnTime = 0.0f;
     //GameObject background;
-    static public int level;
+    static public int level = -1;
     public int levelDebug = -1;
     bool isBossFight = false;
 
     // Use this for initialization
     void Start () {
-        if (levelDebug > -1)
-        {
+        if (level == -1 && levelDebug > -1)
             level = levelDebug;
-        }
+        else if (level == -1)
+            level = 0;
+
         GenerateLevel(level);
         lastEnemySpawnTime = Time.time;
 	}
