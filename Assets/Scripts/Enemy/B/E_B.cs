@@ -9,8 +9,8 @@ public class E_B : GenericEnemyScript {
     public Vector2 speed;
     SceneManagerScript sceneManager;
 
-    float bTimer = 1.5f; // to keep track of when to fire another bullet
-    float timerTrack = 1.5f;
+    float bTimer = 2.0f; // to keep track of when to fire another bullet
+    float timerTrack = 2.0f;
 
 
 
@@ -47,6 +47,7 @@ public class E_B : GenericEnemyScript {
         Attacking();
         if (this.IsDead)
             Destroy(this);
+        EnemyOffScreen();
     }
 
     void Attacking()
