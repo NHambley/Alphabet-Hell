@@ -41,6 +41,8 @@ public class S_Player : MonoBehaviour
 
     float lastBulletTime = -1.0f;
 
+    Vector3 spawnPos;
+
     public int Health
     {
         get { return health; }
@@ -60,7 +62,9 @@ public class S_Player : MonoBehaviour
     {
         mPosition = Input.mousePosition;
         pPosition = gameObject.transform.position;
-	}
+        managerScript = sceneManager.GetComponent<SceneManagerScript>();
+        spawnPos = new Vector3(transform.position.x, transform.position.y, 0);
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -128,43 +132,7 @@ public class S_Player : MonoBehaviour
         {
             pVelocity = Vector2.zero;
         }
-
-        /*
-        prevMPos = mPosition;
-        mPosition = Input.mousePosition;
-        Vector2 moveVec = mPosition - prevMPos;
-        moveVec = new Vector2(moveVec.x, 0);
-        moveVec.Normalize();
-        pPosition += moveVec * Time.deltaTime * seekScalar;
-        // check if the player is heading off screen by comparing the x value of moveVec 
-        pPosition += moveVec * Time.deltaTime * speed;
-        */
-
     }
 
-    /*
-    // currently testing this 
-    // uses the players touch positions to move the player instead of mouse position
-    void TouchMove()
-    {
-        fingerPos = Input.GetTouch(0).position;
-        Debug.Log("Touch: " + Input.GetTouch(0).deltaPosition);
-        float distanceRatio = (fingerPos - pPosition).magnitude;
-        if (distanceRatio >= 0.01f)
-        {
-            if (distanceRatio > 1f) distanceRatio = 1f;
-            //else if (distanceRatio < 0.3f) distanceRatio = 0.3f;
-            Vector2 desiredVelocity = (fingerPos - pPosition).normalized * seekScalar;
-            force = (desiredVelocity - pVelocity) * Time.deltaTime;
-            force = new Vector2(force.x, 0);
-            if (distanceRatio < 1) pVelocity *= 0.96f;
-            pVelocity += force;
-            pVelocity = Vector2.ClampMagnitude(pVelocity, maxSpeed);
-        }
-        else if (pVelocity.magnitude <= 0.05f)
-        {
-            pVelocity = Vector2.zero;
-        }
-    }
-    */
+    public void SetToSpawn() { pPosition = spawnPos; }
 }

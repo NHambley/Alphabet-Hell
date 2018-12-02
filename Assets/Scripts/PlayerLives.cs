@@ -146,7 +146,7 @@ public class PlayerLives : MonoBehaviour {
         if (hit.tag == "Enemy" || hit.tag == "EnemyBullet")
         {
             hitTimer = hitTimerMax;
-            //player.GetComponent<S_Player>().SetToSpawn();
+            player.GetComponent<S_Player>().SetToSpawn();
             lives--;
         }
     }

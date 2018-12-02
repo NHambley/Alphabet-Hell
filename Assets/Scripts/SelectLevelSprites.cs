@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class SelectLevelSprites : MonoBehaviour {
+public class SelectLevelSprites : MonoBehaviour
+{
     SceneManagerScript sM;
     static int lvl;
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         DontDestroyOnLoad(this.gameObject);
-        
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         if (SceneManager.GetActiveScene().name == "TestScene")
         {
             Destroy(gameObject);
@@ -22,7 +24,6 @@ public class SelectLevelSprites : MonoBehaviour {
         {
             Vector3 mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mp.z = 0;
-            Debug.Log(mp);
             foreach (Collider2D level in FindObjectsOfType<Collider2D>())
             {
                 if (level.bounds.Contains(mp))
@@ -35,7 +36,6 @@ public class SelectLevelSprites : MonoBehaviour {
     }
     private void handleTouch(GameObject level)
     {
-        Debug.Log(level.tag);
         if (level.tag == "Level1")
             SceneManagerScript.level = 1;
         if (level.tag == "Level2")
@@ -56,13 +56,9 @@ public class SelectLevelSprites : MonoBehaviour {
             SceneManagerScript.level = 9;
         if (level.tag == "Level10")
             SceneManagerScript.level = 10;
+        if (level.tag == "Level11")
+            SceneManagerScript.level = 11;
 
-
-        Debug.Log(SceneManagerScript.level);
-        
         SceneManager.LoadScene("TestScene");
-        
     }
-
-    
 }
