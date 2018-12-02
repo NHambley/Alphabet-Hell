@@ -6,7 +6,6 @@ public class B_C : GenericBossScript
 {
 
     // attributes
-    Vector3 position;
     float damageTaken;
     //List<GameObject> bullets;
     List<GameObject> firingPositions;
@@ -18,14 +17,11 @@ public class B_C : GenericBossScript
 
     SceneManagerScript sceneManager;
 
-    // Destructor
-
     // Use this for initialization
     void Start()
     {
         firingPositions = new List<GameObject>();
         shotTimers = new List<float>();
-        position = gameObject.transform.position;
         for (int i = 0; i < 3; i++)
         {
             firingPositions.Add(transform.GetChild(i).gameObject);
@@ -40,8 +36,15 @@ public class B_C : GenericBossScript
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    protected override void FixedUpdate()
     {
+        base.FixedUpdate();
+        if (velocity == Vector3.zero)
+            velocity = new Vector3(.005f, 0, 0);
+
+        if (transform.position.x < -1.5f || transform.position.x > 1.5f)
+            velocity = -velocity;
+
         for (int i = 0; i < shotTimers.Count; i++)
         {
             // Firing
