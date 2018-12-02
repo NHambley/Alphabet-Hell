@@ -8,20 +8,24 @@ public class U_BossBullet : MonoBehaviour {
     Vector3 position;
     GameObject player;
     SceneManagerScript sM;
-    int r;
+    int lOrR;
+    float distanceTravelled;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         sM = GameObject.FindGameObjectWithTag("GameController").GetComponent<SceneManagerScript>();
-        r = 0;
+        
         position = transform.position;
 
-        transform.Rotate(Vector3.forward * Random.Range(-15.0f, 15.0f));
-        r = Random.Range(0, 2);
-        if (r == 0)
-            transform.localRotation = Quaternion.Euler(transform.rotation.x, 180, transform.rotation.z);
-        else
-            transform.localRotation = Quaternion.Euler(transform.rotation.x, 0, transform.rotation.z);
+        distanceTravelled = 0;
+        if (transform.position.x >= 1)
+        {
+            lOrR = 0;
+        }
+        if (transform.position.x <= -1)
+        {
+            lOrR = 1;
+        }
 
     }
 
@@ -29,12 +33,30 @@ public class U_BossBullet : MonoBehaviour {
     void Update()
     {
         position.y -= .01f;
+        if (lOrR == 0)
+        {
+            if (distanceTravelled < 1.75f)
+                position.x += .02f;
+            else
+                position.x -= .02f;
+        }
+        if (lOrR == 1)
+        {
+            if (distanceTravelled < 1.75f)
+                position.x -= .02f;
+            else
+                position.x += .02f;  
+        }
+        distanceTravelled += .01f;
+        if (distanceTravelled > 3.5f)
+            distanceTravelled = 0;
 
         if (sM.CheckCollisions(player, gameObject))
         {
             // deal damage to the player and then destroy the bullet
             player.GetComponent<S_Player>().Health -= 10;
         }
+
         transform.position = position;
 
         EnemyOffScreen();

@@ -25,9 +25,7 @@ public class U_Bullet : MonoBehaviour {
         movement = Vector2.down;
         player = GameObject.FindGameObjectWithTag("Player");
         sM = GameObject.FindGameObjectWithTag("GameController").GetComponent<SceneManagerScript>();
-        xRot = 90;
-        //Debug.Log(leftOrRight);
-        //transform.Rotate(Vector3.forward * -90);
+
         transform.eulerAngles = (Vector3.down);
 
     }
@@ -45,10 +43,13 @@ public class U_Bullet : MonoBehaviour {
             position.x-=.01f;
         }
         position.y -= .02f;
+        if (sM.CheckCollisions(player, gameObject))
+        {
+            // deal damage to the player and then destroy the bullet
+            player.GetComponent<S_Player>().Health -= 10;
+        }
 
-        xRot = transform.position.x - player.transform.position.x;
-        transform.eulerAngles = new Vector3(xRot, 0, 0);
-
+        transform.up = (transform.position - player.transform.position).normalized;
         transform.position = position;
     }
 }

@@ -9,7 +9,8 @@ public class E_U : GenericEnemyScript {
     float damageTaken;
     public Vector2 speed;
     SceneManagerScript sceneManager;
-
+    SceneManagerScript sM;
+    GameObject player;
     float bTimer = 1.5f; // to keep track of when to fire another bullet
     float timerTrack = 1.5f;
 
@@ -36,6 +37,8 @@ public class E_U : GenericEnemyScript {
         position = gameObject.transform.position;
         velocity = speed;
         sceneManager = GameObject.Find("SceneManager").GetComponent<SceneManagerScript>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        sM = GameObject.FindGameObjectWithTag("GameController").GetComponent<SceneManagerScript>();
         Health = 100;
     }
     void Move()
@@ -50,8 +53,12 @@ public class E_U : GenericEnemyScript {
 
         Move();
         Attacking();
-        if (this.IsDead)
-            Destroy(this);
+
+        if (sM.CheckCollisions(player, gameObject))
+        {
+            // deal damage to the player and then destroy the bullet
+            player.GetComponent<S_Player>().Health -= 10;
+        }
     }
 
     void Attacking()
@@ -64,7 +71,7 @@ public class E_U : GenericEnemyScript {
         {
 
             // instantiate a new bullet
-            Instantiate(bullet, transform.position, Quaternion.Euler(0,0,90));
+            Instantiate(bullet, transform.position, Quaternion.identity);
             
             timerTrack = bTimer;
         }

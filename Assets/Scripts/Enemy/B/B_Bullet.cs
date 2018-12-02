@@ -34,6 +34,11 @@ public class B_Bullet : MonoBehaviour {
 
         transform.position = position;
         EnemyOffScreen();
+        if (sM.CheckCollisions(player, gameObject))
+        {
+            // deal damage to the player and then destroy the bullet
+            player.GetComponent<S_Player>().Health -= 10;
+        }
     }
     void boomerang()
     {
