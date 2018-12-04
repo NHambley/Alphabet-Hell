@@ -26,7 +26,7 @@ public class E_B : GenericEnemyScript {
     Camera cam;
     public override void OnHit(Vector3 hit)
     {
-        Health -= 50;
+        Health -= 10;
     }
 
     // Use this for initialization
@@ -69,7 +69,7 @@ public class E_B : GenericEnemyScript {
         {
 
             // instantiate a new bullet
-            Instantiate(bullet, transform.position, Quaternion.identity);
+            sM.AddEnemyBullet(Instantiate(bullet, transform.position, Quaternion.identity));
             //Debug.Log("got here");
             timerTrack = bTimer;
         }

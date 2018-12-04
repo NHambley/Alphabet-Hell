@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class U_Bullet : MonoBehaviour {
+public class U_Bullet : GenericBulletScript {
 
     float speed;
     Vector2 position;
@@ -26,7 +26,7 @@ public class U_Bullet : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("Player");
         sM = GameObject.FindGameObjectWithTag("GameController").GetComponent<SceneManagerScript>();
 
-        transform.eulerAngles = (Vector3.down);
+        //transform.eulerAngles = (Vector3.down);
 
     }
 
@@ -36,18 +36,13 @@ public class U_Bullet : MonoBehaviour {
 
         if (position.x < player.transform.position.x)
         {
-            position.x+=.01f;
+            position.x+=.008f;
         }
         else if(position.x > player.transform.position.x)
         {
-            position.x-=.01f;
+            position.x-=.008f;
         }
-        position.y -= .02f;
-        if (sM.CheckCollisions(player, gameObject))
-        {
-            // deal damage to the player and then destroy the bullet
-            player.GetComponent<S_Player>().Health -= 10;
-        }
+        position.y -= .04f;
 
         transform.up = (transform.position - player.transform.position).normalized;
         transform.position = position;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class B_Obstacle : MonoBehaviour {
+public class B_Obstacle : GenericBulletScript {
 
     // Use this for initialization
     Vector3 position;
@@ -28,20 +28,9 @@ public class B_Obstacle : MonoBehaviour {
     void Update () {
         position.y -= .01f;
 
-        if (sM.CheckCollisions(player, gameObject))
-        {
-            // deal damage to the player and then destroy the bullet
-            player.GetComponent<S_Player>().Health -= 10;
-        }
+
         transform.position = position;
 
-        EnemyOffScreen();
     }
-    void EnemyOffScreen()
-    {
-        if (this.position.y > Screen.height - 1)
-        {
-            Destroy(this);
-        }
-    }
+
 }

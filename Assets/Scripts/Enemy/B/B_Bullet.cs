@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class B_Bullet : MonoBehaviour {
+public class B_Bullet : GenericBulletScript {
 
     float speed;
     Vector2 position;
@@ -33,12 +33,7 @@ public class B_Bullet : MonoBehaviour {
         boomerang();
 
         transform.position = position;
-        EnemyOffScreen();
-        if (sM.CheckCollisions(player, gameObject))
-        {
-            // deal damage to the player and then destroy the bullet
-            player.GetComponent<S_Player>().Health -= 10;
-        }
+        
     }
     void boomerang()
     {
@@ -60,11 +55,5 @@ public class B_Bullet : MonoBehaviour {
         position.y -= .03f;
         transform.Rotate(Vector3.forward * -15);
     }
-    void EnemyOffScreen()
-    {
-        if (this.position.y > Screen.height - 1)
-        {
-            Destroy(this);
-        }
-    }
+
 }

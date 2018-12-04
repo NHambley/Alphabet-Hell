@@ -54,11 +54,7 @@ public class E_U : GenericEnemyScript {
         Move();
         Attacking();
 
-        if (sM.CheckCollisions(player, gameObject))
-        {
-            // deal damage to the player and then destroy the bullet
-            player.GetComponent<S_Player>().Health -= 10;
-        }
+
     }
 
     void Attacking()
@@ -71,7 +67,7 @@ public class E_U : GenericEnemyScript {
         {
 
             // instantiate a new bullet
-            Instantiate(bullet, transform.position, Quaternion.identity);
+            sM.AddEnemyBullet(Instantiate(bullet, transform.position, Quaternion.identity));
             
             timerTrack = bTimer;
         }
@@ -79,11 +75,5 @@ public class E_U : GenericEnemyScript {
 
 
     }
-    void EnemyOffScreen()
-    {
-        if (this.position.y > Screen.height - 1)
-        {
-            Destroy(this);
-        }
-    }
+
 }

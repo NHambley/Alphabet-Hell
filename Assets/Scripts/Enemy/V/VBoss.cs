@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class U_Boss : GenericBossScript {
-
+public class VBoss : GenericBossScript {
     Transform[] children;
 
     [SerializeField]
@@ -53,7 +52,7 @@ public class U_Boss : GenericBossScript {
 
     void bossAttack()
     {
-        
+
 
         obstacleTimerTrack -= Time.deltaTime;
         if (obstacleTimerTrack <= 0)
