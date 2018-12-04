@@ -2,26 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class B_Boss : GenericBossScript {
-
+public class VBoss : GenericBossScript {
     Transform[] children;
 
     [SerializeField]
     GameObject bullet;
-    public GameObject obstacle;
+    public GameObject bossBullet;
 
     float bTimer = 1.5f; // to keep track of when to fire another bullet
     float timerTrack = 1.5f;
     float obstacleTimerTrack = 4.0f;
     float bObstacleTimer = 4.0f;
-    Vector3 obstaclePos;
+    Vector3 bossBulletPos;
+    Vector3 bossBulletPos1;
     SceneManagerScript sM;
-
     // Use this for initialization
     void Start()
     {
-        obstaclePos = transform.position;
+        bossBulletPos = transform.position;
+        bossBulletPos.x = transform.position.x - 1;
+        bossBulletPos1 = transform.position;
+        bossBulletPos1.x = transform.position.x + 1;
         sM = GameObject.FindGameObjectWithTag("GameController").GetComponent<SceneManagerScript>();
+
 
     }
 
@@ -29,7 +32,7 @@ public class B_Boss : GenericBossScript {
     void Update()
     {
         Attacking();
-        spawnObstacle();
+        bossAttack();
     }
 
     // rotate each frame by a set amount
@@ -47,15 +50,17 @@ public class B_Boss : GenericBossScript {
         }
     }
 
-    void spawnObstacle()
+    void bossAttack()
     {
-        obstaclePos.x = Random.Range(-3.0f, 3.5f);
+
 
         obstacleTimerTrack -= Time.deltaTime;
         if (obstacleTimerTrack <= 0)
         {
             // instantiate a new bullet
-            sM.AddEnemyBullet(Instantiate(obstacle, obstaclePos, Quaternion.identity));
+            sM.AddEnemyBullet(Instantiate(bossBullet, bossBulletPos, Quaternion.identity));
+            sM.AddEnemyBullet(Instantiate(bossBullet, bossBulletPos1, Quaternion.identity));
+
             //Debug.Log("got here");
             obstacleTimerTrack = bObstacleTimer;
         }

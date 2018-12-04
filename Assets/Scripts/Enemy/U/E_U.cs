@@ -9,7 +9,8 @@ public class E_U : GenericEnemyScript {
     float damageTaken;
     public Vector2 speed;
     SceneManagerScript sceneManager;
-
+    SceneManagerScript sM;
+    GameObject player;
     float bTimer = 1.5f; // to keep track of when to fire another bullet
     float timerTrack = 1.5f;
 
@@ -25,9 +26,9 @@ public class E_U : GenericEnemyScript {
     
 
     Camera cam;
-    public override void OnHit(Vector3 hit)
+    public override void OnHit(Vector3 pos)
     {
-        throw new System.NotImplementedException();
+        Health -= (int)50;
     }
 
     // Use this for initialization
@@ -36,6 +37,8 @@ public class E_U : GenericEnemyScript {
         position = gameObject.transform.position;
         velocity = speed;
         sceneManager = GameObject.Find("SceneManager").GetComponent<SceneManagerScript>();
+        player = GameObject.FindGameObjectWithTag("Player");
+        sM = GameObject.FindGameObjectWithTag("GameController").GetComponent<SceneManagerScript>();
         Health = 100;
     }
     void Move()
@@ -50,8 +53,8 @@ public class E_U : GenericEnemyScript {
 
         Move();
         Attacking();
-        if (this.IsDead)
-            Destroy(this);
+
+
     }
 
     void Attacking()
@@ -64,7 +67,7 @@ public class E_U : GenericEnemyScript {
         {
 
             // instantiate a new bullet
-            Instantiate(bullet, transform.position, Quaternion.identity);
+            sM.AddEnemyBullet(Instantiate(bullet, transform.position, Quaternion.identity));
             
             timerTrack = bTimer;
         }
@@ -72,11 +75,5 @@ public class E_U : GenericEnemyScript {
 
 
     }
-    void EnemyOffScreen()
-    {
-        if (this.position.y > Screen.height - 1)
-        {
-            Destroy(this);
-        }
-    }
+
 }

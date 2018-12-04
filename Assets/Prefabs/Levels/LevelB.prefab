@@ -57,5 +57,6 @@ MonoBehaviour:
     zIndex: 1
     scale: {x: 0.41, y: 1, z: 1}
   enemy: {fileID: 1498121375580588, guid: b1f469b17ff1cff4ead07e93e819ae82, type: 2}
+  boss: {fileID: 1498121375580588, guid: ba074e0069c1c7841867539307cdb634, type: 2}
   enemySpawnTime: 1
   numOfEnemies: 5
