@@ -87,11 +87,6 @@ public class SceneManagerScript : MonoBehaviour {
                 bossScript.velocity = Vector3.zero;
             }
         }
-        else if (isBossFight)
-        {
-            // Boss is dead code goes here
-            Debug.Log("Boss is dead!");
-        }
     }
 
     public void UpdateEnemyCheck()
@@ -146,6 +141,7 @@ public class SceneManagerScript : MonoBehaviour {
                             if (boss.GetComponent<GenericBossScript>().IsDead)
                             {
                                 Destroy(boss);
+                                playerLives.bossIsDead = true;
                             }
                         }
                     }
