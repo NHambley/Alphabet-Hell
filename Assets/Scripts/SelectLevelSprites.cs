@@ -2,62 +2,63 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class SelectLevelSprites : MonoBehaviour {
+public class SelectLevelSprites : MonoBehaviour
+{
     SceneManagerScript sM;
     static int lvl;
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         DontDestroyOnLoad(this.gameObject);
-        
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         if (SceneManager.GetActiveScene().name == "TestScene")
         {
             Destroy(gameObject);
         }
 
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0))
         {
             Vector3 mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mp.z = 0;
-            if (GetComponent<Collider2D>().bounds.Contains(mp))
+            foreach (Collider2D level in FindObjectsOfType<Collider2D>())
             {
-                handleTouch();
+                if (level.bounds.Contains(mp))
+                {
+                    handleTouch(level.gameObject);
+                }
+
             }
         }
     }
-    private void handleTouch()
+    private void handleTouch(GameObject level)
     {
-        Debug.Log("Got here");
-        if (this.tag == "Level1")
+        if (level.tag == "Level1")
             SceneManagerScript.level = 1;
-        if (this.tag == "Level2")
+        if (level.tag == "Level2")
             SceneManagerScript.level = 2;
-        if (this.tag == "Level3")
+        if (level.tag == "Level3")
             SceneManagerScript.level = 3;
-        if (this.tag == "Level4")
+        if (level.tag == "Level4")
             SceneManagerScript.level = 4;
-        if (this.tag == "Level5")
+        if (level.tag == "Level5")
             SceneManagerScript.level = 5;
-        if (this.tag == "Level6")
+        if (level.tag == "Level6")
             SceneManagerScript.level = 6;
-        if (this.tag == "Level7")
+        if (level.tag == "Level7")
             SceneManagerScript.level = 7;
-        if (this.tag == "Level8")
+        if (level.tag == "Level8")
             SceneManagerScript.level = 8;
-        if (this.tag == "Level9")
+        if (level.tag == "Level9")
             SceneManagerScript.level = 9;
-        if (this.tag == "Level10")
+        if (level.tag == "Level10")
             SceneManagerScript.level = 10;
+        if (level.tag == "Level11")
+            SceneManagerScript.level = 11;
 
-
-        Debug.Log(SceneManagerScript.level);
-        
         SceneManager.LoadScene("TestScene");
-        
     }
-
-    
 }

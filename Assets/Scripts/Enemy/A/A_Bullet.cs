@@ -24,13 +24,6 @@ public class A_Bullet : MonoBehaviour
 	void Update ()
     {
         position += movement * speed * Time.deltaTime;
-
-        // every frame check collision with the player
-        if(sM.CheckCollisions(player, gameObject))
-        {
-            // deal damage to the player and then destroy the bullet
-            player.GetComponent<S_Player>().Health -= 10;
-        }
         transform.position = position;
 
         transform.rotation = Quaternion.Euler(0, 0, 0);

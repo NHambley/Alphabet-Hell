@@ -36,13 +36,5 @@ public class T_Bullet : MonoBehaviour
         Vector2 distance = targetVec - bPosition;
         bPosition += distance * speed * Time.deltaTime;
         transform.position = bPosition;
-
-        // check collisions with the player
-        if(sm.CheckCollisions(gameObject, player))
-        {
-            player.GetComponent<S_Player>().Health -= 5;
-            Destroy(gameObject);
-        }
-
     }
 }

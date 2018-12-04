@@ -33,8 +33,6 @@ public class V_Bullet : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-
-        
         if (dirOfBullet == 1)
         { 
             position.x -= .01f;
@@ -44,12 +42,6 @@ public class V_Bullet : MonoBehaviour {
             position.x += .01f;
         }
         position.y -= .03f;
-        // every frame check collision with the player
-        if (sM.CheckCollisions(player, gameObject))
-        {
-            // deal damage to the player and then destroy the bullet
-            player.GetComponent<S_Player>().Health -= 10;
-        }
 
         transform.position = position;
     }

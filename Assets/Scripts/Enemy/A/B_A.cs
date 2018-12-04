@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class B_A : MonoBehaviour
+public class B_A : GenericBossScript
 {
     Transform[] children;
 
@@ -19,6 +19,7 @@ public class B_A : MonoBehaviour
 	void Start ()
     {
         rotSpeed = 40f;
+        Health = 500;
 	}
 	
 	// Update is called once per frame
@@ -37,5 +38,10 @@ public class B_A : MonoBehaviour
     public void FireBullet(Transform position)
     {
         Instantiate(bullet, position);
+    }
+
+    public override void OnHit(Vector3 pos)
+    {
+        Health -= 15;
     }
 }

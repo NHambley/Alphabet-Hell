@@ -39,7 +39,7 @@ public abstract class GenericBossScript : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate () {
+	protected virtual void FixedUpdate () {
         velocity += acceleration;
         gameObject.transform.position += velocity;
 	}

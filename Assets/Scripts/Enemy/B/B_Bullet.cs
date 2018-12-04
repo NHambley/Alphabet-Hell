@@ -30,7 +30,13 @@ public class B_Bullet : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        boomerang();
 
+        transform.position = position;
+        EnemyOffScreen();
+    }
+    void boomerang()
+    {
         lengthOfArc++;
         if (leftOrRight == 1)
         {
@@ -47,15 +53,13 @@ public class B_Bullet : MonoBehaviour {
                 position.x -= .03f;
         }
         position.y -= .03f;
-
         transform.Rotate(Vector3.forward * -15);
-        // every frame check collision with the player
-        if (sM.CheckCollisions(player, gameObject))
+    }
+    void EnemyOffScreen()
+    {
+        if (this.position.y > Screen.height - 1)
         {
-            // deal damage to the player and then destroy the bullet
-            player.GetComponent<S_Player>().Health -= 10;
+            Destroy(this);
         }
-
-        transform.position = position;
     }
 }

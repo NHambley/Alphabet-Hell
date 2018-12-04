@@ -36,7 +36,7 @@ Transform:
   m_GameObject: {fileID: 1059418796163846}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.2460296, y: 3.9396079, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -52,8 +52,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efd628de7d0690744b1082fccd04fa2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0, z: 0}
+  acceleration: {x: 0, y: 0, z: 0}
+  timer: 2
   speed: 0
   bullet: {fileID: 1166192425634920, guid: f660f12d913d5d5429c1e1401516687c, type: 2}
+  firing: 0
 --- !u!212 &212495645381263382
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -89,7 +93,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f92e8cf6a1bfb6944aa22cb585f186c0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: dbab8930cecd7fe48ad66e2d32c126f8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
