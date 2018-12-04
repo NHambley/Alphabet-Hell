@@ -49,7 +49,8 @@ public class V_Enemy : GenericEnemyScript {
 
         Move();
         Attacking();
-
+        if (this.IsDead)
+            Destroy(this);
     }
 
     void Attacking()
@@ -67,9 +68,7 @@ public class V_Enemy : GenericEnemyScript {
             
             GameObject newBullet1 = Instantiate(bullet, transform.position, Quaternion.identity);
             newBullet1.GetComponent<V_Bullet>().dirOfBullet = 2;
-
-            sceneManager.AddEnemyBullet(newBullet);
-            sceneManager.AddEnemyBullet(newBullet1);
+            
             
             //Debug.Log("got here");
             timerTrack = bTimer;

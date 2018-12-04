@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class U_Bullet : GenericBulletScript {
+public class U_Bullet : MonoBehaviour {
 
     float speed;
     Vector2 position;
@@ -14,9 +14,6 @@ public class U_Bullet : GenericBulletScript {
     int lengthOfArc;
     int lengthOfArc1;
     GameObject player;
-
-
-
     // Use this for initialization
     void Start()
     {
@@ -25,8 +22,9 @@ public class U_Bullet : GenericBulletScript {
         movement = Vector2.down;
         player = GameObject.FindGameObjectWithTag("Player");
         sM = GameObject.FindGameObjectWithTag("GameController").GetComponent<SceneManagerScript>();
-
-        //transform.eulerAngles = (Vector3.down);
+        xRot = 0;
+        //Debug.Log(leftOrRight);
+        
 
     }
 
@@ -36,15 +34,17 @@ public class U_Bullet : GenericBulletScript {
 
         if (position.x < player.transform.position.x)
         {
-            position.x+=.008f;
+            position.x+=.01f;
         }
         else if(position.x > player.transform.position.x)
         {
-            position.x-=.008f;
+            position.x-=.01f;
         }
-        position.y -= .04f;
+        position.y -= .02f;
 
-        transform.up = (transform.position - player.transform.position).normalized;
+        xRot = transform.position.x - player.transform.position.x;
+        transform.eulerAngles = new Vector3(xRot, 0, 0);
+
         transform.position = position;
     }
 }

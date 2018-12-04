@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class B_Boss : GenericBossScript {
+public class B_Boss : MonoBehaviour {
 
     Transform[] children;
 
@@ -15,14 +15,11 @@ public class B_Boss : GenericBossScript {
     float obstacleTimerTrack = 4.0f;
     float bObstacleTimer = 4.0f;
     Vector3 obstaclePos;
-    SceneManagerScript sM;
-
     // Use this for initialization
     void Start()
     {
         obstaclePos = transform.position;
-        sM = GameObject.FindGameObjectWithTag("GameController").GetComponent<SceneManagerScript>();
-
+        
     }
 
     // Update is called once per frame
@@ -41,7 +38,7 @@ public class B_Boss : GenericBossScript {
         if (timerTrack <= 0)
         {
             // instantiate a new bullet
-            sM.AddEnemyBullet(Instantiate(bullet, transform.position, Quaternion.identity));
+            Instantiate(bullet, transform.position, Quaternion.identity);
             //Debug.Log("got here");
             timerTrack = bTimer;
         }
@@ -55,14 +52,9 @@ public class B_Boss : GenericBossScript {
         if (obstacleTimerTrack <= 0)
         {
             // instantiate a new bullet
-            sM.AddEnemyBullet(Instantiate(obstacle, obstaclePos, Quaternion.identity));
+            Instantiate(obstacle, obstaclePos, Quaternion.identity);
             //Debug.Log("got here");
             obstacleTimerTrack = bObstacleTimer;
         }
-    }
-
-    public override void OnHit(Vector3 pos)
-    {
-        Health -= 2;
     }
 }

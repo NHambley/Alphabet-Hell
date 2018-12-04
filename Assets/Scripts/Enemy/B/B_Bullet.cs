@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class B_Bullet : GenericBulletScript {
+public class B_Bullet : MonoBehaviour {
 
     float speed;
     Vector2 position;
@@ -33,7 +33,7 @@ public class B_Bullet : GenericBulletScript {
         boomerang();
 
         transform.position = position;
-        
+        EnemyOffScreen();
     }
     void boomerang()
     {
@@ -55,5 +55,11 @@ public class B_Bullet : GenericBulletScript {
         position.y -= .03f;
         transform.Rotate(Vector3.forward * -15);
     }
-
+    void EnemyOffScreen()
+    {
+        if (this.position.y > Screen.height - 1)
+        {
+            Destroy(this);
+        }
+    }
 }

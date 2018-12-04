@@ -119,6 +119,7 @@ public class PlayerLives : MonoBehaviour {
             if (ggTimer != 0)
             {
                 ggTimer--;
+                Debug.Log((ggTimerMax - ggTimer) / ggTimerMax);
                 if (ggTimer == 0)
                     gg.GetComponent<SpriteRenderer>().color = Color.white;
                 else
