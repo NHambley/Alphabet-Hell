@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class T_Bullet : MonoBehaviour
+public class T_Bullet : GenericBulletScript
 {
     GameObject player;
     Vector2 targetVec;
@@ -17,7 +17,8 @@ public class T_Bullet : MonoBehaviour
         // find the player 
         player = GameObject.FindGameObjectWithTag("Player");
         bPosition = transform.position;
-        targetVec = player.transform.position;
+        if (player != null)
+            targetVec = player.transform.position;
         targetVec += (bPosition + targetVec);
         sm = GameObject.FindGameObjectWithTag("GameController").GetComponent<SceneManagerScript>();
         speed = 2;
