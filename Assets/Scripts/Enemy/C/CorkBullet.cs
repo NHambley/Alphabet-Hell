@@ -12,12 +12,4 @@ public class CorkBullet : GenericBulletScript {
         
 	}
 	
-	// Update is called once per frame
-    /*
-	void FixedUpdate () {
-        Vector3 newPosition = transform.position;
-        newPosition += -velocity;
-        transform.position = newPosition;
-    }
-    */
 }

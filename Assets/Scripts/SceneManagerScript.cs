@@ -18,18 +18,28 @@ public class SceneManagerScript : MonoBehaviour {
     int numOfEnemiesLeft = 0;
     float lastEnemySpawnTime = 0.0f;
     //GameObject background;
-    static public int level;
+    static public int level = -1;
     public int levelDebug = -1;
     bool isBossFight = false;
+    PlayerLives playerLives;
+
+    public List<GameObject> EnemyBullets
+    {
+        get { return enemyBullets; }
+    }
 
     // Use this for initialization
     void Start () {
-        if (levelDebug > -1)
+        if (level == -1)
         {
-            level = levelDebug;
+            if (levelDebug > -1)
+                level = levelDebug;
+            else
+                level = 0;
         }
         GenerateLevel(level);
         lastEnemySpawnTime = Time.time;
+        playerLives = GameObject.FindObjectOfType<PlayerLives>().GetComponent<PlayerLives>();
 	}
 	
 	// Update is called once per frame
@@ -55,21 +65,25 @@ public class SceneManagerScript : MonoBehaviour {
             isBossFight = false;
         }
 
+        // Boss has spawned, moving to correct position
         if (numOfEnemiesLeft <= 0 /*&& enemies.Count <= 0*/ && !isBossFight)
         {
             isBossFight = true;
             boss = Instantiate(currentBossPrefab);
+            boss.GetComponent<GenericBossScript>().isActive = false;
             boss.transform.position = new Vector3(0.0f, 9.0f, 0.0f);
-            boss.GetComponent<GenericBossScript>().velocity = new Vector3(0.0f, -0.1f, 0.0f);
+            boss.GetComponent<GenericBossScript>().velocity = new Vector3(0.0f, -0.04f, 0.0f);
         }
 
         if (isBossFight && boss != null)
         {
+            // should the boss start shooting / doing its thing?
             GenericBossScript bossScript = boss.GetComponent<GenericBossScript>();
             if (bossScript.isActive) return;
-            else if (boss.transform.position.y <= Camera.main.ScreenToWorldPoint(new Vector3(0.0f, Camera.main.pixelHeight, 0.0f)).y / 2)
+            else if (boss.transform.position.y <= Camera.main.ScreenToWorldPoint(new Vector3(0.0f, Camera.main.pixelHeight, 0.0f)).y / 1.5f)
             {
                 bossScript.isActive = true;
+                bossScript.acceleration = Vector3.zero;
                 bossScript.velocity = Vector3.zero;
             }
         }
@@ -83,7 +97,6 @@ public class SceneManagerScript : MonoBehaviour {
     public void UpdateEnemyCheck()
     {
         int max = enemies.Count;
-        Debug.Log(max);
         for (int i = max - 1; i >= 0; i--)
         {
             if (enemies[i] == null)
@@ -153,8 +166,9 @@ public class SceneManagerScript : MonoBehaviour {
         {
             if (!enemyBullets[i].GetComponent<GenericBulletScript>().IsDead)
             {
-                if (CheckCollisions(player, enemyBullets[i]))
+                if (CheckCollisions(player, enemyBullets[i]) && playerLives.PlayerCanBeHit())
                 {
+                    playerLives.PlayerHit(enemyBullets[i]);
                     enemyBullets[i].GetComponent<GenericBulletScript>().IsDead = true;
                     player.GetComponent<ParticleGenerator>().GenerateParticles(SPRITE.SPARK, 5, enemyBullets[i].transform.position, enemyBullets[i].GetComponent<GenericBulletScript>().GetVelocity().normalized * 0.3f, new Vector3(1.0f, 1.0f, 1.0f), 90, 0.5f, -0.5f);
                     //player.GetComponent<S_Player>().health -= enemyBullets[i].GetComponent<GenericBulletScript>().damage;
@@ -182,6 +196,7 @@ public class SceneManagerScript : MonoBehaviour {
 
     public void AddEnemyBullet(GameObject b)
     {
+        b.tag = "EnemyBullet";
         enemyBullets.Add(b);
     }
 
@@ -257,12 +272,44 @@ public class SceneManagerScript : MonoBehaviour {
 
     public bool CheckCollisions(GameObject a, GameObject b)
     {
-        SpriteRenderer aSpriteRenderer = a.GetComponent<SpriteRenderer>();
-        Vector2 aMin = a.transform.position - aSpriteRenderer.bounds.extents;
-        Vector2 aMax = a.transform.position + aSpriteRenderer.bounds.extents;
-        SpriteRenderer bSpriteRenderer = b.GetComponent<SpriteRenderer>();
-        Vector2 bMin = b.transform.position - bSpriteRenderer.bounds.extents;
-        Vector2 bMax = b.transform.position + bSpriteRenderer.bounds.extents;
+        if (a == null || b == null)
+            return false;
+
+        Vector2 aMin;
+        Vector2 aMax;
+        Vector2 bMin;
+        Vector2 bMax;
+
+        // A object checks
+        // if the gameobject doesn't have a collider
+        if (a.GetComponent<Collider2D>() == null)
+        {
+            SpriteRenderer aSpriteRenderer = a.GetComponent<SpriteRenderer>();
+            aMin = a.transform.position - aSpriteRenderer.bounds.extents;
+            aMax = a.transform.position + aSpriteRenderer.bounds.extents;
+        }
+        // if it does
+        else
+        {
+            aMin = a.transform.position - a.GetComponent<Collider2D>().bounds.extents;
+            aMax = a.transform.position + a.GetComponent<Collider2D>().bounds.extents;
+        }
+
+        // B object checks
+        // if the gameobject doesn't have a collider
+        if (b.GetComponent<Collider2D>() == null)
+        {
+            SpriteRenderer bSpriteRenderer = b.GetComponent<SpriteRenderer>();
+            bMin = b.transform.position - bSpriteRenderer.bounds.extents;
+            bMax = b.transform.position + bSpriteRenderer.bounds.extents;
+        }
+        // if it does
+        else
+        {
+            bMin = b.transform.position - b.GetComponent<Collider2D>().bounds.extents;
+            bMax = b.transform.position + b.GetComponent<Collider2D>().bounds.extents;
+        }
+        //AABB check
         if (aMin.x < bMax.x && aMin.y < bMax.y && aMax.x > bMin.x && aMax.y > bMin.y)
         {
             return true;
