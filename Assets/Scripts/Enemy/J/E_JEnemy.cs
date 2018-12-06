@@ -33,6 +33,7 @@ public class E_JEnemy:GenericEnemyScript
 
     public override void OnHit(Vector3 pos)
     {
+        Health -= 20;
         gameObject.GetComponent<ParticleGenerator>().GenerateParticles(SPRITE.ROCK, 3, pos, new Vector3(0.0f, 0.1f, 0.0f), new Vector3(0.2f, 0.2f, 0.2f), 90, 0.5f, -0.5f);
     }
 }

@@ -32,7 +32,7 @@ public class B_C : GenericBossScript
         shotTimers.Add(1);
         //bullets = new List<GameObject>();
         sceneManager = GameObject.Find("SceneManager").GetComponent<SceneManagerScript>();
-        damageTaken = 1.5f;
+        damageTaken = 2f;
     }
 
     // Update is called once per frame
