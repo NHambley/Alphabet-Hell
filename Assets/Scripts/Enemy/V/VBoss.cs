@@ -41,11 +41,7 @@ public class VBoss : GenericBossScript {
     // Update is called once per frame
     void Update()
     {
-
-
-        
         Attacking();
-
     }
 
     void Attacking()
@@ -67,13 +63,11 @@ public class VBoss : GenericBossScript {
             GameObject newBullet2 = Instantiate(bullet, transform.position, Quaternion.identity);
             newBullet.GetComponent<VBossBullet>().dirOfBullet = 3;
             
-            GameObject newBullet3 = Instantiate(bullet, transform.position, Quaternion.identity);
-            newBullet1.GetComponent<VBossBullet>().dirOfBullet = 4;
+
 
             sceneManager.AddEnemyBullet(newBullet);
             sceneManager.AddEnemyBullet(newBullet1);
             sceneManager.AddEnemyBullet(newBullet2);
-            sceneManager.AddEnemyBullet(newBullet3);
             //Debug.Log("got here");
             timerTrack = bTimer;
         }

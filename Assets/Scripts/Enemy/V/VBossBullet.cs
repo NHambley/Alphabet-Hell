@@ -22,14 +22,13 @@ public class VBossBullet : GenericBulletScript {
         movement = Vector2.down;
         player = GameObject.FindGameObjectWithTag("Player");
         sM = GameObject.FindGameObjectWithTag("GameController").GetComponent<SceneManagerScript>();
+
         if (dirOfBullet == 1)
-            transform.Rotate(Vector3.forward * -65);
-        if (dirOfBullet == 2)
-            transform.Rotate(Vector3.forward * -25);
+            transform.Rotate(Vector3.forward * -45);
+
         if (dirOfBullet == 3)
-            transform.Rotate(Vector3.forward * -85);
-        if (dirOfBullet == 4)
-            transform.Rotate(Vector3.forward * -5);
+            transform.Rotate(Vector3.forward * 45);
+
         //Debug.Log(leftOrRight);
 
     }
@@ -43,16 +42,10 @@ public class VBossBullet : GenericBulletScript {
         }
         if (dirOfBullet == 3)
         {
-            position.x -= .02f;
-        }
-        if (dirOfBullet == 2 )
-        {
             position.x += .01f;
         }
-        if (dirOfBullet == 4)
-        {
-            position.x += .02f;
-        }
+
+
 
         position.y -= .03f;
 
