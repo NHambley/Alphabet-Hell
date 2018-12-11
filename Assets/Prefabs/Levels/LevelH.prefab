@@ -55,6 +55,8 @@ MonoBehaviour:
   - speed: {x: 0, y: -0.1, z: 0}
     sprite: {fileID: 21300000, guid: 76b7cc15a6c2bed4a93034056dd34365, type: 3}
     zIndex: 1
+    scale: {x: 0, y: 0, z: 0}
   enemy: {fileID: 1947477486526918, guid: 76b753422425695448311c9329b94d5c, type: 2}
+  boss: {fileID: 1841452533078614, guid: 7ac38f1e54a8cfd42b723278ac7ae534, type: 2}
   enemySpawnTime: 1
   numOfEnemies: 5

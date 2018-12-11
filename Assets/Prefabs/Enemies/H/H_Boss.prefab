@@ -139,10 +139,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38baf70ab39200948b2cab43b295f1fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0, z: 0}
+  acceleration: {x: 0, y: 0, z: 0}
+  isActive: 0
   firepoints:
   - {fileID: 1366562384202224}
   - {fileID: 1163327404688272}
   - {fileID: 1160947963563558}
+  basicBullet: {fileID: 1672991704614008, guid: 1181bf1457573cd43ba9686895a2e213,
+    type: 2}
+  bigBullet: {fileID: 1406517348149644, guid: c97875fdc97cc90488883adf23ffdb66, type: 2}
 --- !u!212 &212730068575778476
 SpriteRenderer:
   m_ObjectHideFlags: 1
