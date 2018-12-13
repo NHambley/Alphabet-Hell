@@ -23,10 +23,12 @@ public class B_TCannon : MonoBehaviour
 
     bool seePlayer = false;// determines if the timer is subtracted from 
 
+    SceneManagerScript sm;
 	// Use this for initialization
 	void Start ()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        sm = GameObject.FindGameObjectWithTag("GameController").GetComponent<SceneManagerScript>();
         rotSpeed = 20f;
 	}
 	
@@ -68,7 +70,7 @@ public class B_TCannon : MonoBehaviour
     // fire a bullet at the player's current position
     void Fire()
     {
-        Instantiate(bullet, transform.position, Quaternion.identity);
+        sm.AddEnemyBullet(Instantiate(bullet, transform.position, Quaternion.identity));
         timer = chargeTimer;
     }
 }

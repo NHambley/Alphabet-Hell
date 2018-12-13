@@ -52,9 +52,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28de6a55ab9b2f429728e0692636b8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0, z: 0}
+  acceleration: {x: 0, y: 0, z: 0}
   speed: 2
   state: 0
-  bullet: {fileID: 1046507976500026, guid: efb28bd8fd477b144ae725620543768b, type: 2}
+  bullet: {fileID: 1046507976500026, guid: 521a73fc702ef6b499ff414917a69602, type: 2}
 --- !u!212 &212082914640822840
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -90,7 +92,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 55bdce1ad5447cc48ba5d1b39b5675ae, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3c74f72ab57fdf04ea13e547d5a906c0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

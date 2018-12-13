@@ -8,7 +8,7 @@ public class E_HBullet : GenericBulletScript
     bool real = true;
     float alpha = 1;
 
-    float speed;
+    public float speed;
     Vector2 position;
     Vector2 movement;
     SceneManagerScript sM;

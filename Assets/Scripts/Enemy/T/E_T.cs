@@ -29,11 +29,14 @@ public class E_T : GenericEnemyScript
     float hp;
     [SerializeField]
     bool firing = false;// is the enemy firing a bullet or not?
+
+    SceneManagerScript sm;
 	// Use this for initialization
 	void Start ()
     {
         Health = 500;
         target = GameObject.FindGameObjectWithTag("Player");
+        sm = GameObject.FindGameObjectWithTag("GameController").GetComponent<SceneManagerScript>();
         cam = Camera.main;
 
         speed = 1.0f;
@@ -67,7 +70,7 @@ public class E_T : GenericEnemyScript
         if(timer <= 0)
         {
             // fire a bullet and find a new position\
-            Instantiate(bullet, gameObject.transform.position, Quaternion.identity);
+            sm.AddEnemyBullet(Instantiate(bullet, gameObject.transform.position, Quaternion.identity));
             firing = false;
             FindPosition();
             timer = chargeTimer;
