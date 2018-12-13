@@ -25,6 +25,7 @@ public class PlayerLives : MonoBehaviour {
     GameObject gg;
     float ggTimer;
     float ggTimerMax;
+    public bool bossIsDead = false;
 
     #endregion
 
@@ -106,7 +107,7 @@ public class PlayerLives : MonoBehaviour {
             Destroy(popped);
         }
 
-        if (lives == 0 && player != null)
+        if ((lives == 0 && player != null) || bossIsDead)
         {
             Destroy(player);
             gg = Instantiate(ggPref);
@@ -114,7 +115,7 @@ public class PlayerLives : MonoBehaviour {
             gg.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
         }
 
-        if (player == null)
+        if (player == null || bossIsDead)
         {
             if (ggTimer != 0)
             {
@@ -145,7 +146,7 @@ public class PlayerLives : MonoBehaviour {
         if (hit.tag == "Enemy" || hit.tag == "EnemyBullet")
         {
             hitTimer = hitTimerMax;
-            player.GetComponent<S_Player>().SetToSpawn();
+            //player.GetComponent<S_Player>().SetToSpawn(); // Returns the player to the start point
             lives--;
         }
     }

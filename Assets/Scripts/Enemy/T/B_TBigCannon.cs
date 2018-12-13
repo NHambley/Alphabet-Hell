@@ -27,10 +27,12 @@ public class B_TBigCannon : MonoBehaviour
     float rotSpeed;
     int bulletCount;
     bool seePlayer = false;// determines if the timer is subtracted from 
+    SceneManagerScript sm;
     // Use this for initialization
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        sm = GameObject.FindGameObjectWithTag("GameController").GetComponent<SceneManagerScript>();
         rotSpeed = 1f;
     }
 
@@ -79,7 +81,7 @@ public class B_TBigCannon : MonoBehaviour
         // if the lazer has been going on for the specific time end it
         if(shootTimer <= 0)
         {
-            Instantiate(bullet, transform.position, Quaternion.identity);
+            sm.AddEnemyBullet(Instantiate(bullet, transform.position, Quaternion.identity));
             shootTimer = sTimer;
             bulletCount++;
         }

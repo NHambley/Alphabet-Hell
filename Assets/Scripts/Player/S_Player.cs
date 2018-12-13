@@ -78,7 +78,6 @@ public class S_Player : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             mPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            //mPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
             Move(mPosition);
             if(gameObject.GetComponent<Renderer>().isVisible) Shoot();
         }
@@ -93,8 +92,6 @@ public class S_Player : MonoBehaviour
 
         gameObject.GetComponent<ParticleGenerator>().GenerateParticles((SPRITE)(Random.Range(6, 9)), 3, gameObject.transform.position + new Vector3(0.85f, 0.6f, 0.0f), new Vector3(0.0f, -0.1f, 0.0f), new Vector3(0.5f, 0.5f, 0.5f), 20.0f, 0.1f, 0.5f);
         gameObject.GetComponent<ParticleGenerator>().GenerateParticles((SPRITE)(Random.Range(6, 9)), 3, gameObject.transform.position + new Vector3(-0.85f, 0.6f, 0.0f), new Vector3(0.0f, -0.1f, 0.0f), new Vector3(0.5f, 0.5f, 0.5f), 20.0f, 0.1f, 0.5f);
-
-        //Debug.Log(mPosition);
     }
 
     // periodically have the player shoot a projectile using a timer and a cooldown 
@@ -104,7 +101,6 @@ public class S_Player : MonoBehaviour
         if(Time.time - lastBulletTime >= 0.1f || lastBulletTime == -1.0f)
         {
             GameObject newBullet = Instantiate(bullet,transform.position + positionOffset,Quaternion.identity);
-            //newBullet.transform.position.Set(gameObject.transform.position.x, gameObject.transform.position.y, gameObject.transform.position.z);
             managerScript.AddPlayerBullet(newBullet);
             lastBulletTime = Time.time;
             gameObject.GetComponent<ParticleGenerator>().GenerateParticles((SPRITE)(Random.Range(6, 9)), 5, gameObject.transform.position + positionOffset, new Vector3(0.0f, 0.2f, 0.0f), new Vector3(1.0f,1.0f,1.0f), 20.0f, 0.2f, 0.5f);
@@ -116,21 +112,25 @@ public class S_Player : MonoBehaviour
     // compare the finger (mouse) position to its position last frame, normalize that vector, multiply by Time.deltaTime, then add it to the player position
     void Move(Vector2 mPos)
     {
-        float distanceRatio = Mathf.Abs(mPosition.x - pPosition.x);
-        if(distanceRatio >= 0.01f)
+        //float distanceRatio = Mathf.Abs(mPosition.x - pPosition.x);
+        float distanceRatio = Vector2.Distance(mPosition, pPosition);
+        if(distanceRatio >= 0.05f)
         {
-            if (distanceRatio > 1f) distanceRatio = 1f;
+            if (distanceRatio > 1f)
+                distanceRatio = 1f;
+
             //else if (distanceRatio < 0.3f) distanceRatio = 0.3f;
             Vector2 desiredVelocity = (mPosition - pPosition).normalized * seekScalar;
             force = (desiredVelocity - pVelocity) * Time.deltaTime;
-            //force = new Vector2(force.x, 0); The actual locking of the position
-            if (distanceRatio < 1) pVelocity *= 0.96f;
+            if (distanceRatio < 1)
+                pVelocity *= 0.96f;
+
             pVelocity += force;
             pVelocity = Vector2.ClampMagnitude(pVelocity, maxSpeed);
         }
-        else if(pVelocity.magnitude <= 0.05f)
+        else if(pVelocity.magnitude <= 0.1f)
         {
-            pVelocity = Vector2.zero;
+            pVelocity *= 0.9f;
         }
     }
 
