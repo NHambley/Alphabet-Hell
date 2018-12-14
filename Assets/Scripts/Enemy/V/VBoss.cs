@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class E_U : GenericEnemyScript {
-
+public class VBoss : GenericBossScript {
     Vector3 position, tPosition;
     Vector2 ePosition; // positino of this gameobject
     float damageTaken;
     public Vector2 speed;
     SceneManagerScript sceneManager;
-    SceneManagerScript sM;
-    GameObject player;
+
     float bTimer = 1.5f; // to keep track of when to fire another bullet
     float timerTrack = 1.5f;
+
 
 
 
@@ -23,12 +22,10 @@ public class E_U : GenericEnemyScript {
     [SerializeField]
     GameObject bullet;
 
-    
-
     Camera cam;
-    public override void OnHit(Vector3 pos)
+    public override void OnHit(Vector3 hit)
     {
-        Health -= (int)50;
+        Health -= 2;
     }
 
     // Use this for initialization
@@ -37,24 +34,14 @@ public class E_U : GenericEnemyScript {
         position = gameObject.transform.position;
         velocity = speed;
         sceneManager = GameObject.Find("SceneManager").GetComponent<SceneManagerScript>();
-        player = GameObject.FindGameObjectWithTag("Player");
-        sM = GameObject.FindGameObjectWithTag("GameController").GetComponent<SceneManagerScript>();
         Health = 100;
+
     }
-    void Move()
-    {
-        position += -velocity;
-        transform.position = position;
-    }
+
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-
-
-        Move();
         Attacking();
-
-
     }
 
     void Attacking()
@@ -67,13 +54,25 @@ public class E_U : GenericEnemyScript {
         {
 
             // instantiate a new bullet
-            sM.AddEnemyBullet(Instantiate(bullet, transform.position, Quaternion.identity));
+            GameObject newBullet = Instantiate(bullet, transform.position, Quaternion.identity);
+            newBullet.GetComponent<VBossBullet>().dirOfBullet = 1;
+
+            GameObject newBullet1 = Instantiate(bullet, transform.position, Quaternion.identity);
+            newBullet1.GetComponent<VBossBullet>().dirOfBullet = 2;
+
+            GameObject newBullet2 = Instantiate(bullet, transform.position, Quaternion.identity);
+            newBullet.GetComponent<VBossBullet>().dirOfBullet = 3;
             
+
+
+            sceneManager.AddEnemyBullet(newBullet);
+            sceneManager.AddEnemyBullet(newBullet1);
+            sceneManager.AddEnemyBullet(newBullet2);
+            //Debug.Log("got here");
             timerTrack = bTimer;
         }
 
 
 
     }
-
 }

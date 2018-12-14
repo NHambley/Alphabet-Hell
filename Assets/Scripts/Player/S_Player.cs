@@ -69,8 +69,13 @@ public class S_Player : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        if (sceneManager == null)
+            GameObject.Find("SceneManager");
+        if (managerScript == null)
+            managerScript = sceneManager.GetComponent<SceneManagerScript>();
+
         // check input here then call the shoot and move methods depending on whether it's true or not
-        if(Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0))
         {
             mPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Move(mPosition);

@@ -2,21 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class U_Bullet : GenericBulletScript {
+public class VBossBullet : GenericBulletScript {
 
     float speed;
     Vector2 position;
-    
-    float xRot;
     Vector2 movement;
     SceneManagerScript sM;
     int leftOrRight;
     int lengthOfArc;
     int lengthOfArc1;
     GameObject player;
-
-
-
+    public V_Enemy vScript;
+    public int dirOfBullet;
     // Use this for initialization
     void Start()
     {
@@ -26,25 +23,32 @@ public class U_Bullet : GenericBulletScript {
         player = GameObject.FindGameObjectWithTag("Player");
         sM = GameObject.FindGameObjectWithTag("GameController").GetComponent<SceneManagerScript>();
 
-        //transform.eulerAngles = (Vector3.down);
+        if (dirOfBullet == 1)
+            transform.Rotate(Vector3.forward * -45);
+
+        if (dirOfBullet == 3)
+            transform.Rotate(Vector3.forward * 45);
+
+        //Debug.Log(leftOrRight);
 
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (position.x < player.transform.position.x)
-        {
-            position.x+=.008f;
+        if (dirOfBullet == 1)
+        { 
+            position.x -= .01f;
         }
-        else if(position.x > player.transform.position.x)
+        if (dirOfBullet == 3)
         {
-            position.x-=.008f;
+            position.x += .01f;
         }
-        position.y -= .04f;
 
-        transform.up = (transform.position - player.transform.position).normalized;
+
+
+        position.y -= .03f;
+
         transform.position = position;
     }
 }
