@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class A_Bullet : MonoBehaviour
+public class A_Bullet : GenericBulletScript
 {
     float speed;
     Vector2 position;
