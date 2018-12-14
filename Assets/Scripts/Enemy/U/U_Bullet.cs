@@ -33,18 +33,23 @@ public class U_Bullet : GenericBulletScript {
     // Update is called once per frame
     void Update()
     {
+        if (player != null)
+        {
+            if (position.x < player.transform.position.x)
+            {
+                position.x += .008f;
+            }
+            else if (position.x > player.transform.position.x)
+            {
+                position.x -= .008f;
+            }
+            position.y -= .04f;
 
-        if (position.x < player.transform.position.x)
-        {
-            position.x+=.008f;
-        }
-        else if(position.x > player.transform.position.x)
-        {
-            position.x-=.008f;
+            transform.up = (transform.position - player.transform.position).normalized;
+            transform.position = position;
         }
         position.y -= .04f;
 
-        transform.up = (transform.position - player.transform.position).normalized;
         transform.position = position;
     }
 }

@@ -22,8 +22,13 @@ public class T_Bullet : GenericBulletScript
         targetVec += (bPosition + targetVec);
         sm = GameObject.FindGameObjectWithTag("GameController").GetComponent<SceneManagerScript>();
         speed = 2;
-        
-        Vector3 dir = player.transform.position - transform.position;
+
+        Vector3 dir;
+        if (player != null)
+            dir = player.transform.position - transform.position;
+        else
+            dir = new Vector3(0, -10, 0) - transform.position;
+
         dir = gameObject.transform.InverseTransformDirection(dir);
         float angleBetween = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 

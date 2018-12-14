@@ -32,9 +32,11 @@ public class E_A : GenericEnemyScript
     float hp;
 
     Camera cam;
-	// Use this for initialization
-	void Start ()
+    SceneManagerScript sceneManager;
+    // Use this for initialization
+    void Start ()
     {
+        sceneManager = GameObject.Find("SceneManager").GetComponent<SceneManagerScript>();
         Health = 100;
 
         //stateManager = GetComponent<SM_A>();
@@ -78,8 +80,7 @@ public class E_A : GenericEnemyScript
         if(timerTrack <= 0)
         {
             // instantiate a new bullet
-            Instantiate(bullet, transform.position, Quaternion.identity);
-
+            sceneManager.GetComponent<SceneManagerScript>().AddEnemyBullet(Instantiate(bullet, transform.position, Quaternion.identity));
             timerTrack = bTimer;
         }
 
@@ -113,7 +114,7 @@ public class E_A : GenericEnemyScript
     {
         Vector2 distance = Vector2.zero; 
         // if the enemy has reached the top of the screen give it a new attack vector
-        if(Vector2.Distance(transform.position, topCenterScreen) < .5)
+        if(Vector2.Distance(transform.position, topCenterScreen) < .5 && target != null)
         {
             tPosition = new Vector2(Random.Range(-(2f * cam.orthographicSize) * cam.aspect, (2f * cam.orthographicSize) * cam.aspect), target.transform.position.y);
             state = true;

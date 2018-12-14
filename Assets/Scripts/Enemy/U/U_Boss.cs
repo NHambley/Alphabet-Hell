@@ -53,8 +53,6 @@ public class U_Boss : GenericBossScript {
 
     void bossAttack()
     {
-        
-
         obstacleTimerTrack -= Time.deltaTime;
         if (obstacleTimerTrack <= 0)
         {

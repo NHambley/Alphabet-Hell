@@ -87,13 +87,17 @@ public class PlayerLives : MonoBehaviour {
             #region HitTimer
             else
             {
-                hitTimer--;
-                if (hitTimer == 0)
-                    player.GetComponent<SpriteRenderer>().enabled = true;
-                else if (hitTimer % 2 == 1)
-                    player.GetComponent<SpriteRenderer>().enabled = false;
-                else if (hitTimer % 2 == 0)
-                    player.GetComponent<SpriteRenderer>().enabled = true;
+                if (hitTimer > 0)
+                    hitTimer--;
+                if (player != null)
+                {
+                    if (hitTimer == 0)
+                        player.GetComponent<SpriteRenderer>().enabled = true;
+                    else if (hitTimer % 2 == 1)
+                        player.GetComponent<SpriteRenderer>().enabled = false;
+                    else if (hitTimer % 2 == 0)
+                        player.GetComponent<SpriteRenderer>().enabled = true;
+                }
             }
         }
         #endregion

@@ -15,12 +15,15 @@ public class B_A : GenericBossScript
     [SerializeField]
     float rotSpeed;//for rotating the object locally
 
-	// Use this for initialization
-	void Start ()
+    SceneManagerScript sceneManager;
+    // Use this for initialization
+    void Start ()
     {
         rotSpeed = 40f;
         Health = 500;
-	}
+        sceneManager = GameObject.Find("SceneManager").GetComponent<SceneManagerScript>();
+
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -37,7 +40,7 @@ public class B_A : GenericBossScript
     // fire a bullet from the given position
     public void FireBullet(Transform position)
     {
-        Instantiate(bullet, position);
+        sceneManager.GetComponent<SceneManagerScript>().AddEnemyBullet(Instantiate(bullet, position));
     }
 
     public override void OnHit(Vector3 pos)

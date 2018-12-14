@@ -59,6 +59,7 @@ public class SelectLevelSprites : MonoBehaviour
         if (level.tag == "Level11")
             SceneManagerScript.level = 11;
 
-        SceneManager.LoadScene("TestScene");
+        SceneManager.LoadScene("PlayScene");
+        Destroy(gameObject, .1f);
     }
 }

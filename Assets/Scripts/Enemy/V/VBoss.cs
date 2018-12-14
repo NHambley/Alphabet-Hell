@@ -6,13 +6,10 @@ public class VBoss : GenericBossScript {
     Vector3 position, tPosition;
     Vector2 ePosition; // positino of this gameobject
     float damageTaken;
-    public Vector2 speed;
     SceneManagerScript sceneManager;
 
     float bTimer = 1.5f; // to keep track of when to fire another bullet
     float timerTrack = 1.5f;
-
-
 
 
     // get a reference to the state manager
@@ -32,7 +29,6 @@ public class VBoss : GenericBossScript {
     void Start()
     {
         position = gameObject.transform.position;
-        velocity = speed;
         sceneManager = GameObject.Find("SceneManager").GetComponent<SceneManagerScript>();
         Health = 100;
 

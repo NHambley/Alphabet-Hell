@@ -55,16 +55,19 @@ public class B_TCannon : MonoBehaviour
     // check if the cannon is able to actually see the player
     void SeePlayer()
     {
-        // get raycast hit info from the transform of the cannon to the player
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(player.transform.position.x - transform.position.x, player.transform.position.y - transform.position.y));
-
-        // if it hits the player decrement the charge timer, if not don't
-        if (hit.collider != null && hit.collider.gameObject.tag == "Player")
+        if (player != null)
         {
-            seePlayer = true;
+            // get raycast hit info from the transform of the cannon to the player
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(player.transform.position.x - transform.position.x, player.transform.position.y - transform.position.y));
+
+            // if it hits the player decrement the charge timer, if not don't
+            if (hit.collider != null && hit.collider.gameObject.tag == "Player")
+            {
+                seePlayer = true;
+            }
+            else
+                seePlayer = false;
         }
-        else
-            seePlayer = false;
     }
 
     // fire a bullet at the player's current position
