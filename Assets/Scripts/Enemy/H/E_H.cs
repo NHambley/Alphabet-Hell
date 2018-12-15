@@ -20,7 +20,6 @@ public class E_H : GenericEnemyScript
     public override void OnHit(Vector3 onHit)
     {
         Health -= 15;
-        audioManager.PlaySound("ting");
     }
 
     // Use this for initialization
@@ -30,18 +29,20 @@ public class E_H : GenericEnemyScript
         ePosition = transform.position;
         speed = 2;
         sm = GameObject.FindGameObjectWithTag("GameController").GetComponent<SceneManagerScript>();
-        //velocity = Vector3.zero;
-        //acceleration = Vector3.zero;
-    }
-	
+        audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+
+		//velocity = Vector3.zero;
+		//acceleration = Vector3.zero;
+	}
+
 	// Update is called once per frame
 	void Update ()
     {
         velocity = Vector3.down * Time.deltaTime;
-        //velocity = Vector3.zero;
-        //acceleration = Vector3.zero;
+		//velocity = Vector3.zero;
+		//acceleration = Vector3.zero;
 
-        if (Health <= 0)
+		if (Health <= 0)
             Destroy(gameObject);
 
         timerTrack -= Time.deltaTime;
@@ -63,5 +64,6 @@ public class E_H : GenericEnemyScript
                 bull.GetComponent<E_HBullet>().Real = false;
 
         }
+
 	}
 }

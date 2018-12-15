@@ -30,6 +30,7 @@ public class B_H : GenericBossScript
         Health = 500;
         sm = GameObject.FindGameObjectWithTag("GameController").GetComponent<SceneManagerScript>();
 		audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        audioManager.PlaySound("Hypno");
 	}
 
 	// Update is called once per frame

@@ -84,3 +84,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 843813bd2649deb42a9cfd0d73b15682, type: 3}
     volume: 0.3
     pitch: 1
+  - name: Hypno
+    clip: {fileID: 8300000, guid: 724cbe7f1328ba24a88fa6b5395d0fb0, type: 3}
+    volume: 0.3
+    pitch: 1
