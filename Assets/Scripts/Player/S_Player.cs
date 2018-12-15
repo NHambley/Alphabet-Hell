@@ -43,6 +43,8 @@ public class S_Player : MonoBehaviour
 
     Vector3 spawnPos;
 
+	AudioManager audioManager;
+
     public int Health
     {
         get { return health; }
@@ -60,7 +62,8 @@ public class S_Player : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        mPosition = Input.mousePosition;
+		audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+		mPosition = Input.mousePosition;
         pPosition = gameObject.transform.position;
         managerScript = sceneManager.GetComponent<SceneManagerScript>();
         spawnPos = new Vector3(transform.position.x, transform.position.y, 0);
@@ -82,7 +85,7 @@ public class S_Player : MonoBehaviour
             if (gameObject.GetComponent<Renderer>().isVisible)
             {
                 Shoot();
-                sceneManager.GetComponent<AudioManager>().PlaySound("shot");
+                audioManager.PlaySound("shot");
             }
         }
         else

@@ -10,6 +10,7 @@ public class AudioManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+		DontDestroyOnLoad(gameObject);
 		foreach (Sound s in sounds)
 		{
 			s.SetSource(gameObject.AddComponent<AudioSource>());
@@ -19,6 +20,7 @@ public class AudioManager : MonoBehaviour
 
 	// Update is called once per frame
 	void Update () {
+		
 	}
 
 	public void PlaySound(string soundName)

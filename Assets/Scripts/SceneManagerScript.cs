@@ -22,8 +22,9 @@ public class SceneManagerScript : MonoBehaviour {
     public int levelDebug = -1;
     bool isBossFight = false;
     PlayerLives playerLives;
+	AudioManager audioManager;
 
-    public List<GameObject> EnemyBullets
+	public List<GameObject> EnemyBullets
     {
         get { return enemyBullets; }
     }
@@ -40,9 +41,9 @@ public class SceneManagerScript : MonoBehaviour {
         GenerateLevel(level);
         lastEnemySpawnTime = Time.time;
         playerLives = GameObject.FindObjectOfType<PlayerLives>().GetComponent<PlayerLives>();
-        gameObject.GetComponent<AudioManager>().PlaySound("Music");
+		audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 	}
-	
+
 	// Update is called once per frame
 	void Update ()
     {
@@ -168,7 +169,7 @@ public class SceneManagerScript : MonoBehaviour {
                     playerLives.PlayerHit(enemyBullets[i]);
                     enemyBullets[i].GetComponent<GenericBulletScript>().IsDead = true;
                     player.GetComponent<ParticleGenerator>().GenerateParticles(SPRITE.SPARK, 5, enemyBullets[i].transform.position, enemyBullets[i].GetComponent<GenericBulletScript>().GetVelocity().normalized * 0.3f, new Vector3(1.0f, 1.0f, 1.0f), 90, 0.5f, -0.5f);
-                    gameObject.GetComponent<AudioManager>().PlaySound("ting");
+                    audioManager.PlaySound("ting");
                     //player.GetComponent<S_Player>().health -= enemyBullets[i].GetComponent<GenericBulletScript>().damage;
                     if (enemyBullets[i].GetComponent<GenericBulletScript>().IsDead)
                     {

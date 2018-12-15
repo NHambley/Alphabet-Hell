@@ -17,6 +17,8 @@ public class E_C : GenericEnemyScript
 
     SceneManagerScript sceneManager;
 
+	AudioManager audioManager;
+
     // Destructor
 
     // Use this for initialization
@@ -27,16 +29,20 @@ public class E_C : GenericEnemyScript
         firingPosition = transform.GetChild(0).gameObject;
         //bullets = new List<GameObject>();
         sceneManager = GameObject.Find("SceneManager").GetComponent<SceneManagerScript>();
+		audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         damageTaken = 8;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+		if (audioManager == null) 
+			audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+
         Move();
 
-        // Firing
-        if (shotTimer >= shotTimerMax)
+		// Firing
+		if (shotTimer >= shotTimerMax)
         {
             shotTimer = 0;
             Fire();
@@ -66,12 +72,12 @@ public class E_C : GenericEnemyScript
         newBullet.transform.position = firingPosition.transform.position;
         newBullet.GetComponent<CorkBullet>().InitializeBullet(bulletSpeed, Vector3.zero, gameObject);
         sceneManager.AddEnemyBullet(newBullet);
-        sceneManager.gameObject.GetComponent<AudioManager>().PlaySound("pop");
+        audioManager.PlaySound("pop");
     }
 
     public override void OnHit(Vector3 pos)
     {
         Health -= (int)damageTaken;
-        sceneManager.gameObject.GetComponent<AudioManager>().PlaySound("ting");
+		audioManager.PlaySound("ting");
     }
 }
