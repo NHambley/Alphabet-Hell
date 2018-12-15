@@ -79,7 +79,11 @@ public class S_Player : MonoBehaviour
         {
             mPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Move(mPosition);
-            if(gameObject.GetComponent<Renderer>().isVisible) Shoot();
+            if (gameObject.GetComponent<Renderer>().isVisible)
+            {
+                Shoot();
+                sceneManager.GetComponent<AudioManager>().PlaySound("shot");
+            }
         }
         else
         {

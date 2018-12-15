@@ -66,10 +66,12 @@ public class E_C : GenericEnemyScript
         newBullet.transform.position = firingPosition.transform.position;
         newBullet.GetComponent<CorkBullet>().InitializeBullet(bulletSpeed, Vector3.zero, gameObject);
         sceneManager.AddEnemyBullet(newBullet);
+        sceneManager.gameObject.GetComponent<AudioManager>().PlaySound("pop");
     }
 
     public override void OnHit(Vector3 pos)
     {
         Health -= (int)damageTaken;
+        sceneManager.gameObject.GetComponent<AudioManager>().PlaySound("ting");
     }
 }
