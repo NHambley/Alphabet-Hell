@@ -111,7 +111,7 @@ public class PlayerLives : MonoBehaviour {
             Destroy(popped);
         }
 
-        if ((lives == 0 && player != null) || bossIsDead && gg == null)
+        if ((lives == 0 && player != null) || bossIsDead)
         {
             Destroy(player);
             gg = Instantiate(ggPref);
