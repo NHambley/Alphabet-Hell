@@ -36,7 +36,7 @@ Transform:
   m_GameObject: {fileID: 1850317072991788}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.123836756, y: 4.575931, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -56,7 +56,7 @@ MonoBehaviour:
   acceleration: {x: 0, y: 0, z: 0}
   speed: 2
   state: 0
-  bullet: {fileID: 1046507976500026, guid: efb28bd8fd477b144ae725620543768b, type: 2}
+  bullet: {fileID: 1046507976500026, guid: 521a73fc702ef6b499ff414917a69602, type: 2}
 --- !u!212 &212082914640822840
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -92,12 +92,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: cb7e9224700e9e1458bc891228aad7c8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3c74f72ab57fdf04ea13e547d5a906c0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.25, y: 1.24}
+  m_Size: {x: 12, y: 12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

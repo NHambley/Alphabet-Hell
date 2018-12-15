@@ -53,5 +53,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lives: 3
   hitTimerMax: 180
-  ggPref: {fileID: 1960003775231928, guid: e5c630698f8a046438f86b320827e66f, type: 2}
+  ggPref: {fileID: 1960003775231928, guid: 1f26019c123ec4548be776e9fca1e996, type: 2}
   bossIsDead: 0

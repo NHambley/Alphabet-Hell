@@ -119,6 +119,7 @@ public class PlayerLives : MonoBehaviour {
             gg.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 0);
         }
 
+        #region GGTimer
         if (player == null || bossIsDead)
         {
             if (ggTimer != 0)
@@ -131,6 +132,9 @@ public class PlayerLives : MonoBehaviour {
             }
             else if (Input.GetMouseButtonDown(0))
             {
+                if (gg.GetComponent<SpriteRenderer>().color != Color.white)
+                    gg.GetComponent<SpriteRenderer>().color = Color.white;
+
                 Vector3 mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 mp.z = 0;
                 if (gg.GetComponent<Collider2D>().bounds.Contains(mp))
@@ -139,6 +143,7 @@ public class PlayerLives : MonoBehaviour {
                 }
             }
         }
+        #endregion
     }
     // Check Player Collisions
     bool CollisionCheck(GameObject toCheck) { return sceneManager.GetComponent<SceneManagerScript>().CheckCollisions(player, toCheck); }
