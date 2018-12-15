@@ -118,7 +118,7 @@ MonoBehaviour:
   health: 50
   seekScalar: 0.3
   maxSpeed: 2
-  bullet: {fileID: 1436152677469696, guid: bd24a28762ae5354fbe44c5ea2a5e32d, type: 2}
+  bullet: {fileID: 1436152677469696, guid: 4db08468966ba594eb59d925673a194d, type: 2}
 --- !u!212 &212688652029472148
 SpriteRenderer:
   m_ObjectHideFlags: 1
