@@ -42,6 +42,7 @@ public class B_Boss : GenericBossScript {
         {
             // instantiate a new bullet
             sM.AddEnemyBullet(Instantiate(bullet, transform.position, Quaternion.identity));
+            sM.gameObject.GetComponent<AudioManager>().PlaySound("boomerang");
             //Debug.Log("got here");
             timerTrack = bTimer;
         }
@@ -64,5 +65,6 @@ public class B_Boss : GenericBossScript {
     public override void OnHit(Vector3 pos)
     {
         Health -= 2;
+        sM.gameObject.GetComponent<AudioManager>().PlaySound("ting");
     }
 }

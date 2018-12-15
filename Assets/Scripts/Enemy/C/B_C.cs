@@ -90,10 +90,12 @@ public class B_C : GenericBossScript
         newBullet.transform.position = firingPositions[num].transform.position;
         newBullet.GetComponent<CorkBullet>().InitializeBullet(bulletSpeed, Vector3.zero, gameObject);
         sceneManager.GetComponent<SceneManagerScript>().AddEnemyBullet(newBullet);
+        sceneManager.gameObject.GetComponent<AudioManager>().PlaySound("pop");
     }
 
     public override void OnHit(Vector3 pos)
     {
         Health -= (int)damageTaken;
+        sceneManager.gameObject.GetComponent<AudioManager>().PlaySound("ting");
     }
 }

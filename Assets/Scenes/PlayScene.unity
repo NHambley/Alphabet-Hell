@@ -361,6 +361,50 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1131436892613164, guid: e63631e4d893adf45aaddf71cb575639,
     type: 2}
   m_PrefabInternal: {fileID: 2135074892}
+--- !u!114 &493089635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 493089634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bac5b43b8bda2e42813cb83c8209776, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Music
+    clip: {fileID: 8300000, guid: ca14db10e5b0faf4ba9f97c62b281839, type: 3}
+    volume: 0.301
+    pitch: 1.007
+  - name: boomerang
+    clip: {fileID: 8300000, guid: 33a6bd9a6e414384cb52c7dfc5b70f50, type: 3}
+    volume: 0.502
+    pitch: 1.004
+  - name: coins
+    clip: {fileID: 8300000, guid: 8a4e3dcf371474f4eb62ab58f9afd138, type: 3}
+    volume: 0.502
+    pitch: 1.001
+  - name: pop
+    clip: {fileID: 8300000, guid: 97990a096ba6b81489657d0d24f2a9bd, type: 3}
+    volume: 0.504
+    pitch: 1.002
+  - name: pop2
+    clip: {fileID: 8300000, guid: d4906b06658a7ea48a51b38a98d2efe1, type: 3}
+    volume: 0.496
+    pitch: 0.998
+  - name: shot
+    clip: {fileID: 8300000, guid: 6044023682c0e7547a8a54110e45e290, type: 3}
+    volume: 0.502
+    pitch: 1.007
+  - name: ting
+    clip: {fileID: 8300000, guid: 670d94539588dff42989ef1b7e5f1aad, type: 3}
+    volume: 0.496
+    pitch: 0.998
+  - name: zshoot
+    clip: {fileID: 8300000, guid: 913b740e7305d0d4a8b2e5aa671d43a1, type: 3}
+    volume: 0.498
+    pitch: 1.001
 --- !u!1001 &1434950383
 Prefab:
   m_ObjectHideFlags: 0
@@ -403,7 +447,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4766332422092812, guid: baf531abf4728d044bb036ce065f5e05, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114797251974185906, guid: baf531abf4728d044bb036ce065f5e05,
         type: 2}
@@ -443,6 +487,34 @@ Prefab:
     - {fileID: 58076967904830460, guid: baf531abf4728d044bb036ce065f5e05, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: baf531abf4728d044bb036ce065f5e05, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &1860302874
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 248249385}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1860302875}
+  m_Layer: 0
+  m_Name: Missing Prefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1860302875
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 248249385}
+  m_GameObject: {fileID: 1860302874}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2079735437
 GameObject:
   m_ObjectHideFlags: 0

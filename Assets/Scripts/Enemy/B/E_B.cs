@@ -27,6 +27,7 @@ public class E_B : GenericEnemyScript {
     public override void OnHit(Vector3 hit)
     {
         Health -= 10;
+        sceneManager.gameObject.GetComponent<AudioManager>().PlaySound("ting");
     }
 
     // Use this for initialization
@@ -70,6 +71,7 @@ public class E_B : GenericEnemyScript {
 
             // instantiate a new bullet
             sM.AddEnemyBullet(Instantiate(bullet, transform.position, Quaternion.identity));
+            sceneManager.gameObject.GetComponent<AudioManager>().PlaySound("boomerang");
             //Debug.Log("got here");
             timerTrack = bTimer;
         }

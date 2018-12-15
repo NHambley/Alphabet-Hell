@@ -18,6 +18,7 @@ public class B_H : GenericBossScript
     public override void OnHit(Vector3 pos)
     {
         Health -= 15;
+        sm.gameObject.GetComponent<AudioManager>().PlaySound("ting");
     }
 
     // Use this for initialization
@@ -48,6 +49,7 @@ public class B_H : GenericBossScript
             {
                 sm.AddEnemyBullet(bull1);
                 bull1.GetComponent<E_HBullet>().Real = true;
+                sm.gameObject.GetComponent<AudioManager>().PlaySound("pop2");
             }
             else
                 bull1.GetComponent<E_HBullet>().Real = false;
@@ -56,6 +58,7 @@ public class B_H : GenericBossScript
             {
                 sm.AddEnemyBullet(bull2);
                 bull2.GetComponent<E_HBullet>().Real = true;
+                sm.gameObject.GetComponent<AudioManager>().PlaySound("pop2");
             }
             else
                 bull2.GetComponent<E_HBullet>().Real = false;
@@ -72,6 +75,7 @@ public class B_H : GenericBossScript
             {
                 sm.AddEnemyBullet(bull);
                 bull.GetComponent<E_HBullet>().Real = true;
+                sm.gameObject.GetComponent<AudioManager>().PlaySound("pop2");
             }
         }
     }
