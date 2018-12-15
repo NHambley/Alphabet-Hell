@@ -44,6 +44,9 @@ public class S_Player : MonoBehaviour
     Vector3 spawnPos;
 
 	AudioManager audioManager;
+	bool audioShot = false;
+
+	PlayerLives playerLives;
 
     public int Health
     {
@@ -63,6 +66,8 @@ public class S_Player : MonoBehaviour
     void Start ()
     {
 		audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+		playerLives = GameObject.FindObjectOfType<PlayerLives>().GetComponent<PlayerLives>();
+
 		mPosition = Input.mousePosition;
         pPosition = gameObject.transform.position;
         managerScript = sceneManager.GetComponent<SceneManagerScript>();
@@ -82,10 +87,9 @@ public class S_Player : MonoBehaviour
         {
             mPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Move(mPosition);
-            if (gameObject.GetComponent<Renderer>().isVisible)
+            if (GetComponent<Renderer>().isVisible && !playerLives.playerHasBeenHit)
             {
                 Shoot();
-                audioManager.PlaySound("shot");
             }
         }
         else
@@ -104,10 +108,11 @@ public class S_Player : MonoBehaviour
     // periodically have the player shoot a projectile using a timer and a cooldown 
     void Shoot()
     {
-        Vector3 positionOffset = new Vector3(0, 1);
-        if(Time.time - lastBulletTime >= 0.1f || lastBulletTime == -1.0f)
+		Vector3 positionOffset = new Vector3(0, 1);
+		if (Time.time - lastBulletTime >= 0.1f || lastBulletTime == -1.0f)
         {
-            GameObject newBullet = Instantiate(bullet,transform.position + positionOffset,Quaternion.identity);
+			audioManager.Play("shot");
+			GameObject newBullet = Instantiate(bullet,transform.position + positionOffset,Quaternion.identity);
             managerScript.AddPlayerBullet(newBullet);
             lastBulletTime = Time.time;
             gameObject.GetComponent<ParticleGenerator>().GenerateParticles((SPRITE)(Random.Range(6, 9)), 5, gameObject.transform.position + positionOffset, new Vector3(0.0f, 0.2f, 0.0f), new Vector3(1.0f,1.0f,1.0f), 20.0f, 0.2f, 0.5f);

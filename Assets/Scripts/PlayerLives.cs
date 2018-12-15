@@ -26,12 +26,17 @@ public class PlayerLives : MonoBehaviour {
     float ggTimer;
     float ggTimerMax;
     public bool bossIsDead = false;
+	[HideInInspector]
+	public bool playerHasBeenHit = false;
+
+	AudioManager audioManager;
 
     #endregion
 
     // Use this for initialization
     void Start () {
         sceneManager = GameObject.FindGameObjectWithTag("GameController");
+		audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         player = GameObject.FindGameObjectWithTag("Player");
         checkList = new List<GameObject>();
         livesMax = 3;
@@ -63,14 +68,6 @@ public class PlayerLives : MonoBehaviour {
                     checkList.Add(enemy);
                 }
 
-                /*
-                // adds the enemy bullets from the scene manager
-                foreach (GameObject enemyBullet in sceneManager.GetComponent<SceneManagerScript>().EnemyBullets)
-                {
-                    checkList.Add(enemyBullet);
-                }
-                */
-
                 // checks everything in the list
                 foreach (GameObject check in checkList)
                 {
@@ -91,12 +88,15 @@ public class PlayerLives : MonoBehaviour {
                     hitTimer--;
                 if (player != null)
                 {
-                    if (hitTimer == 0)
-                        player.GetComponent<SpriteRenderer>().enabled = true;
-                    else if (hitTimer % 2 == 1)
-                        player.GetComponent<SpriteRenderer>().enabled = false;
-                    else if (hitTimer % 2 == 0)
-                        player.GetComponent<SpriteRenderer>().enabled = true;
+					if (hitTimer == 0)
+					{
+						player.GetComponent<SpriteRenderer>().enabled = true;
+						playerHasBeenHit = false;
+					}
+					else if (hitTimer % 2 == 1)
+						player.GetComponent<SpriteRenderer>().enabled = false;
+					else if (hitTimer % 2 == 0)
+						player.GetComponent<SpriteRenderer>().enabled = true;
                 }
             }
         }
@@ -139,6 +139,7 @@ public class PlayerLives : MonoBehaviour {
                 mp.z = 0;
                 if (gg.GetComponent<Collider2D>().bounds.Contains(mp))
                 {
+					audioManager.PlaySound("Coins");
                     SceneManager.LoadScene("MainMenu");
                 }
             }
@@ -155,7 +156,8 @@ public class PlayerLives : MonoBehaviour {
         if (hit.tag == "Enemy" || hit.tag == "EnemyBullet")
         {
             hitTimer = hitTimerMax;
-            //player.GetComponent<S_Player>().SetToSpawn(); // Returns the player to the start point
+			//player.GetComponent<S_Player>().SetToSpawn(); // Returns the player to the start point
+			playerHasBeenHit = true;
             lives--;
         }
     }
