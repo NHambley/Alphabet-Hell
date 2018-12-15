@@ -56,31 +56,31 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 26d0184ad6abab244b1dd44b06a2489d, type: 3}
     volume: 0.153
     pitch: 1
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
+  - name: shot
+    clip: {fileID: 8300000, guid: a57a3776e0563744d9d2f3ed603a1342, type: 3}
+    volume: 0.284
+    pitch: 1
+  - name: ting
+    clip: {fileID: 8300000, guid: d584a7831c1b3364a8ac14fa85e7a83b, type: 3}
+    volume: 0.3
+    pitch: 1
+  - name: pop
+    clip: {fileID: 8300000, guid: 534cefdf61c06a64b837f24a4df4e2d7, type: 3}
+    volume: 0.3
+    pitch: 1
+  - name: boomerang
+    clip: {fileID: 8300000, guid: f4a143415733eea41ac1e6e274d9d193, type: 3}
+    volume: 0.3
+    pitch: 1
+  - name: pop2
+    clip: {fileID: 8300000, guid: a3451b866bd6c0548b8744a9200812cd, type: 3}
+    volume: 0.3
+    pitch: 1
+  - name: zshoot
+    clip: {fileID: 8300000, guid: c7681876444445e4d9ca2beb3b99ada7, type: 3}
+    volume: 0.3
+    pitch: 1
+  - name: Coins
+    clip: {fileID: 8300000, guid: 843813bd2649deb42a9cfd0d73b15682, type: 3}
+    volume: 0.3
+    pitch: 1
