@@ -313,7 +313,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1131436892613164, guid: e63631e4d893adf45aaddf71cb575639,
     type: 2}
   m_PrefabInternal: {fileID: 2135074892}
---- !u!1001 &952103391
+--- !u!1001 &818210160
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -350,7 +350,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4643364159430206, guid: 76aaae847cb6ee640aa998121ac1570c, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 76aaae847cb6ee640aa998121ac1570c, type: 2}
@@ -397,7 +397,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4766332422092812, guid: baf531abf4728d044bb036ce065f5e05, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114797251974185906, guid: baf531abf4728d044bb036ce065f5e05,
         type: 2}
@@ -513,7 +513,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2079735441
 MonoBehaviour:
