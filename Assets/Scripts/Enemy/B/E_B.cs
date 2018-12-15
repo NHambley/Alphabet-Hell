@@ -14,10 +14,10 @@ public class E_B : GenericEnemyScript {
     float bTimer = 2.0f; // to keep track of when to fire another bullet
     float timerTrack = 2.0f;
 
+	AudioManager audioManager;
 
-
-    // get a reference to the state manager
-    [SerializeField]
+	// get a reference to the state manager
+	[SerializeField]
     bool state;
 
     [SerializeField]
@@ -27,12 +27,13 @@ public class E_B : GenericEnemyScript {
     public override void OnHit(Vector3 hit)
     {
         Health -= 10;
-        sceneManager.gameObject.GetComponent<AudioManager>().PlaySound("ting");
+        audioManager.PlaySound("ting");
     }
 
     // Use this for initialization
     void Start () {
-        position = gameObject.transform.position;
+		audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+		position = gameObject.transform.position;
         velocity = speed;
         sceneManager = GameObject.Find("SceneManager").GetComponent<SceneManagerScript>();
         player = GameObject.FindGameObjectWithTag("Player");
@@ -71,7 +72,7 @@ public class E_B : GenericEnemyScript {
 
             // instantiate a new bullet
             sM.AddEnemyBullet(Instantiate(bullet, transform.position, Quaternion.identity));
-            sceneManager.gameObject.GetComponent<AudioManager>().PlaySound("boomerang");
+            audioManager.PlaySound("boomerang");
             //Debug.Log("got here");
             timerTrack = bTimer;
         }

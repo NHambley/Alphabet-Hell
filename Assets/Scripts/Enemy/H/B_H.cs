@@ -15,10 +15,13 @@ public class B_H : GenericBossScript
 
     float fpTimer2 = 1.5f;// center, more powerful clock
     float track2 = 1.5f;
+
+	AudioManager audioManager;
+
     public override void OnHit(Vector3 pos)
     {
         Health -= 15;
-        sm.gameObject.GetComponent<AudioManager>().PlaySound("ting");
+        audioManager.PlaySound("ting");
     }
 
     // Use this for initialization
@@ -26,10 +29,11 @@ public class B_H : GenericBossScript
     {
         Health = 500;
         sm = GameObject.FindGameObjectWithTag("GameController").GetComponent<SceneManagerScript>();
-    }
+		audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+	}
 
-    // Update is called once per frame
-    void Update ()
+	// Update is called once per frame
+	void Update ()
     {
         // decrement the timers
         track -= Time.deltaTime;
@@ -49,7 +53,7 @@ public class B_H : GenericBossScript
             {
                 sm.AddEnemyBullet(bull1);
                 bull1.GetComponent<E_HBullet>().Real = true;
-                sm.gameObject.GetComponent<AudioManager>().PlaySound("pop2");
+                audioManager.PlaySound("pop2");
             }
             else
                 bull1.GetComponent<E_HBullet>().Real = false;
@@ -58,7 +62,7 @@ public class B_H : GenericBossScript
             {
                 sm.AddEnemyBullet(bull2);
                 bull2.GetComponent<E_HBullet>().Real = true;
-                sm.gameObject.GetComponent<AudioManager>().PlaySound("pop2");
+                audioManager.PlaySound("pop2");
             }
             else
                 bull2.GetComponent<E_HBullet>().Real = false;
@@ -75,7 +79,7 @@ public class B_H : GenericBossScript
             {
                 sm.AddEnemyBullet(bull);
                 bull.GetComponent<E_HBullet>().Real = true;
-                sm.gameObject.GetComponent<AudioManager>().PlaySound("pop2");
+                audioManager.PlaySound("pop2");
             }
         }
     }

@@ -15,11 +15,12 @@ public class E_H : GenericEnemyScript
     float speed;
 
     SceneManagerScript sm;
+	AudioManager audioManager;
 
     public override void OnHit(Vector3 onHit)
     {
         Health -= 15;
-        sm.gameObject.GetComponent<AudioManager>().PlaySound("ting");
+        audioManager.PlaySound("ting");
     }
 
     // Use this for initialization
@@ -56,7 +57,7 @@ public class E_H : GenericEnemyScript
             {
                 sm.AddEnemyBullet(bull);
                 bull.GetComponent<E_HBullet>().Real = true;
-                sm.gameObject.GetComponent<AudioManager>().PlaySound("pop2");
+                audioManager.PlaySound("pop2");
             }
             else
                 bull.GetComponent<E_HBullet>().Real = false;

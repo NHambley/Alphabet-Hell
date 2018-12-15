@@ -16,17 +16,19 @@ public class B_Boss : GenericBossScript {
     float bObstacleTimer = 4.0f;
     Vector3 obstaclePos;
     SceneManagerScript sM;
+	AudioManager audioManager;
 
     // Use this for initialization
     void Start()
     {
         obstaclePos = transform.position;
         sM = GameObject.FindGameObjectWithTag("GameController").GetComponent<SceneManagerScript>();
+		audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
-    }
+	}
 
-    // Update is called once per frame
-    void Update()
+	// Update is called once per frame
+	void Update()
     {
         Attacking();
         spawnObstacle();
@@ -42,7 +44,7 @@ public class B_Boss : GenericBossScript {
         {
             // instantiate a new bullet
             sM.AddEnemyBullet(Instantiate(bullet, transform.position, Quaternion.identity));
-            sM.gameObject.GetComponent<AudioManager>().PlaySound("boomerang");
+            audioManager.PlaySound("boomerang");
             //Debug.Log("got here");
             timerTrack = bTimer;
         }
@@ -65,6 +67,6 @@ public class B_Boss : GenericBossScript {
     public override void OnHit(Vector3 pos)
     {
         Health -= 2;
-        sM.gameObject.GetComponent<AudioManager>().PlaySound("ting");
+        audioManager.PlaySound("ting");
     }
 }
