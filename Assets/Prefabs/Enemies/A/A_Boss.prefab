@@ -246,8 +246,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45d959e9494aba342846dd923e9c5ab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0, z: 0}
+  acceleration: {x: 0, y: 0, z: 0}
+  isActive: 0
   firePoints: []
-  bullet: {fileID: 1046507976500026, guid: efb28bd8fd477b144ae725620543768b, type: 2}
+  bullet: {fileID: 1046507976500026, guid: b670dd7c37dd53849a5e82e7a09536ef, type: 2}
   rotSpeed: 0
 --- !u!114 &114727651413079322
 MonoBehaviour:
