@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114295395858683990}
   m_Layer: 0
   m_Name: ABoss_Bullet
-  m_TagString: Untagged
+  m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64,6 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e071d86bc49669343828d2f1fd2b3efd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
 --- !u!212 &212363477488273426
 SpriteRenderer:
   m_ObjectHideFlags: 1
