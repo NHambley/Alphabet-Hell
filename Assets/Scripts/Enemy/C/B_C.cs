@@ -22,7 +22,7 @@ public class B_C : GenericBossScript
     void Start()
     {
 		audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
-        firingPositions = new List<GameObject>();
+		firingPositions = new List<GameObject>();
         shotTimers = new List<float>();
         for (int i = 0; i < 3; i++)
         {
@@ -98,6 +98,8 @@ public class B_C : GenericBossScript
     public override void OnHit(Vector3 pos)
     {
         Health -= (int)damageTaken;
+		if (audioManager == null)
+			audioManager = GameObject.Find("AudioManager").GetComponent<AudioManager>();
         audioManager.PlaySound("ting");
     }
 }
